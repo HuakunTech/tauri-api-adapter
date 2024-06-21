@@ -6,11 +6,11 @@ import { IOPayload } from 'tauri-plugin-shellx-api'
 
 export class Child extends shellx.Child {
   write(data: IOPayload): Promise<void> {
-    return shell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
+    return comlinkShell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
   }
 
   kill(): Promise<void> {
-    return shell.kill(this.pid)
+    return comlinkShell.kill(this.pid)
   }
 }
 
@@ -30,7 +30,7 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
       Object.freeze(args)
     }
 
-    return shell
+    return comlinkShell
       .rawSpawn<O>(
         this.program,
         args,
@@ -64,7 +64,7 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
       Object.freeze(args)
     }
     // return shellxExecute({ program, args, options }) as Promise<shellx.ChildProcess<O>>
-    return shell.execute(program, args, options) as Promise<shellx.ChildProcess<O>>
+    return comlinkShell.execute(program, args, options) as Promise<shellx.ChildProcess<O>>
   }
 }
 
@@ -92,7 +92,7 @@ function makeNodeScript(script: string): Command<string> {
   return Command.create('node', ['-e', script])
 }
 
-const _shell: IShell = {
+const _comlinkShell: IShell = {
   execute: defaultClientAPI.shellExecute,
   kill: defaultClientAPI.shellKill,
   stdinWrite: defaultClientAPI.shellStdinWrite,
@@ -114,10 +114,30 @@ const _shell: IShell = {
   likelyOnWindows: defaultClientAPI.shellLikelyOnWindows
 }
 
-export const shellOpen = _shell.open
+export const shellOpen = _comlinkShell.open
 
-export const shell = {
-  ..._shell,
+export const comlinkShell = {
+  ..._comlinkShell,
+  Command,
+  Child
+}
+
+export const nativeShell = {
+  open: shellx.open,
+  makeBashScript: shellx.makeBashScript,
+  makePowershellScript: shellx.makePowershellScript,
+  makeAppleScript: shellx.makeAppleScript,
+  makePythonScript: shellx.makePythonScript,
+  makeZshScript: shellx.makeZshScript,
+  makeNodeScript: shellx.makeNodeScript,
+  executeBashScript: shellx.executeBashScript,
+  executePowershellScript: shellx.executePowershellScript,
+  executeAppleScript: shellx.executeAppleScript,
+  executePythonScript: shellx.executePythonScript,
+  executeZshScript: shellx.executeZshScript,
+  executeNodeScript: shellx.executeNodeScript,
+  hasCommand: shellx.hasCommand,
+  likelyOnWindows: shellx.likelyOnWindows,
   Command,
   Child
 }

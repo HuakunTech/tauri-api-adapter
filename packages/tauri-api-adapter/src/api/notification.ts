@@ -4,7 +4,7 @@ import * as Comlink from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
 import * as notificationApi from '@tauri-apps/plugin-notification'
 
-export const notification: INotification = {
+export const comlinkNotification: INotification = {
   sendNotification: defaultClientAPI.notificationSendNotification,
   requestPermission: defaultClientAPI.notificationRequestPermission,
   isPermissionGranted: defaultClientAPI.notificationIsPermissionGranted,
@@ -30,4 +30,22 @@ export const notification: INotification = {
   onAction: (cb: (notification: notificationApi.Options) => void): Promise<PluginListener> => {
     return defaultClientAPI.notificationOnAction(Comlink.proxy(cb))
   }
+}
+
+export const nativeNotification: INotification = {
+  sendNotification: notificationApi.sendNotification,
+  requestPermission: notificationApi.requestPermission,
+  isPermissionGranted: notificationApi.isPermissionGranted,
+  registerActionTypes: notificationApi.registerActionTypes,
+  pending: notificationApi.pending,
+  cancel: notificationApi.cancel,
+  cancelAll: notificationApi.cancelAll,
+  active: notificationApi.active,
+  removeActive: notificationApi.removeActive,
+  removeAllActive: notificationApi.removeAllActive,
+  createChannel: notificationApi.createChannel,
+  removeChannel: notificationApi.removeChannel,
+  channels: notificationApi.channels,
+  onNotificationReceived: notificationApi.onNotificationReceived,
+  onAction: notificationApi.onAction
 }

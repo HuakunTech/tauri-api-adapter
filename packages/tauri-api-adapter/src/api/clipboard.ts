@@ -1,7 +1,8 @@
 import { IClipboard } from '@/api/client-types'
 import { defaultClientAPI } from '@/client'
+import * as _clipboard from 'tauri-plugin-clipboard-api'
 
-export const clipboard: IClipboard = {
+export const comlinkClipboard: IClipboard = {
   readText: defaultClientAPI.clipboardReadText,
   writeText: defaultClientAPI.clipboardWriteText,
   readImageBase64: defaultClientAPI.clipboardReadImageBase64,
@@ -21,4 +22,26 @@ export const clipboard: IClipboard = {
   hasImage: defaultClientAPI.clipboardHasImage,
   hasFiles: defaultClientAPI.clipboardHasFiles,
   startMonitor: defaultClientAPI.clipboardStartMonitor
+}
+
+export const nativeClipboard: IClipboard = {
+  readText: _clipboard.readText,
+  writeText: _clipboard.writeText,
+  readImageBase64: _clipboard.readImageBase64,
+  readImageBinary: _clipboard.readImageBinary,
+  writeImageBase64: _clipboard.writeImageBase64,
+  writeImageBinary: _clipboard.writeImageBinary,
+  readFiles: _clipboard.readFiles,
+  writeFiles: _clipboard.writeFiles,
+  readRtf: _clipboard.readRtf,
+  writeRtf: _clipboard.writeRtf,
+  readHtml: _clipboard.readHtml,
+  writeHtml: _clipboard.writeHtml,
+  writeHtmlAndText: _clipboard.writeHtmlAndText,
+  hasText: _clipboard.hasText,
+  hasRTF: _clipboard.hasRTF,
+  hasHTML: _clipboard.hasHTML,
+  hasImage: _clipboard.hasImage,
+  hasFiles: _clipboard.hasFiles,
+  startMonitor: _clipboard.startMonitor
 }
