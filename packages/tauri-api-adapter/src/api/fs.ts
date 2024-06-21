@@ -1,23 +1,28 @@
 import { IFs } from '@/api/client-types'
 import { defaultClientAPI } from '@/client'
+import { Remote } from '@huakunshen/comlink'
 import * as _fs from '@tauri-apps/plugin-fs'
+import { IFsServer } from './server-types'
 
-export const comlinkFs: IFs = {
-  readDir: defaultClientAPI.fsReadDir,
-  readFile: defaultClientAPI.fsReadFile,
-  readTextFile: defaultClientAPI.fsReadTextFile,
-  stat: defaultClientAPI.fsStat,
-  lstat: defaultClientAPI.fsLstat,
-  exists: defaultClientAPI.fsExists,
-  mkdir: defaultClientAPI.fsMkdir,
-  create: defaultClientAPI.fsCreate,
-  copyFile: defaultClientAPI.fsCopyFile,
-  remove: defaultClientAPI.fsRemove,
-  rename: defaultClientAPI.fsRename,
-  truncate: defaultClientAPI.fsTruncate,
-  writeFile: defaultClientAPI.fsWriteFile,
-  writeTextFile: defaultClientAPI.fsWriteTextFile
+export function constructAPI(api: Remote<IFsServer>): IFs {
+  return {
+    readDir: api.fsReadDir,
+    readFile: api.fsReadFile,
+    readTextFile: api.fsReadTextFile,
+    stat: api.fsStat,
+    lstat: api.fsLstat,
+    exists: api.fsExists,
+    mkdir: api.fsMkdir,
+    create: api.fsCreate,
+    copyFile: api.fsCopyFile,
+    remove: api.fsRemove,
+    rename: api.fsRename,
+    truncate: api.fsTruncate,
+    writeFile: api.fsWriteFile,
+    writeTextFile: api.fsWriteTextFile
+  }
 }
+export const comlinkFs: IFs = constructAPI(defaultClientAPI)
 
 export const nativeFs: IFs = {
   readDir: _fs.readDir,

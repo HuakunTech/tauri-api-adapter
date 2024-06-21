@@ -1,36 +1,41 @@
 import { INotification } from '@/api/client-types'
 import { defaultClientAPI } from '@/client'
 import * as Comlink from '@huakunshen/comlink'
+import { Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
 import * as notificationApi from '@tauri-apps/plugin-notification'
+import { INotificationServer } from './server-types'
 
-export const comlinkNotification: INotification = {
-  sendNotification: defaultClientAPI.notificationSendNotification,
-  requestPermission: defaultClientAPI.notificationRequestPermission,
-  isPermissionGranted: defaultClientAPI.notificationIsPermissionGranted,
-  registerActionTypes: defaultClientAPI.notificationRegisterActionTypes,
-  // this may not work
-  pending: defaultClientAPI.notificationPending,
-  cancel: defaultClientAPI.notificationCancel,
-  cancelAll: defaultClientAPI.notificationCancelAll,
-  // this may not work
-  active: defaultClientAPI.notificationActive,
-  removeActive: defaultClientAPI.notificationRemoveActive,
-  removeAllActive: defaultClientAPI.notificationRemoveAllActive,
-  createChannel: defaultClientAPI.notificationCreateChannel,
-  removeChannel: defaultClientAPI.notificationRemoveChannel,
-  channels: defaultClientAPI.notificationChannels,
-  // this may not work
-  onNotificationReceived: (
-    cb: (notification: notificationApi.Options) => void
-  ): Promise<PluginListener> => {
-    return defaultClientAPI.notificationOnNotificationReceived(Comlink.proxy(cb))
-  },
-  // this may not work
-  onAction: (cb: (notification: notificationApi.Options) => void): Promise<PluginListener> => {
-    return defaultClientAPI.notificationOnAction(Comlink.proxy(cb))
+export function constructAPI(api: Remote<INotificationServer>): INotification {
+  return {
+    sendNotification: api.notificationSendNotification,
+    requestPermission: api.notificationRequestPermission,
+    isPermissionGranted: api.notificationIsPermissionGranted,
+    registerActionTypes: api.notificationRegisterActionTypes,
+    // this may not work
+    pending: api.notificationPending,
+    cancel: api.notificationCancel,
+    cancelAll: api.notificationCancelAll,
+    // this may not work
+    active: api.notificationActive,
+    removeActive: api.notificationRemoveActive,
+    removeAllActive: api.notificationRemoveAllActive,
+    createChannel: api.notificationCreateChannel,
+    removeChannel: api.notificationRemoveChannel,
+    channels: api.notificationChannels,
+    // this may not work
+    onNotificationReceived: (
+      cb: (notification: notificationApi.Options) => void
+    ): Promise<PluginListener> => {
+      return api.notificationOnNotificationReceived(Comlink.proxy(cb))
+    },
+    // this may not work
+    onAction: (cb: (notification: notificationApi.Options) => void): Promise<PluginListener> => {
+      return api.notificationOnAction(Comlink.proxy(cb))
+    }
   }
 }
+export const comlinkNotification: INotification = constructAPI(defaultClientAPI)
 
 export const nativeNotification: INotification = {
   sendNotification: notificationApi.sendNotification,

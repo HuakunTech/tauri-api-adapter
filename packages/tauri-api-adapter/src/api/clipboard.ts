@@ -1,28 +1,33 @@
 import { IClipboard } from '@/api/client-types'
 import { defaultClientAPI } from '@/client'
+import { Remote } from '@huakunshen/comlink'
 import * as _clipboard from 'tauri-plugin-clipboard-api'
+import { IClipboardServer } from './server-types'
 
-export const comlinkClipboard: IClipboard = {
-  readText: defaultClientAPI.clipboardReadText,
-  writeText: defaultClientAPI.clipboardWriteText,
-  readImageBase64: defaultClientAPI.clipboardReadImageBase64,
-  readImageBinary: defaultClientAPI.clipboardReadImageBinary,
-  writeImageBase64: defaultClientAPI.clipboardWriteImageBase64,
-  writeImageBinary: defaultClientAPI.clipboardWriteImageBinary,
-  readFiles: defaultClientAPI.clipboardReadFiles,
-  writeFiles: defaultClientAPI.clipboardWriteFiles,
-  readRtf: defaultClientAPI.clipboardReadRtf,
-  writeRtf: defaultClientAPI.clipboardWriteRtf,
-  readHtml: defaultClientAPI.clipboardReadHtml,
-  writeHtml: defaultClientAPI.clipboardWriteHtml,
-  writeHtmlAndText: defaultClientAPI.clipboardWriteHtmlAndText,
-  hasText: defaultClientAPI.clipboardHasText,
-  hasRTF: defaultClientAPI.clipboardHasRTF,
-  hasHTML: defaultClientAPI.clipboardHasHTML,
-  hasImage: defaultClientAPI.clipboardHasImage,
-  hasFiles: defaultClientAPI.clipboardHasFiles,
-  startMonitor: defaultClientAPI.clipboardStartMonitor
+export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
+  return {
+    readText: api.clipboardReadText,
+    writeText: api.clipboardWriteText,
+    readImageBase64: api.clipboardReadImageBase64,
+    readImageBinary: api.clipboardReadImageBinary,
+    writeImageBase64: api.clipboardWriteImageBase64,
+    writeImageBinary: api.clipboardWriteImageBinary,
+    readFiles: api.clipboardReadFiles,
+    writeFiles: api.clipboardWriteFiles,
+    readRtf: api.clipboardReadRtf,
+    writeRtf: api.clipboardWriteRtf,
+    readHtml: api.clipboardReadHtml,
+    writeHtml: api.clipboardWriteHtml,
+    writeHtmlAndText: api.clipboardWriteHtmlAndText,
+    hasText: api.clipboardHasText,
+    hasRTF: api.clipboardHasRTF,
+    hasHTML: api.clipboardHasHTML,
+    hasImage: api.clipboardHasImage,
+    hasFiles: api.clipboardHasFiles,
+    startMonitor: api.clipboardStartMonitor
+  }
 }
+export const comlinkClipboard = constructAPI(defaultClientAPI)
 
 export const nativeClipboard: IClipboard = {
   readText: _clipboard.readText,

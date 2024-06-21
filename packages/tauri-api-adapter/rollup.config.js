@@ -8,15 +8,23 @@ const pkg = JSON.parse(readFileSync(join(cwd(), 'package.json'), 'utf8'))
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
-  input: 'src/index.ts',
+  input: ['src/index.ts', 'src/native.ts', 'src/worker.ts'],
   output: [
     {
-      file: pkg.exports['.'].import,
-      format: 'esm'
+      dir: 'dist',
+      format: 'cjs',
+      entryFileNames: '[name].cjs',
+      chunkFileNames: '[name]-[hash].js',
+      preserveModules: true,
+      preserveModulesRoot: 'src'
     },
     {
-      file: pkg.exports['.'].require,
-      format: 'cjs'
+      dir: 'dist',
+      format: 'esm',
+      entryFileNames: '[name].js',
+      chunkFileNames: '[name]-[hash].js',
+      preserveModules: true,
+      preserveModulesRoot: 'src'
     }
   ],
   treeshake: true,

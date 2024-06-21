@@ -1,33 +1,38 @@
 import { ISystemInfo } from '@/api/client-types'
 import { defaultClientAPI } from '@/client'
+import { Remote } from '@huakunshen/comlink'
 import * as _sysinfo from 'tauri-plugin-system-info-api'
+import { ISystemInfoServer } from './server-types'
 
-export const comlinkSysInfo: ISystemInfo = {
-  allSysInfo: defaultClientAPI.sysInfoAllSysInfo,
-  totalMemory: defaultClientAPI.sysInfoTotalMemory,
-  usedMemory: defaultClientAPI.sysInfoUsedMemory,
-  totalSwap: defaultClientAPI.sysInfoTotalSwap,
-  usedSwap: defaultClientAPI.sysInfoUsedSwap,
-  memoryInfo: defaultClientAPI.sysInfoMemoryInfo,
-  hostname: defaultClientAPI.sysInfoHostname,
-  name: defaultClientAPI.sysInfoName,
-  kernelVersion: defaultClientAPI.sysInfoKernelVersion,
-  osVersion: defaultClientAPI.sysInfoOsVersion,
-  staticInfo: defaultClientAPI.sysInfoStaticInfo,
-  components: defaultClientAPI.sysInfoComponents,
-  cpus: defaultClientAPI.sysInfoCpus,
-  cpuCount: defaultClientAPI.sysInfoCpuCount,
-  cpuInfo: defaultClientAPI.sysInfoCpuInfo,
-  disks: defaultClientAPI.sysInfoDisks,
-  networks: defaultClientAPI.sysInfoNetworks,
-  processes: defaultClientAPI.sysInfoProcesses,
-  refreshAll: defaultClientAPI.sysInfoRefreshAll,
-  refreshMemory: defaultClientAPI.sysInfoRefreshMemory,
-  refreshCpu: defaultClientAPI.sysInfoRefreshCpu,
-  refreshProcesses: defaultClientAPI.sysInfoRefreshProcesses,
-  debugCommand: defaultClientAPI.sysInfoDebugCommand,
-  batteries: defaultClientAPI.sysInfoBatteries
+export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
+  return {
+    allSysInfo: api.sysInfoAllSysInfo,
+    totalMemory: api.sysInfoTotalMemory,
+    usedMemory: api.sysInfoUsedMemory,
+    totalSwap: api.sysInfoTotalSwap,
+    usedSwap: api.sysInfoUsedSwap,
+    memoryInfo: api.sysInfoMemoryInfo,
+    hostname: api.sysInfoHostname,
+    name: api.sysInfoName,
+    kernelVersion: api.sysInfoKernelVersion,
+    osVersion: api.sysInfoOsVersion,
+    staticInfo: api.sysInfoStaticInfo,
+    components: api.sysInfoComponents,
+    cpus: api.sysInfoCpus,
+    cpuCount: api.sysInfoCpuCount,
+    cpuInfo: api.sysInfoCpuInfo,
+    disks: api.sysInfoDisks,
+    networks: api.sysInfoNetworks,
+    processes: api.sysInfoProcesses,
+    refreshAll: api.sysInfoRefreshAll,
+    refreshMemory: api.sysInfoRefreshMemory,
+    refreshCpu: api.sysInfoRefreshCpu,
+    refreshProcesses: api.sysInfoRefreshProcesses,
+    debugCommand: api.sysInfoDebugCommand,
+    batteries: api.sysInfoBatteries
+  }
 }
+export const comlinkSysInfo: ISystemInfo = constructAPI(defaultClientAPI)
 
 export const nativeSysInfo: ISystemInfo = {
   allSysInfo: _sysinfo.allSysInfo,
