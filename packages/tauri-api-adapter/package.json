@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "rollup -c --watch --bundleConfigAsCjs",
-    "build:docs": "typedoc src/index.ts",
+    "build:docs": "cp ../../README.md ./README.md && typedoc src/index.ts",
     "build": "rollup -c && tsc-alias"
   },
   "devDependencies": {

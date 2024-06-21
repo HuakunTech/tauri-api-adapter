@@ -1,5 +1,5 @@
 import { INetwork } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 
 export const network: INetwork = {
   getInterfaces: defaultClientAPI.networkGetInterfaces,

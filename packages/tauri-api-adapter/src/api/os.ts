@@ -1,5 +1,5 @@
 import { IOs } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 
 export const os: IOs = {
   platform: defaultClientAPI.osPlatform,

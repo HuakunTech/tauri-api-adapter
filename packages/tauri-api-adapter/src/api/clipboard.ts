@@ -1,5 +1,5 @@
 import { IClipboard } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 
 export const clipboard: IClipboard = {
   readText: defaultClientAPI.clipboardReadText,

@@ -1,5 +1,5 @@
 import { IFs } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 
 export const fs: IFs = {
   readDir: defaultClientAPI.fsReadDir,

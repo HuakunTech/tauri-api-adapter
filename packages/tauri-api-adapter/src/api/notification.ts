@@ -1,5 +1,5 @@
 import { INotification } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 import * as Comlink from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
 import * as notificationApi from '@tauri-apps/plugin-notification'

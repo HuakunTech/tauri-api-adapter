@@ -13,6 +13,7 @@
     } else {
       exposeApiToWindow(iframe.contentWindow, defaultServerAPI)
     }
+    console.log('tauri window API', window)
   })
 </script>
 

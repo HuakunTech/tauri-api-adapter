@@ -1,5 +1,10 @@
+/**
+ * This file is the server-side implementation of Tauri API Adapter
+ * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
+ * Client from iframe or web worker can call APIs exposed from here
+ */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import { Channel, invoke } from '@tauri-apps/api/core'
+import { Channel, invoke } from '@tauri-apps/api/core'  
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
@@ -9,22 +14,22 @@ import * as network from 'tauri-plugin-network-api'
 import * as shellx from 'tauri-plugin-shellx-api'
 import * as sysInfo from 'tauri-plugin-system-info-api'
 import {
-  IClipboardAPI,
-  IDialogAPI,
-  IFetchAPI,
-  IFSAPI,
+  IClipboardServer,
+  IDialogServer,
+  IFetchServer,
+  IFsServer,
   IFullAPI,
-  INetworkAPI,
-  INotificationAPI,
-  IOsAPI,
-  IShellAPI,
-  ISystemInfoAPI
-} from './types'
+  INetworkServer,
+  INotificationServer,
+  IOsServer,
+  IShellServer,
+  ISystemInfoServer
+} from './server-types'
 
 /* -------------------------------------------------------------------------- */
 /*                                  Clipboard                                 */
 /* -------------------------------------------------------------------------- */
-export const clipboardApi: IClipboardAPI = {
+export const clipboardApi: IClipboardServer = {
   clipboardReadText: clipboard.readText,
   clipboardWriteText: clipboard.writeText,
   clipboardReadImageBase64: clipboard.readImageBase64,
@@ -49,7 +54,7 @@ export const clipboardApi: IClipboardAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                   Dialog                                   */
 /* -------------------------------------------------------------------------- */
-export const dialogApi: IDialogAPI = {
+export const dialogApi: IDialogServer = {
   dialogAsk: dialog.ask,
   dialogConfirm: dialog.confirm,
   dialogMessage: dialog.message,
@@ -60,7 +65,7 @@ export const dialogApi: IDialogAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                Notification                                */
 /* -------------------------------------------------------------------------- */
-export const notificationApi: INotificationAPI = {
+export const notificationApi: INotificationServer = {
   notificationIsPermissionGranted: notification.isPermissionGranted,
   notificationRequestPermission: notification.requestPermission,
   notificationSendNotification: notification.sendNotification,
@@ -81,7 +86,7 @@ export const notificationApi: INotificationAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                 File System                                */
 /* -------------------------------------------------------------------------- */
-export const fsApi: IFSAPI = {
+export const fsApi: IFsServer = {
   fsReadDir: fs.readDir,
   fsReadFile: fs.readFile,
   fsReadTextFile: fs.readTextFile,
@@ -101,7 +106,7 @@ export const fsApi: IFSAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                     OS                                     */
 /* -------------------------------------------------------------------------- */
-export const osApi: IOsAPI = {
+export const osApi: IOsServer = {
   osPlatform: os.platform,
   osArch: os.arch,
   osExeExtension: os.exeExtension,
@@ -115,7 +120,7 @@ export const osApi: IOsAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                    Shell                                   */
 /* -------------------------------------------------------------------------- */
-export const shellApi: IShellAPI = {
+export const shellApi: IShellServer = {
   shellExecute: (
     program: string,
     args: string[],
@@ -165,7 +170,7 @@ export const shellApi: IShellAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                    Fetch                                   */
 /* -------------------------------------------------------------------------- */
-export const fetchApi: IFetchAPI = {
+export const fetchApi: IFetchServer = {
   fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
   fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
   fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
@@ -176,7 +181,7 @@ export const fetchApi: IFetchAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                 System Info                                */
 /* -------------------------------------------------------------------------- */
-export const systemInfoAPI: ISystemInfoAPI = {
+export const systemInfoAPI: ISystemInfoServer = {
   sysInfoAllSysInfo: sysInfo.allSysInfo,
   sysInfoTotalMemory: sysInfo.totalMemory,
   sysInfoUsedMemory: sysInfo.usedMemory,
@@ -206,7 +211,7 @@ export const systemInfoAPI: ISystemInfoAPI = {
 /* -------------------------------------------------------------------------- */
 /*                                   Network                                  */
 /* -------------------------------------------------------------------------- */
-export const networkAPI: INetworkAPI = {
+export const networkAPI: INetworkServer = {
   networkGetInterfaces: network.getInterfaces,
   networkGetNonEmptyInterfaces: network.getNonEmptyInterfaces,
   networkFindAvailablePort: network.findAvailablePort,

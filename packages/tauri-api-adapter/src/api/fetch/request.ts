@@ -3,7 +3,7 @@
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
 import { IFetch } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink/client'
+import { defaultClientAPI } from '@/client'
 import { ClientOptions } from './types'
 
 const webFetch: IFetch = {

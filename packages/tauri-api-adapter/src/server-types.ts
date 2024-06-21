@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 import {
   IClipboard,
   IDialog,
@@ -10,7 +13,7 @@ import {
   ISystemInfo
 } from '@/api/client-types'
 
-export interface IClipboardAPI {
+export interface IClipboardServer {
   clipboardReadText: IClipboard['readText']
   clipboardWriteText: IClipboard['writeText']
   clipboardReadImageBase64: IClipboard['readImageBase64']
@@ -32,7 +35,7 @@ export interface IClipboardAPI {
   clipboardStartMonitor: IClipboard['startMonitor']
 }
 
-export interface INotificationAPI {
+export interface INotificationServer {
   notificationSendNotification: INotification['sendNotification']
   notificationRequestPermission: INotification['requestPermission']
   notificationIsPermissionGranted: INotification['isPermissionGranted']
@@ -50,7 +53,7 @@ export interface INotificationAPI {
   notificationOnAction: INotification['onAction']
 }
 
-export interface IDialogAPI {
+export interface IDialogServer {
   dialogAsk: IDialog['ask']
   dialogConfirm: IDialog['confirm']
   dialogMessage: IDialog['message']
@@ -58,7 +61,7 @@ export interface IDialogAPI {
   dialogSave: IDialog['save']
 }
 
-export interface IFSAPI {
+export interface IFsServer {
   fsReadDir: IFs['readDir']
   fsReadFile: IFs['readFile']
   fsReadTextFile: IFs['readTextFile']
@@ -75,7 +78,7 @@ export interface IFSAPI {
   fsWriteTextFile: IFs['writeTextFile']
 }
 
-export interface IOsAPI {
+export interface IOsServer {
   osPlatform: IOs['platform']
   osArch: IOs['arch']
   osExeExtension: IOs['exeExtension']
@@ -86,7 +89,7 @@ export interface IOsAPI {
   osLocale: IOs['locale']
 }
 
-export interface IShellAPI {
+export interface IShellServer {
   shellExecute: IShell['execute']
   shellKill: IShell['kill']
   shellStdinWrite: IShell['stdinWrite']
@@ -102,14 +105,14 @@ export interface IShellAPI {
   shellLikelyOnWindows: IShell['likelyOnWindows']
 }
 
-export interface IFetchAPI {
+export interface IFetchServer {
   fetchRawFetch: IFetch['rawFetch']
   fetchFetchCancel: IFetch['fetchCancel']
   fetchFetchSend: IFetch['fetchSend']
   fetchFetchReadBody: IFetch['fetchReadBody']
 }
 
-export interface ISystemInfoAPI {
+export interface ISystemInfoServer {
   sysInfoAllSysInfo: ISystemInfo['allSysInfo']
   sysInfoTotalMemory: ISystemInfo['totalMemory']
   sysInfoUsedMemory: ISystemInfo['usedMemory']
@@ -136,7 +139,7 @@ export interface ISystemInfoAPI {
   sysInfoBatteries: ISystemInfo['batteries']
 }
 
-export interface INetworkAPI {
+export interface INetworkServer {
   networkGetInterfaces: INetwork['getInterfaces']
   networkGetNonEmptyInterfaces: INetwork['getNonEmptyInterfaces']
   networkFindAvailablePort: INetwork['findAvailablePort']
@@ -149,12 +152,19 @@ export interface INetworkAPI {
   networkScanLocalNetworkOnlineHostsByPort: INetwork['scanLocalNetworkOnlineHostsByPort']
 }
 
-export type IFullAPI = IClipboardAPI &
-  INotificationAPI &
-  IDialogAPI &
-  IFSAPI &
-  IShellAPI &
-  IOsAPI &
-  IFetchAPI &
-  ISystemInfoAPI &
-  INetworkAPI
+/**
+ * IFullAPI defines all APIs implemented in this package combined together
+ * @example
+ * ```ts
+ * const clientAPI = getApiClient<IFullAPI>(window.parent)
+ * ```
+ */
+export type IFullAPI = IClipboardServer &
+  INotificationServer &
+  IDialogServer &
+  IFsServer &
+  IShellServer &
+  IOsServer &
+  IFetchServer &
+  ISystemInfoServer &
+  INetworkServer

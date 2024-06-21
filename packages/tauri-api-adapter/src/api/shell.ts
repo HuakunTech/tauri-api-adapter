@@ -1,7 +1,6 @@
 import { IShell } from '@/api/client-types'
-import { Comlink, defaultClientAPI } from '@/comlink'
-import { EventType } from '@/constants'
-import { PenxAPIResponseMessageEvent } from '@/util'
+import { defaultClientAPI } from '@/client'
+import { Comlink } from '@/comlink'
 import * as shellx from 'tauri-plugin-shellx-api'
 import { IOPayload } from 'tauri-plugin-shellx-api'
 

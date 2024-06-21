@@ -1,5 +1,5 @@
 import { ISystemInfo } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 
 export const sysInfo: ISystemInfo = {
   allSysInfo: defaultClientAPI.sysInfoAllSysInfo,

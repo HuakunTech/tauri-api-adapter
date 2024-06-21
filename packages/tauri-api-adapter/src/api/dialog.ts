@@ -1,5 +1,5 @@
 import { IDialog } from '@/api/client-types'
-import { defaultClientAPI } from '@/comlink'
+import { defaultClientAPI } from '@/client'
 import * as _dialogApi from '@tauri-apps/plugin-dialog'
 
 export const dialog: IDialog = {
