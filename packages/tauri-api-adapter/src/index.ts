@@ -2,7 +2,7 @@ export * as comlink from '@/comlink'
 export { exposeApiToWindow, getApiClient } from './comlink/common'
 export { defaultClientAPI, defaultServerAPI } from './comlink'
 export * as api from '@/api'
-// export * from '@/api/types'
+// export * from '@/api/client-types'
 // export * from '@/api'
 
 export { fs } from '@/api/fs'

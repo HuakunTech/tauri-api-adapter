@@ -1,4 +1,4 @@
-import { IShell } from '@/api/types'
+import { IShell } from '@/api/client-types'
 import { Comlink, defaultClientAPI } from '@/comlink'
 import { EventType } from '@/constants'
 import { PenxAPIResponseMessageEvent } from '@/util'

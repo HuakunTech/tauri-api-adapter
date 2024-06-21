@@ -1,4 +1,4 @@
-import { IDialog } from '@/api/types'
+import { IDialog } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink'
 import * as _dialogApi from '@tauri-apps/plugin-dialog'
 

@@ -1,3 +1,7 @@
+/**
+ * This file defines API interfaces for client. The client is the side that calls the API.
+ * For example, the client can call the APIs from an iframe.
+ */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'

@@ -2,7 +2,7 @@
  * This module is a modified versioin of Tauri's official `http` plugin.
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
-import { IFetch } from '@/api/types'
+import { IFetch } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink/client'
 import { ClientOptions } from './types'
 

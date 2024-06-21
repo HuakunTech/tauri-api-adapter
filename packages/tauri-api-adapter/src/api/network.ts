@@ -1,4 +1,4 @@
-import { INetwork } from '@/api/types'
+import { INetwork } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink'
 
 export const network: INetwork = {

@@ -8,7 +8,7 @@ import {
   IOs,
   IShell,
   ISystemInfo
-} from '@/api/types'
+} from '@/api/client-types'
 
 export interface IClipboardAPI {
   clipboardReadText: IClipboard['readText']

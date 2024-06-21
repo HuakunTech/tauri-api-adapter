@@ -1,4 +1,4 @@
-import { IClipboard } from '@/api/types'
+import { IClipboard } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink'
 
 export const clipboard: IClipboard = {

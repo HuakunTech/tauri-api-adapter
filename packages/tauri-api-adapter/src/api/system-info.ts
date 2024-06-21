@@ -1,4 +1,4 @@
-import { ISystemInfo } from '@/api/types'
+import { ISystemInfo } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink'
 
 export const sysInfo: ISystemInfo = {

@@ -1,4 +1,4 @@
-import { IFs } from '@/api/types'
+import { IFs } from '@/api/client-types'
 import { defaultClientAPI } from '@/comlink'
 
 export const fs: IFs = {
