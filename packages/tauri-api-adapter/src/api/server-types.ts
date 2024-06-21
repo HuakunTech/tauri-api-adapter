@@ -1,9 +1,7 @@
-/**
- * 
- */
 import {
   IClipboard,
   IDialog,
+  IEvent,
   IFetch,
   IFs,
   INetwork,
@@ -12,6 +10,23 @@ import {
   IShell,
   ISystemInfo
 } from '@/api/client-types'
+import * as _event from '@tauri-apps/api/event'
+
+export interface IEventServer {
+  eventRawListen<T>(
+    event: _event.EventName,
+    target: _event.EventTarget,
+    handler: _event.EventCallback<any>
+  ): Promise<number>
+  eventRawUnlisten: IEvent['rawUnlisten']
+  eventEmit: IEvent['emit']
+  eventEmitTo: IEvent['emitTo']
+  eventOnce<T>(
+    event: _event.EventName,
+    handler: _event.EventCallback<any>,
+    options?: _event.Options
+  ): Promise<_event.UnlistenFn>
+}
 
 export interface IClipboardServer {
   clipboardReadText: IClipboard['readText']
@@ -167,4 +182,5 @@ export type IFullAPI = IClipboardServer &
   IOsServer &
   IFetchServer &
   ISystemInfoServer &
-  INetworkServer
+  INetworkServer &
+  IEventServer

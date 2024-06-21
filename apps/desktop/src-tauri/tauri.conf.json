@@ -17,7 +17,13 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "pattern": {
+        "use": "isolation",
+        "options": {
+          "dir": "../dist-isolation"
+        }
+      }
     }
   },
   "bundle": {

@@ -24,7 +24,7 @@
   "scripts": {
     "dev": "rollup -c --watch --bundleConfigAsCjs",
     "build:docs": "cp ../../README.md ./README.md && typedoc src/index.ts",
-    "build": "rollup -c && tsc-alias"
+    "build": "rollup -c && tsc-alias && pnpm build:docs"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",

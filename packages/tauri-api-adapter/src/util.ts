@@ -100,3 +100,7 @@ export function constructAPICallbackExecuter<Payload>(
     }
   }
 }
+
+export function isolateIframeFromTauri(iframeWin: Window) {
+  ;(iframeWin as any).eval(`window.parent = {}`)
+}

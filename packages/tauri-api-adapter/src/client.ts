@@ -1,5 +1,5 @@
 import { getApiClient } from './comlink'
-import type { IFullAPI } from './server-types'
+import type { IFullAPI } from './api/server-types'
 
 export const isInIframe = window !== window.parent
 export const iframeSideApi = getApiClient<IFullAPI>(window.parent)

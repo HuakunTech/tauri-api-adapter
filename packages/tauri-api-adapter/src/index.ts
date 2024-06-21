@@ -2,12 +2,8 @@
 export { exposeApiToWindow, getApiClient } from '@/comlink'
 export { defaultClientAPI } from '@/client'
 export { defaultServerAPI } from '@/server'
-export * from '@/server-types'
-
+export * from '@/api/server-types'
 export * as api from '@/api'
-// export * from '@/api/client-types'
-// export * from '@/api'
-
 export { fs } from '@/api/fs'
 export { notification } from '@/api/notification'
 export { os } from '@/api/os'
@@ -16,7 +12,8 @@ export { clipboard } from '@/api/clipboard'
 export { dialog } from '@/api/dialog'
 export { network } from '@/api/network'
 export { sysInfo } from '@/api/system-info'
-
+export { listen, TauriEvent, event } from '@/api/event'
+export * from './util'
 // export { getApiClient, exposeApiToWindow, Comlink } from './common'
 // export { defaultClientAPI, isInIframe, iframeSideApi } from '../client'
 // export { defaultServerAPI } from '../server'

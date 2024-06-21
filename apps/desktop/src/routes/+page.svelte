@@ -6,14 +6,12 @@
   let iframe: HTMLIFrameElement
 
   onMount(async () => {
-    console.log(await clipboard.readText())
     if (!iframe.contentWindow) {
-      console.error('iframe window not found')
       return
     } else {
+      // iframe.contentWindow.parent.__TAURI_INTERNALS__ = null
       exposeApiToWindow(iframe.contentWindow, defaultServerAPI)
     }
-    console.log('tauri window API', window)
   })
 </script>
 

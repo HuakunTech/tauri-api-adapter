@@ -4,7 +4,8 @@
  * Client from iframe or web worker can call APIs exposed from here
  */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import { Channel, invoke } from '@tauri-apps/api/core'  
+import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
+import * as _event from '@tauri-apps/api/event'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
@@ -16,6 +17,7 @@ import * as sysInfo from 'tauri-plugin-system-info-api'
 import {
   IClipboardServer,
   IDialogServer,
+  IEventServer,
   IFetchServer,
   IFsServer,
   IFullAPI,
@@ -24,7 +26,32 @@ import {
   IOsServer,
   IShellServer,
   ISystemInfoServer
-} from './server-types'
+} from './api/server-types'
+
+/* -------------------------------------------------------------------------- */
+/*                                    Event                                   */
+/* -------------------------------------------------------------------------- */
+export const eventApi: IEventServer = {
+  eventRawListen<T>(
+    event: _event.EventName,
+    target: _event.EventTarget,
+    handler: _event.EventCallback<T>
+  ): Promise<number> {
+    return invoke<number>('plugin:event|listen', {
+      event,
+      target,
+      handler: transformCallback(handler)
+    })
+  },
+  eventRawUnlisten: (event: string, eventId: number): Promise<void> =>
+    invoke<void>('plugin:event|unlisten', {
+      event,
+      eventId
+    }),
+  eventEmit: _event.emit,
+  eventEmitTo: _event.emitTo,
+  eventOnce: _event.once
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                  Clipboard                                 */
@@ -233,5 +260,6 @@ export const defaultServerAPI: IFullAPI = {
   ...shellApi,
   ...fetchApi,
   ...systemInfoAPI,
-  ...networkAPI
+  ...networkAPI,
+  ...eventApi
 }

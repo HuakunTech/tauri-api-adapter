@@ -3,6 +3,8 @@
  * For example, the client can call the APIs from an iframe.
  */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
+import { event } from '@tauri-apps/api'
+import * as _event from '@tauri-apps/api/event'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
@@ -12,11 +14,29 @@ import * as network from 'tauri-plugin-network-api'
 import * as shellx from 'tauri-plugin-shellx-api'
 import * as sysInfo from 'tauri-plugin-system-info-api'
 
+/* -------------------------------------------------------------------------- */
+/*                                    Event                                   */
+/* -------------------------------------------------------------------------- */
+export interface IEvent {
+  rawListen<T>(
+    event: _event.EventName,
+    target: _event.EventTarget,
+    handler: _event.EventCallback<T>
+  ): Promise<number>
+  rawUnlisten(event: string, eventId: number): Promise<void>
+  emit: typeof _event.emit
+  emitTo: typeof _event.emitTo
+  once: typeof _event.once
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Dialog                                   */
+/* -------------------------------------------------------------------------- */
 export interface IDialog {
   ask: typeof dialog.ask
   confirm: typeof dialog.confirm
   message: typeof dialog.message
-  open: (options?: dialog.OpenDialogOptions) => ReturnType<typeof dialog.open>
+  open(options?: dialog.OpenDialogOptions): ReturnType<typeof dialog.open>
   save: typeof dialog.save
 }
 
