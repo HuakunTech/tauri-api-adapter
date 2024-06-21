@@ -3,7 +3,6 @@
  * For example, the client can call the APIs from an iframe.
  */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import { event } from '@tauri-apps/api'
 import * as _event from '@tauri-apps/api/event'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'

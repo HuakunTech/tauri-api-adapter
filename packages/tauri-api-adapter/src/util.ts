@@ -102,5 +102,9 @@ export function constructAPICallbackExecuter<Payload>(
 }
 
 export function isolateIframeFromTauri(iframeWin: Window) {
-  ;(iframeWin as any).eval(`window.parent = {}`)
+  ;(iframeWin as any).eval(`window.parent = {};`)
+}
+
+export function hackIframeToUseParentWindow(iframeWin: Window) {
+  ;(iframeWin as any).eval(`window.__TAURI_INTERNALS__ = window.parent.__TAURI_INTERNALS__;`)
 }
