@@ -1,19 +1,19 @@
 import { IFs } from '@/api/types'
-import { clientApi } from '@/comlink'
+import { defaultClientAPI } from '@/comlink'
 
 export const fs: IFs = {
-  readDir: clientApi.fsReadDir,
-  readFile: clientApi.fsReadFile,
-  readTextFile: clientApi.fsReadTextFile,
-  stat: clientApi.fsStat,
-  lstat: clientApi.fsLstat,
-  exists: clientApi.fsExists,
-  mkdir: clientApi.fsMkdir,
-  create: clientApi.fsCreate,
-  copyFile: clientApi.fsCopyFile,
-  remove: clientApi.fsRemove,
-  rename: clientApi.fsRename,
-  truncate: clientApi.fsTruncate,
-  writeFile: clientApi.fsWriteFile,
-  writeTextFile: clientApi.fsWriteTextFile
+  readDir: defaultClientAPI.fsReadDir,
+  readFile: defaultClientAPI.fsReadFile,
+  readTextFile: defaultClientAPI.fsReadTextFile,
+  stat: defaultClientAPI.fsStat,
+  lstat: defaultClientAPI.fsLstat,
+  exists: defaultClientAPI.fsExists,
+  mkdir: defaultClientAPI.fsMkdir,
+  create: defaultClientAPI.fsCreate,
+  copyFile: defaultClientAPI.fsCopyFile,
+  remove: defaultClientAPI.fsRemove,
+  rename: defaultClientAPI.fsRename,
+  truncate: defaultClientAPI.fsTruncate,
+  writeFile: defaultClientAPI.fsWriteFile,
+  writeTextFile: defaultClientAPI.fsWriteTextFile
 }

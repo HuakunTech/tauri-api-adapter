@@ -1,10 +1,10 @@
+import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
-import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 
 export interface IDialog {
   ask: typeof dialog.ask
@@ -97,10 +97,16 @@ export interface IShell {
   execute(
     program: string,
     args: string[],
-    options: shellx.InternalSpawnOptions,
+    options: shellx.InternalSpawnOptions
   ): Promise<shellx.ChildProcess<shellx.IOPayload>>
   kill(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
+  rawSpawn<O extends shellx.IOPayload>(
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+    cb: (evt: shellx.CommandEvent<O>) => void
+  ): Promise<number>
   open: typeof shellx.open
   makeBashScript: typeof shellx.makeBashScript
   makePowershellScript: typeof shellx.makePowershellScript

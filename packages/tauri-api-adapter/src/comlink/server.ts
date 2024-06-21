@@ -1,6 +1,5 @@
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import * as Comlink from '@huakunshen/comlink'
-import { invoke } from '@tauri-apps/api/core'
+import { Channel, invoke } from '@tauri-apps/api/core'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
@@ -9,7 +8,7 @@ import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
 import { IApi } from './types'
 
-export const defaultApiImpl: IApi = {
+export const defaultServerAPI: IApi = {
   /* -------------------------------------------------------------------------- */
   /*                                  Clipboard                                 */
   /* -------------------------------------------------------------------------- */
@@ -109,7 +108,22 @@ export const defaultApiImpl: IApi = {
       buffer: buffer,
       pid: pid
     }),
-  shellOpen: (path: string, openWith?: string) => shellx.open(path, openWith),
+  shellOpen: shellx.open,
+  shellRawSpawn: <O extends shellx.IOPayload>(
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+    cb: (evt: shellx.CommandEvent<O>) => void
+  ): Promise<number> => {
+    const onEvent = new Channel<shellx.CommandEvent<O>>()
+    onEvent.onmessage = cb
+    return invoke<number>('plugin:shellx|spawn', {
+      program: program,
+      args: args,
+      options: options,
+      onEvent
+    })
+  },
   shellExecuteBashScript: shellx.executeBashScript,
   shellExecutePowershellScript: shellx.executePowershellScript,
   shellExecuteAppleScript: shellx.executeAppleScript,

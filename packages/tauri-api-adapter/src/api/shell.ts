@@ -1,9 +1,9 @@
+import { IShell } from '@/api/types'
+import { Comlink, defaultClientAPI } from '@/comlink'
+import { EventType } from '@/constants'
+import { PenxAPIResponseMessageEvent } from '@/util'
 import * as shellx from 'tauri-plugin-shellx-api'
 import { IOPayload } from 'tauri-plugin-shellx-api'
-import { IShell } from '@/api/types'
-import { clientApi } from '@/comlink'
-import { PenxAPIResponseMessageEvent } from '@/util'
-import { EventType } from '@/constants'
 
 export class Child extends shellx.Child {
   write(data: IOPayload): Promise<void> {
@@ -25,65 +25,38 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
   }
 
   async spawn(): Promise<Child> {
-    const program = this.program
     const args = this.args
-    const options = this.options
 
     if (typeof args === 'object') {
       Object.freeze(args)
     }
 
-    const eventChannel = new MessageChannel()
-    eventChannel.port1.onmessage = (msgEvent: MessageEvent<shellx.CommandEvent<O>>) => {
-      const event = msgEvent.data
-      switch (event.event) {
-        case 'Error':
-          this.emit('error', event.payload)
-          break
-        case 'Terminated':
-          this.emit('close', event.payload)
-          break
-        case 'Stdout':
-          this.stdout.emit('data', event.payload)
-          break
-        case 'Stderr':
-          this.stderr.emit('data', event.payload)
-          break
-      }
-    }
-    const pidReceiverChannel = new MessageChannel()
-    return new Promise((resolve, reject) => {
-      pidReceiverChannel.port1.onmessage = (event: PenxAPIResponseMessageEvent<number>) => {
-        if (event.data.type === EventType.ShellxSpawn) {
-          const pid = event.data.result
-          resolve(new Child(pid))
-        } else {
-          reject(
-            new Error(
-              `Unexpected message type: ${event.data.type} (expected: ${EventType.ShellxSpawn})`
-            )
-          )
-        }
-      }
-      const payload = {
-        program,
+    return shell
+      .rawSpawn<O>(
+        this.program,
         args,
-        options
-      }
-      window.parent.postMessage(
-        {
-          type: EventType.ShellxSpawn,
-          payload
-        },
-        '*',
-        [pidReceiverChannel.port2, eventChannel.port2]
+        this.options,
+        Comlink.proxy((evt) => {
+          switch (evt.event) {
+            case 'Error':
+              this.emit('error', evt.payload)
+              break
+            case 'Terminated':
+              this.emit('close', evt.payload)
+              break
+            case 'Stdout':
+              this.stdout.emit('data', evt.payload)
+              break
+            case 'Stderr':
+              this.stderr.emit('data', evt.payload)
+              break
+          }
+        })
       )
-    })
+      .then((pid) => new Child(pid))
   }
 
   async execute(): Promise<shellx.ChildProcess<O>> {
-    console.log('execute')
-
     const program = this.program
     const args = this.args
     const options = this.options
@@ -121,24 +94,25 @@ function makeNodeScript(script: string): Command<string> {
 }
 
 export const shell: IShell = {
-  execute: clientApi.shellExecute,
-  kill: clientApi.shellKill,
-  stdinWrite: clientApi.shellStdinWrite,
-  open: clientApi.shellOpen,
+  execute: defaultClientAPI.shellExecute,
+  kill: defaultClientAPI.shellKill,
+  stdinWrite: defaultClientAPI.shellStdinWrite,
+  open: defaultClientAPI.shellOpen,
+  rawSpawn: defaultClientAPI.shellRawSpawn,
   makeBashScript,
   makePowershellScript,
   makeAppleScript,
   makePythonScript,
   makeZshScript,
   makeNodeScript,
-  executeBashScript: clientApi.shellExecuteBashScript,
-  executePowershellScript: clientApi.shellExecutePowershellScript,
-  executeAppleScript: clientApi.shellExecuteAppleScript,
-  executePythonScript: clientApi.shellExecutePythonScript,
-  executeZshScript: clientApi.shellExecuteZshScript,
-  executeNodeScript: clientApi.shellExecuteNodeScript,
-  hasCommand: clientApi.shellHasCommand,
-  likelyOnWindows: clientApi.shellLikelyOnWindows
+  executeBashScript: defaultClientAPI.shellExecuteBashScript,
+  executePowershellScript: defaultClientAPI.shellExecutePowershellScript,
+  executeAppleScript: defaultClientAPI.shellExecuteAppleScript,
+  executePythonScript: defaultClientAPI.shellExecutePythonScript,
+  executeZshScript: defaultClientAPI.shellExecuteZshScript,
+  executeNodeScript: defaultClientAPI.shellExecuteNodeScript,
+  hasCommand: defaultClientAPI.shellHasCommand,
+  likelyOnWindows: defaultClientAPI.shellLikelyOnWindows
 }
 
 export const shellOpen = shell.open

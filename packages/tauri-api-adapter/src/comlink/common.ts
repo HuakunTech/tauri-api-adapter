@@ -12,3 +12,5 @@ export function getApiClient<API>(win: Window): Comlink.Remote<API> {
 export function exposeApiToWindow<API>(win: Window, api: API) {
   return Comlink.expose(api, Comlink.windowEndpoint(win))
 }
+
+export * as Comlink from '@huakunshen/comlink'

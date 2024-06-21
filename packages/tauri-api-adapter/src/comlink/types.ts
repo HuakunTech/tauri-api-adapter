@@ -81,6 +81,7 @@ export interface IShellApi {
   shellKill: IShell['kill']
   shellStdinWrite: IShell['stdinWrite']
   shellOpen: IShell['open']
+  shellRawSpawn: IShell['rawSpawn']
   shellExecuteBashScript: IShell['executeBashScript']
   shellExecutePowershellScript: IShell['executePowershellScript']
   shellExecuteAppleScript: IShell['executeAppleScript']
