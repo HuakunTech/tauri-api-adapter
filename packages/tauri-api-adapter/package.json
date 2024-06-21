@@ -15,20 +15,22 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./shell": {
+      "types": "./dist/api/shell.d.ts",
+      "import": "./dist/api/shell.js"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
     "dev": "rollup -c --watch --bundleConfigAsCjs",
     "build:docs": "typedoc src/index.ts",
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "rollup -c && tsc-alias"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/bun": "latest",
     "rollup": "^4.18.0",
-    "rollup-plugin-typescript-paths": "^1.5.0",
     "tsc-alias": "^1.8.10",
     "typedoc": "^0.25.13"
   },

@@ -2,7 +2,7 @@ import { INotification } from '@/api/types'
 import { defaultClientAPI } from '@/comlink'
 import * as Comlink from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
-import notificationApi from '@tauri-apps/plugin-notification'
+import * as notificationApi from '@tauri-apps/plugin-notification'
 
 export const notification: INotification = {
   sendNotification: defaultClientAPI.notificationSendNotification,
