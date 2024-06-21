@@ -16,7 +16,7 @@ import * as sysInfo from 'tauri-plugin-system-info-api'
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
 /* -------------------------------------------------------------------------- */
-export interface IEvent {
+export interface IEventInternal {
   rawListen<T>(
     event: _event.EventName,
     target: _event.EventTarget,
@@ -26,6 +26,13 @@ export interface IEvent {
   emit: typeof _event.emit
   emitTo: typeof _event.emitTo
   once: typeof _event.once
+}
+
+export interface IEvent {
+  emit: typeof _event.emit
+  emitTo: typeof _event.emitTo
+  once: typeof _event.once
+  listen: typeof _event.listen
 }
 
 /* -------------------------------------------------------------------------- */
@@ -107,7 +114,7 @@ export interface IOs {
   locale: typeof os.locale
 }
 
-export interface IShell {
+export interface IShellInternal {
   execute(
     program: string,
     args: string[],
@@ -136,6 +143,26 @@ export interface IShell {
   executeNodeScript: typeof shellx.executeNodeScript
   hasCommand: typeof shellx.hasCommand
   likelyOnWindows: typeof shellx.likelyOnWindows
+}
+
+export interface IShell {
+  open: typeof shellx.open
+  makeBashScript: typeof shellx.makeBashScript
+  makePowershellScript: typeof shellx.makePowershellScript
+  makeAppleScript: typeof shellx.makeAppleScript
+  makePythonScript: typeof shellx.makePythonScript
+  makeZshScript: typeof shellx.makeZshScript
+  makeNodeScript: typeof shellx.makeNodeScript
+  executeBashScript: typeof shellx.executeBashScript
+  executePowershellScript: typeof shellx.executePowershellScript
+  executeAppleScript: typeof shellx.executeAppleScript
+  executePythonScript: typeof shellx.executePythonScript
+  executeZshScript: typeof shellx.executeZshScript
+  executeNodeScript: typeof shellx.executeNodeScript
+  hasCommand: typeof shellx.hasCommand
+  likelyOnWindows: typeof shellx.likelyOnWindows
+  Command: typeof shellx.Command
+  Child: typeof shellx.Child
 }
 
 export interface IFetch {

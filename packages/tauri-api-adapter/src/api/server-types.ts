@@ -1,13 +1,13 @@
 import {
   IClipboard,
   IDialog,
-  IEvent,
+  IEventInternal,
   IFetch,
   IFs,
   INetwork,
   INotification,
   IOs,
-  IShell,
+  IShellInternal,
   ISystemInfo
 } from '@/api/client-types'
 import * as _event from '@tauri-apps/api/event'
@@ -18,9 +18,9 @@ export interface IEventServer {
     target: _event.EventTarget,
     handler: _event.EventCallback<any>
   ): Promise<number>
-  eventRawUnlisten: IEvent['rawUnlisten']
-  eventEmit: IEvent['emit']
-  eventEmitTo: IEvent['emitTo']
+  eventRawUnlisten: IEventInternal['rawUnlisten']
+  eventEmit: IEventInternal['emit']
+  eventEmitTo: IEventInternal['emitTo']
   eventOnce<T>(
     event: _event.EventName,
     handler: _event.EventCallback<any>,
@@ -105,19 +105,19 @@ export interface IOsServer {
 }
 
 export interface IShellServer {
-  shellExecute: IShell['execute']
-  shellKill: IShell['kill']
-  shellStdinWrite: IShell['stdinWrite']
-  shellOpen: IShell['open']
-  shellRawSpawn: IShell['rawSpawn']
-  shellExecuteBashScript: IShell['executeBashScript']
-  shellExecutePowershellScript: IShell['executePowershellScript']
-  shellExecuteAppleScript: IShell['executeAppleScript']
-  shellExecutePythonScript: IShell['executePythonScript']
-  shellExecuteZshScript: IShell['executeZshScript']
-  shellExecuteNodeScript: IShell['executeNodeScript']
-  shellHasCommand: IShell['hasCommand']
-  shellLikelyOnWindows: IShell['likelyOnWindows']
+  shellExecute: IShellInternal['execute']
+  shellKill: IShellInternal['kill']
+  shellStdinWrite: IShellInternal['stdinWrite']
+  shellOpen: IShellInternal['open']
+  shellRawSpawn: IShellInternal['rawSpawn']
+  shellExecuteBashScript: IShellInternal['executeBashScript']
+  shellExecutePowershellScript: IShellInternal['executePowershellScript']
+  shellExecuteAppleScript: IShellInternal['executeAppleScript']
+  shellExecutePythonScript: IShellInternal['executePythonScript']
+  shellExecuteZshScript: IShellInternal['executeZshScript']
+  shellExecuteNodeScript: IShellInternal['executeNodeScript']
+  shellHasCommand: IShellInternal['hasCommand']
+  shellLikelyOnWindows: IShellInternal['likelyOnWindows']
 }
 
 export interface IFetchServer {
