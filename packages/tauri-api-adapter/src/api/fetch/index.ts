@@ -1,2 +1,2 @@
-export * from './request'
-export * from './types'
+export { fetch } from './request'
+export { ClientOptions } from './types'

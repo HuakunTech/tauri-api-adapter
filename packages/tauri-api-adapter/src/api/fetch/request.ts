@@ -2,15 +2,15 @@
  * This module is a modified versioin of Tauri's official `http` plugin.
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
-import { IFetch } from '@/apiTypes'
-import { clientApi } from '@/comlink'
+import { IFetch } from '@/api/types'
+import { clientApi } from '@/comlink/client'
 import { ClientOptions } from './types'
 
 const webFetch: IFetch = {
   rawFetch: clientApi.fetchRawFetch,
   fetchCancel: clientApi.fetchFetchCancel,
   fetchSend: clientApi.fetchFetchSend,
-  fetchReadBody: clientApi.fetchFetchReadBody,
+  fetchReadBody: clientApi.fetchFetchReadBody
 }
 
 /**
@@ -26,7 +26,7 @@ const webFetch: IFetch = {
  */
 export async function fetch(
   input: URL | Request | string,
-  init?: RequestInit & ClientOptions,
+  init?: RequestInit & ClientOptions
 ): Promise<Response> {
   const maxRedirections = init?.maxRedirections
   const connectTimeout = init?.connectTimeout
@@ -54,7 +54,7 @@ export async function fetch(
     name,
     // we need to ensure we have all values as strings
     // eslint-disable-next-line
-    typeof val === 'string' ? val : (val as any).toString(),
+    typeof val === 'string' ? val : (val as any).toString()
   ])
 
   const req = new Request(input, init)
@@ -68,8 +68,8 @@ export async function fetch(
       data: reqData,
       maxRedirections,
       connectTimeout,
-      proxy,
-    },
+      proxy
+    }
   })
   signal?.addEventListener('abort', () => {
     void webFetch.fetchCancel(rid)
@@ -80,7 +80,7 @@ export async function fetch(
     statusText,
     url,
     headers: responseHeaders,
-    rid: responseRid,
+    rid: responseRid
   } = await webFetch.fetchSend(rid)
 
   const body = await webFetch.fetchReadBody(responseRid)
@@ -94,8 +94,8 @@ export async function fetch(
     {
       headers: responseHeaders,
       status,
-      statusText,
-    },
+      statusText
+    }
   )
 
   // url is read only but seems like we can do this

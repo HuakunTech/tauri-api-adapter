@@ -1,10 +1,10 @@
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
-import notification from '@tauri-apps/plugin-notification'
+import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
-import { FetchOptions, FetchSendResponse } from './fetch/types'
+import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 
 export interface IDialog {
   ask: typeof dialog.ask

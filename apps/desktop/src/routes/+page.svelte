@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api/core";
+  import { invoke } from '@tauri-apps/api/core'
+  import { comlink } from 'tauri-api-adapter'
 
-  let name = "";
-  let greetMsg = "";
+  let name = ''
+  let greetMsg = ''
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsg = await invoke("greet", { name });
+    greetMsg = await invoke('greet', { name })
   }
 </script>
 
