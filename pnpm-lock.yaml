@@ -32,6 +32,12 @@ importers:
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
+      tauri-plugin-clipboard-api:
+        specifier: ^2.0.2
+        version: 2.0.2
+      tauri-plugin-shellx-api:
+        specifier: ^2.0.7
+        version: 2.0.7
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.1
