@@ -26,6 +26,21 @@ importers:
       '@tauri-apps/api':
         specifier: '>=2.0.0-beta.0'
         version: 2.0.0-beta.13
+      '@tauri-apps/plugin-dialog':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-fs':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-http':
+        specifier: 2.0.0-beta.6
+        version: 2.0.0-beta.6
+      '@tauri-apps/plugin-notification':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-os':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
       '@tauri-apps/plugin-shell':
         specifier: '>=2.0.0-beta.0'
         version: 2.0.0-beta.6
