@@ -1,4 +1,13 @@
 export * as comlink from '@/comlink'
+export { exposeApiToWindow, getApiClient } from './comlink/common'
+export { defaultClientAPI, defaultServerAPI } from './comlink'
 export * as api from '@/api'
 export * from '@/api/types'
 export * from '@/api'
+
+export { fs } from '@/api/fs'
+export { notification } from '@/api/notification'
+export { os } from '@/api/os'
+export { shell } from '@/api/shell'
+export { clipboard } from '@/api/clipboard'
+export { dialog } from '@/api/dialog'
