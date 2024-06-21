@@ -1,6 +1,16 @@
-import { IClipboard, IDialog, IFetch, IFs, INotification, IOs, IShell } from '@/api/types'
+import {
+  IClipboard,
+  IDialog,
+  IFetch,
+  IFs,
+  INetwork,
+  INotification,
+  IOs,
+  IShell,
+  ISystemInfo
+} from '@/api/types'
 
-export interface IClipboardApi {
+export interface IClipboardAPI {
   clipboardReadText: IClipboard['readText']
   clipboardWriteText: IClipboard['writeText']
   clipboardReadImageBase64: IClipboard['readImageBase64']
@@ -22,7 +32,7 @@ export interface IClipboardApi {
   clipboardStartMonitor: IClipboard['startMonitor']
 }
 
-export interface INotificationApi {
+export interface INotificationAPI {
   notificationSendNotification: INotification['sendNotification']
   notificationRequestPermission: INotification['requestPermission']
   notificationIsPermissionGranted: INotification['isPermissionGranted']
@@ -40,7 +50,7 @@ export interface INotificationApi {
   notificationOnAction: INotification['onAction']
 }
 
-export interface IDialogApi {
+export interface IDialogAPI {
   dialogAsk: IDialog['ask']
   dialogConfirm: IDialog['confirm']
   dialogMessage: IDialog['message']
@@ -48,7 +58,7 @@ export interface IDialogApi {
   dialogSave: IDialog['save']
 }
 
-export interface IFSApi {
+export interface IFSAPI {
   fsReadDir: IFs['readDir']
   fsReadFile: IFs['readFile']
   fsReadTextFile: IFs['readTextFile']
@@ -65,7 +75,7 @@ export interface IFSApi {
   fsWriteTextFile: IFs['writeTextFile']
 }
 
-export interface IOsApi {
+export interface IOsAPI {
   osPlatform: IOs['platform']
   osArch: IOs['arch']
   osExeExtension: IOs['exeExtension']
@@ -76,7 +86,7 @@ export interface IOsApi {
   osLocale: IOs['locale']
 }
 
-export interface IShellApi {
+export interface IShellAPI {
   shellExecute: IShell['execute']
   shellKill: IShell['kill']
   shellStdinWrite: IShell['stdinWrite']
@@ -92,17 +102,59 @@ export interface IShellApi {
   shellLikelyOnWindows: IShell['likelyOnWindows']
 }
 
-export interface IFetchApi {
+export interface IFetchAPI {
   fetchRawFetch: IFetch['rawFetch']
   fetchFetchCancel: IFetch['fetchCancel']
   fetchFetchSend: IFetch['fetchSend']
   fetchFetchReadBody: IFetch['fetchReadBody']
 }
 
-export type IApi = IClipboardApi &
-  INotificationApi &
-  IDialogApi &
-  IFSApi &
-  IShellApi &
-  IOsApi &
-  IFetchApi
+export interface ISystemInfoAPI {
+  sysInfoAllSysInfo: ISystemInfo['allSysInfo']
+  sysInfoTotalMemory: ISystemInfo['totalMemory']
+  sysInfoUsedMemory: ISystemInfo['usedMemory']
+  sysInfoTotalSwap: ISystemInfo['totalSwap']
+  sysInfoUsedSwap: ISystemInfo['usedSwap']
+  sysInfoMemoryInfo: ISystemInfo['memoryInfo']
+  sysInfoHostname: ISystemInfo['hostname']
+  sysInfoName: ISystemInfo['name']
+  sysInfoKernelVersion: ISystemInfo['kernelVersion']
+  sysInfoOsVersion: ISystemInfo['osVersion']
+  sysInfoStaticInfo: ISystemInfo['staticInfo']
+  sysInfoComponents: ISystemInfo['components']
+  sysInfoCpus: ISystemInfo['cpus']
+  sysInfoCpuCount: ISystemInfo['cpuCount']
+  sysInfoCpuInfo: ISystemInfo['cpuInfo']
+  sysInfoDisks: ISystemInfo['disks']
+  sysInfoNetworks: ISystemInfo['networks']
+  sysInfoProcesses: ISystemInfo['processes']
+  sysInfoRefreshAll: ISystemInfo['refreshAll']
+  sysInfoRefreshMemory: ISystemInfo['refreshMemory']
+  sysInfoRefreshCpu: ISystemInfo['refreshCpu']
+  sysInfoRefreshProcesses: ISystemInfo['refreshProcesses']
+  sysInfoDebugCommand: ISystemInfo['debugCommand']
+  sysInfoBatteries: ISystemInfo['batteries']
+}
+
+export interface INetworkAPI {
+  networkGetInterfaces: INetwork['getInterfaces']
+  networkGetNonEmptyInterfaces: INetwork['getNonEmptyInterfaces']
+  networkFindAvailablePort: INetwork['findAvailablePort']
+  networkIsPortTaken: INetwork['isPortTaken']
+  networkIsHttpPortOpen: INetwork['isHttpPortOpen']
+  networkScanOnlineIpPortPairs: INetwork['scanOnlineIpPortPairs']
+  networkScanOnlineIpsByPort: INetwork['scanOnlineIpsByPort']
+  networkNonLocalhostNetworks: INetwork['nonLocalhostNetworks']
+  networkLocalServerIsRunning: INetwork['localServerIsRunning']
+  networkScanLocalNetworkOnlineHostsByPort: INetwork['scanLocalNetworkOnlineHostsByPort']
+}
+
+export type IFullAPI = IClipboardAPI &
+  INotificationAPI &
+  IDialogAPI &
+  IFSAPI &
+  IShellAPI &
+  IOsAPI &
+  IFetchAPI &
+  ISystemInfoAPI &
+  INetworkAPI

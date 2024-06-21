@@ -50,9 +50,15 @@ importers:
       tauri-plugin-clipboard-api:
         specifier: ^2.0.2
         version: 2.0.2
+      tauri-plugin-network-api:
+        specifier: ^2.0.2
+        version: 2.0.2
       tauri-plugin-shellx-api:
         specifier: ^2.0.7
         version: 2.0.7
+      tauri-plugin-system-info-api:
+        specifier: ^2.0.1
+        version: 2.0.1
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.1
@@ -215,9 +221,15 @@ importers:
       tauri-plugin-clipboard-api:
         specifier: ^2.0.2
         version: 2.0.2
+      tauri-plugin-network-api:
+        specifier: ^2.0.2
+        version: 2.0.2
       tauri-plugin-shellx-api:
         specifier: ^2.0.7
         version: 2.0.7
+      tauri-plugin-system-info-api:
+        specifier: ^2.0.1
+        version: 2.0.1
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
@@ -225,9 +237,6 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       '@rollup/plugin-alias':
         specifier: ^5.1.0
         version: 5.1.0(rollup@4.18.0)
@@ -240,9 +249,6 @@ importers:
       rollup:
         specifier: ^4.18.0
         version: 4.18.0
-      rollup-plugin-typescript-paths:
-        specifier: ^1.5.0
-        version: 1.5.0(typescript@5.4.5)
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
@@ -5669,14 +5675,6 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup-plugin-typescript-paths@1.5.0(typescript@5.4.5):
-    resolution: {integrity: sha512-zly2aiGNjYJNq5YUi6eyGrQnCYUQ8b5czOtHZIGriwG9U3Ba2F9hlSklafXCdsNulK/IlNmE0Kzj0h+fVV32pA==}
-    peerDependencies:
-      typescript: '>=3.4'
-    dependencies:
-      typescript: 5.4.5
-    dev: true
-
   /rollup@4.18.0:
     resolution: {integrity: sha512-QmJz14PX3rzbJCN1SG4Xe/bAAX2a6NpCP8ab2vfu2GiUr8AQcr2nCV/oEO3yneFarB67zk8ShlIyWb2LGTb3Sg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -6300,8 +6298,22 @@ packages:
       zod: 3.23.8
     dev: false
 
+  /tauri-plugin-network-api@2.0.2:
+    resolution: {integrity: sha512-d+CyolaAlsaAHHjjWWHjayOBDl2nInFcgaxso5pQYlqzwzGOL5ztD7r52ZeH0L7Jf47J0i+kkxGJh4mqMEO9dA==}
+    dependencies:
+      '@tauri-apps/api': 2.0.0-beta.13
+      zod: 3.23.8
+    dev: false
+
   /tauri-plugin-shellx-api@2.0.7:
     resolution: {integrity: sha512-yYV546xhOn4Z9bRLUpyQp89k0U32jR6nmgfg0W+JOjnunabgwwStilIo2wUyeTcGs89GAZIRSBeBhgVnF8/E7w==}
+    dependencies:
+      '@tauri-apps/api': 2.0.0-beta.13
+      zod: 3.23.8
+    dev: false
+
+  /tauri-plugin-system-info-api@2.0.1:
+    resolution: {integrity: sha512-VcjXlWI3jFrH8Th/3Owrx1/HWOL6iRoxYyE0Ql++v8OjJx8kgNzyErt8HDp1CEgWiig/uIpfSmvuvRoNeWpSCw==}
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.13
       zod: 3.23.8

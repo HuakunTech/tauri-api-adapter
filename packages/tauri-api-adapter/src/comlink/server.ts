@@ -5,22 +5,26 @@ import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
+import * as network from 'tauri-plugin-network-api'
 import * as shellx from 'tauri-plugin-shellx-api'
+import * as sysInfo from 'tauri-plugin-system-info-api'
 import {
-  IApi,
-  IClipboardApi,
-  IDialogApi,
-  IFetchApi,
-  IFSApi,
-  INotificationApi,
-  IOsApi,
-  IShellApi
+  IClipboardAPI,
+  IDialogAPI,
+  IFetchAPI,
+  IFSAPI,
+  IFullAPI,
+  INetworkAPI,
+  INotificationAPI,
+  IOsAPI,
+  IShellAPI,
+  ISystemInfoAPI
 } from './types'
 
-export const clipboardApi: IClipboardApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                  Clipboard                                 */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                  Clipboard                                 */
+/* -------------------------------------------------------------------------- */
+export const clipboardApi: IClipboardAPI = {
   clipboardReadText: clipboard.readText,
   clipboardWriteText: clipboard.writeText,
   clipboardReadImageBase64: clipboard.readImageBase64,
@@ -42,10 +46,10 @@ export const clipboardApi: IClipboardApi = {
   clipboardStartMonitor: clipboard.startMonitor
 }
 
-export const dialogApi: IDialogApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                   Dialog                                   */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                   Dialog                                   */
+/* -------------------------------------------------------------------------- */
+export const dialogApi: IDialogAPI = {
   dialogAsk: dialog.ask,
   dialogConfirm: dialog.confirm,
   dialogMessage: dialog.message,
@@ -53,10 +57,10 @@ export const dialogApi: IDialogApi = {
   dialogSave: dialog.save
 }
 
-export const notificationApi: INotificationApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                Notification                                */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                Notification                                */
+/* -------------------------------------------------------------------------- */
+export const notificationApi: INotificationAPI = {
   notificationIsPermissionGranted: notification.isPermissionGranted,
   notificationRequestPermission: notification.requestPermission,
   notificationSendNotification: notification.sendNotification,
@@ -74,10 +78,10 @@ export const notificationApi: INotificationApi = {
   notificationOnAction: notification.onAction
 }
 
-export const fsApi: IFSApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                 File System                                */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                 File System                                */
+/* -------------------------------------------------------------------------- */
+export const fsApi: IFSAPI = {
   fsReadDir: fs.readDir,
   fsReadFile: fs.readFile,
   fsReadTextFile: fs.readTextFile,
@@ -94,10 +98,10 @@ export const fsApi: IFSApi = {
   fsWriteTextFile: fs.writeTextFile
 }
 
-export const osApi: IOsApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                     OS                                     */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                     OS                                     */
+/* -------------------------------------------------------------------------- */
+export const osApi: IOsAPI = {
   osPlatform: os.platform,
   osArch: os.arch,
   osExeExtension: os.exeExtension,
@@ -108,10 +112,10 @@ export const osApi: IOsApi = {
   osLocale: os.locale
 }
 
-export const shellApi: IShellApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                    Shell                                   */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                    Shell                                   */
+/* -------------------------------------------------------------------------- */
+export const shellApi: IShellAPI = {
   shellExecute: (
     program: string,
     args: string[],
@@ -158,10 +162,10 @@ export const shellApi: IShellApi = {
   shellLikelyOnWindows: shellx.likelyOnWindows
 }
 
-export const fetchApi: IFetchApi = {
-  /* -------------------------------------------------------------------------- */
-  /*                                    Fetch                                   */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                    Fetch                                   */
+/* -------------------------------------------------------------------------- */
+export const fetchApi: IFetchAPI = {
   fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
   fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
   fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
@@ -169,12 +173,60 @@ export const fetchApi: IFetchApi = {
     invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid })
 }
 
-export const defaultServerAPI: IApi = {
+/* -------------------------------------------------------------------------- */
+/*                                 System Info                                */
+/* -------------------------------------------------------------------------- */
+export const systemInfoAPI: ISystemInfoAPI = {
+  sysInfoAllSysInfo: sysInfo.allSysInfo,
+  sysInfoTotalMemory: sysInfo.totalMemory,
+  sysInfoUsedMemory: sysInfo.usedMemory,
+  sysInfoTotalSwap: sysInfo.totalSwap,
+  sysInfoUsedSwap: sysInfo.usedSwap,
+  sysInfoMemoryInfo: sysInfo.memoryInfo,
+  sysInfoHostname: sysInfo.hostname,
+  sysInfoName: sysInfo.name,
+  sysInfoKernelVersion: sysInfo.kernelVersion,
+  sysInfoOsVersion: sysInfo.osVersion,
+  sysInfoStaticInfo: sysInfo.staticInfo,
+  sysInfoComponents: sysInfo.components,
+  sysInfoCpus: sysInfo.cpus,
+  sysInfoCpuCount: sysInfo.cpuCount,
+  sysInfoCpuInfo: sysInfo.cpuInfo,
+  sysInfoDisks: sysInfo.disks,
+  sysInfoNetworks: sysInfo.networks,
+  sysInfoProcesses: sysInfo.processes,
+  sysInfoRefreshAll: sysInfo.refreshAll,
+  sysInfoRefreshMemory: sysInfo.refreshMemory,
+  sysInfoRefreshCpu: sysInfo.refreshCpu,
+  sysInfoRefreshProcesses: sysInfo.refreshProcesses,
+  sysInfoDebugCommand: sysInfo.debugCommand,
+  sysInfoBatteries: sysInfo.batteries
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Network                                  */
+/* -------------------------------------------------------------------------- */
+export const networkAPI: INetworkAPI = {
+  networkGetInterfaces: network.getInterfaces,
+  networkGetNonEmptyInterfaces: network.getNonEmptyInterfaces,
+  networkFindAvailablePort: network.findAvailablePort,
+  networkIsPortTaken: network.isPortTaken,
+  networkIsHttpPortOpen: network.isHttpPortOpen,
+  networkScanOnlineIpPortPairs: network.scanOnlineIpPortPairs,
+  networkScanOnlineIpsByPort: network.scanOnlineIpsByPort,
+  networkNonLocalhostNetworks: network.nonLocalhostNetworks,
+  networkLocalServerIsRunning: network.localServerIsRunning,
+  networkScanLocalNetworkOnlineHostsByPort: network.scanLocalNetworkOnlineHostsByPort
+}
+
+export const defaultServerAPI: IFullAPI = {
   ...clipboardApi,
   ...dialogApi,
   ...notificationApi,
   ...fsApi,
   ...osApi,
   ...shellApi,
-  ...fetchApi
+  ...fetchApi,
+  ...systemInfoAPI,
+  ...networkAPI
 }

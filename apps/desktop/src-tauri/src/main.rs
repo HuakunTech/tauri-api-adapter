@@ -13,6 +13,8 @@ fn main() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_shellx::init(unlock_shell))
         .plugin(tauri_plugin_clipboard::init())
+        .plugin(tauri_plugin_network::init())
+        .plugin(tauri_plugin_system_info::init())
         .setup(|app| {
             #[cfg(debug_assertions)] // only include this code on debug builds
             {

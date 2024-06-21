@@ -54,6 +54,8 @@
     "dialog:allow-confirm",
     "dialog:allow-save",
     "dialog:allow-message",
-    "notification:default"
+    "notification:default",
+    "system-info:allow-all",
+    "network:allow-all"
   ]
 }

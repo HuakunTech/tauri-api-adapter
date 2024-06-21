@@ -93,7 +93,7 @@ function makeNodeScript(script: string): Command<string> {
   return Command.create('node', ['-e', script])
 }
 
-export const shell: IShell = {
+const _shell: IShell = {
   execute: defaultClientAPI.shellExecute,
   kill: defaultClientAPI.shellKill,
   stdinWrite: defaultClientAPI.shellStdinWrite,
@@ -115,4 +115,10 @@ export const shell: IShell = {
   likelyOnWindows: defaultClientAPI.shellLikelyOnWindows
 }
 
-export const shellOpen = shell.open
+export const shellOpen = _shell.open
+
+export const shell = {
+  ..._shell,
+  Command,
+  Child
+}

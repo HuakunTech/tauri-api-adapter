@@ -4,7 +4,9 @@ import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
+import * as network from 'tauri-plugin-network-api'
 import * as shellx from 'tauri-plugin-shellx-api'
+import * as sysInfo from 'tauri-plugin-system-info-api'
 
 export interface IDialog {
   ask: typeof dialog.ask
@@ -35,17 +37,6 @@ export interface IClipboard {
   hasFiles: typeof clipboard.hasFiles
   startMonitor: typeof clipboard.startMonitor
 }
-// clipboard.isMonitorRunning
-// clipboard.listenToClipboard
-// clipboard.listenToMonitorStatusUpdate
-// clipboard.stopMonitor
-// clipboard.onClipboardUpdate
-// clipboard.onTextUpdate
-// clipboard.onSomethingUpdate
-// clipboard.onHTMLUpdate
-// clipboard.onRTFUpdate
-// clipboard.onFilesUpdate
-// clipboard.onImageUpdate
 
 export interface INotification {
   isPermissionGranted: typeof notification.isPermissionGranted
@@ -129,4 +120,45 @@ export interface IFetch {
   fetchCancel(rid: number): Promise<void>
   fetchSend(rid: number): Promise<FetchSendResponse>
   fetchReadBody(rid: number): Promise<ArrayBuffer | number[]>
+}
+
+export interface ISystemInfo {
+  allSysInfo: typeof sysInfo.allSysInfo
+  totalMemory: typeof sysInfo.totalMemory
+  usedMemory: typeof sysInfo.usedMemory
+  totalSwap: typeof sysInfo.totalSwap
+  usedSwap: typeof sysInfo.usedSwap
+  memoryInfo: typeof sysInfo.memoryInfo
+  hostname: typeof sysInfo.hostname
+  name: typeof sysInfo.name
+  kernelVersion: typeof sysInfo.kernelVersion
+  osVersion: typeof sysInfo.osVersion
+  staticInfo: typeof sysInfo.staticInfo
+  components: typeof sysInfo.components
+  cpus: typeof sysInfo.cpus
+  cpuCount: typeof sysInfo.cpuCount
+  cpuInfo: typeof sysInfo.cpuInfo
+  disks: typeof sysInfo.disks
+  networks: typeof sysInfo.networks
+  processes: typeof sysInfo.processes
+  refreshAll: typeof sysInfo.refreshAll
+  refreshMemory: typeof sysInfo.refreshMemory
+  refreshCpu: typeof sysInfo.refreshCpu
+  refreshProcesses: typeof sysInfo.refreshProcesses
+  debugCommand: typeof sysInfo.debugCommand
+  batteries: typeof sysInfo.batteries
+}
+
+network.findAvailablePort
+export interface INetwork {
+  getInterfaces: typeof network.getInterfaces
+  getNonEmptyInterfaces: typeof network.getNonEmptyInterfaces
+  findAvailablePort: typeof network.findAvailablePort
+  isPortTaken: typeof network.isPortTaken
+  isHttpPortOpen: typeof network.isHttpPortOpen
+  scanOnlineIpPortPairs: typeof network.scanOnlineIpPortPairs
+  scanOnlineIpsByPort: typeof network.scanOnlineIpsByPort
+  nonLocalhostNetworks: typeof network.nonLocalhostNetworks
+  localServerIsRunning: typeof network.localServerIsRunning
+  scanLocalNetworkOnlineHostsByPort: typeof network.scanLocalNetworkOnlineHostsByPort
 }
