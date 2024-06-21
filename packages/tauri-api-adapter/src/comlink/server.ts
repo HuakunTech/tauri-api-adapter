@@ -6,9 +6,18 @@ import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
-import { IApi } from './types'
+import {
+  IApi,
+  IClipboardApi,
+  IDialogApi,
+  IFetchApi,
+  IFSApi,
+  INotificationApi,
+  IOsApi,
+  IShellApi
+} from './types'
 
-export const defaultServerAPI: IApi = {
+export const clipboardApi: IClipboardApi = {
   /* -------------------------------------------------------------------------- */
   /*                                  Clipboard                                 */
   /* -------------------------------------------------------------------------- */
@@ -30,7 +39,10 @@ export const defaultServerAPI: IApi = {
   clipboardHasHTML: clipboard.hasHTML,
   clipboardHasImage: clipboard.hasImage,
   clipboardHasFiles: clipboard.hasFiles,
-  clipboardStartMonitor: clipboard.startMonitor,
+  clipboardStartMonitor: clipboard.startMonitor
+}
+
+export const dialogApi: IDialogApi = {
   /* -------------------------------------------------------------------------- */
   /*                                   Dialog                                   */
   /* -------------------------------------------------------------------------- */
@@ -38,7 +50,10 @@ export const defaultServerAPI: IApi = {
   dialogConfirm: dialog.confirm,
   dialogMessage: dialog.message,
   dialogOpen: dialog.open,
-  dialogSave: dialog.save,
+  dialogSave: dialog.save
+}
+
+export const notificationApi: INotificationApi = {
   /* -------------------------------------------------------------------------- */
   /*                                Notification                                */
   /* -------------------------------------------------------------------------- */
@@ -56,7 +71,10 @@ export const defaultServerAPI: IApi = {
   notificationRemoveChannel: notification.removeChannel,
   notificationChannels: notification.channels,
   notificationOnNotificationReceived: notification.onNotificationReceived,
-  notificationOnAction: notification.onAction,
+  notificationOnAction: notification.onAction
+}
+
+export const fsApi: IFSApi = {
   /* -------------------------------------------------------------------------- */
   /*                                 File System                                */
   /* -------------------------------------------------------------------------- */
@@ -73,7 +91,10 @@ export const defaultServerAPI: IApi = {
   fsRename: fs.rename,
   fsTruncate: fs.truncate,
   fsWriteFile: fs.writeFile,
-  fsWriteTextFile: fs.writeTextFile,
+  fsWriteTextFile: fs.writeTextFile
+}
+
+export const osApi: IOsApi = {
   /* -------------------------------------------------------------------------- */
   /*                                     OS                                     */
   /* -------------------------------------------------------------------------- */
@@ -84,7 +105,10 @@ export const defaultServerAPI: IApi = {
   osHostname: os.hostname,
   osEol: () => Promise.resolve(os.eol()),
   osVersion: os.version,
-  osLocale: os.locale,
+  osLocale: os.locale
+}
+
+export const shellApi: IShellApi = {
   /* -------------------------------------------------------------------------- */
   /*                                    Shell                                   */
   /* -------------------------------------------------------------------------- */
@@ -131,7 +155,10 @@ export const defaultServerAPI: IApi = {
   shellExecuteZshScript: shellx.executeZshScript,
   shellExecuteNodeScript: shellx.executeNodeScript,
   shellHasCommand: shellx.hasCommand,
-  shellLikelyOnWindows: shellx.likelyOnWindows,
+  shellLikelyOnWindows: shellx.likelyOnWindows
+}
+
+export const fetchApi: IFetchApi = {
   /* -------------------------------------------------------------------------- */
   /*                                    Fetch                                   */
   /* -------------------------------------------------------------------------- */
@@ -140,4 +167,14 @@ export const defaultServerAPI: IApi = {
   fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
   fetchFetchReadBody: (rid: number) =>
     invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid })
+}
+
+export const defaultServerAPI: IApi = {
+  ...clipboardApi,
+  ...dialogApi,
+  ...notificationApi,
+  ...fsApi,
+  ...osApi,
+  ...shellApi,
+  ...fetchApi
 }
