@@ -15,10 +15,20 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./native": {
+    "./worker": {
       "import": "./dist/worker.js",
       "require": "./dist/worker.cjs",
       "types": "./dist/worker.d.ts"
+    },
+    "./native": {
+      "import": "./dist/native.js",
+      "require": "./dist/native.cjs",
+      "types": "./dist/native.d.ts"
+    },
+    "./iframe": {
+      "import": "./dist/iframe.js",
+      "require": "./dist/iframe.cjs",
+      "types": "./dist/iframe.d.ts"
     },
     "./package.json": "./package.json"
   },

@@ -1,9 +1,11 @@
 export * from '@/comlink'
 export { defaultClientAPI } from '@/client'
 export { defaultServerAPI } from '@/server'
+export * from '@/api/server-types'
+export * from '@/api/client-types'
 export * as utils from './utils'
 export * as nativeApi from '@/native'
 export * as workerApi from '@/worker'
 
 export { listen, TauriEvent, comlinkEvent as event } from '@/api/event'
-export * from './native'
+export * from '@/worker'

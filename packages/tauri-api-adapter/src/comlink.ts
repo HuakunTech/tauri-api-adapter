@@ -24,4 +24,8 @@ export function exposeApiToWindow<API>(win: Window, api: API) {
   return Comlink.expose(api, Comlink.windowEndpoint(win))
 }
 
+export function exposeApiToWorker<API>(worker: Worker, api: API) {
+  return Comlink.expose(api, worker)
+}
+
 export * as Comlink from '@huakunshen/comlink'
