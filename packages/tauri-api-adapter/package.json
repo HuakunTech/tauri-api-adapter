@@ -1,0 +1,42 @@
+{
+  "name": "tauri-api-adapter",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build:docs": "typedoc src/index.ts",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/bun": "latest",
+    "rollup": "^4.18.0",
+    "typedoc": "^0.25.13"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@huakunshen/comlink": "^4.4.1",
+    "@tauri-apps/api": "2.0.0-beta.13",
+    "@tauri-apps/plugin-dialog": "2.0.0-beta.5",
+    "@tauri-apps/plugin-fs": "2.0.0-beta.5",
+    "@tauri-apps/plugin-http": "2.0.0-beta.6",
+    "@tauri-apps/plugin-notification": "2.0.0-beta.5",
+    "@tauri-apps/plugin-os": "2.0.0-beta.5",
+    "@tauri-apps/plugin-shell": "2.0.0-beta.6",
+    "tauri-plugin-clipboard-api": "^2.0.2",
+    "tauri-plugin-shellx-api": "^2.0.7",
+    "zod": "^3.23.8"
+  }
+}
