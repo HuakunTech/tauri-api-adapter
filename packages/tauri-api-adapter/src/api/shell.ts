@@ -1,5 +1,5 @@
 import { IShell, IShellInternal } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
 import { Remote } from '@huakunshen/comlink'
 import * as shellx from 'tauri-plugin-shellx-api'
@@ -146,3 +146,5 @@ export const nativeShell: IShell = {
   Command: shellx.Command,
   Child: shellx.Child
 }
+
+export const shell = isMain ? nativeShell : comlinkShell

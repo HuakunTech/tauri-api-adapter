@@ -1,5 +1,5 @@
 import { IFs } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _fs from '@tauri-apps/plugin-fs'
 import { IFsServer } from './server-types'
@@ -40,3 +40,5 @@ export const nativeFs: IFs = {
   writeFile: _fs.writeFile,
   writeTextFile: _fs.writeTextFile
 }
+
+export const fs = isMain ? nativeFs : comlinkFs

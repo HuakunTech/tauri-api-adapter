@@ -1,5 +1,5 @@
 import { INotification } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import * as Comlink from '@huakunshen/comlink'
 import { Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
@@ -54,3 +54,5 @@ export const nativeNotification: INotification = {
   onNotificationReceived: notificationApi.onNotificationReceived,
   onAction: notificationApi.onAction
 }
+
+export const notification = isMain ? nativeNotification : comlinkNotification

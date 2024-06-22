@@ -1,5 +1,5 @@
 import { ISystemInfo } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _sysinfo from 'tauri-plugin-system-info-api'
 import { ISystemInfoServer } from './server-types'
@@ -60,3 +60,5 @@ export const nativeSysInfo: ISystemInfo = {
   debugCommand: _sysinfo.debugCommand,
   batteries: _sysinfo.batteries
 }
+
+export const sysInfo = isMain ? nativeSysInfo : comlinkSysInfo

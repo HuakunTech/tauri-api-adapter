@@ -1,5 +1,5 @@
 import { IEvent, IEventInternal } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
 import { Remote } from '@huakunshen/comlink'
 import * as _eventApi from '@tauri-apps/api/event'
@@ -61,3 +61,5 @@ export const nativeEvent: IEvent = {
   once: _eventApi.once,
   listen: _eventApi.listen
 }
+
+export const event = isMain ? nativeEvent : comlinkEvent

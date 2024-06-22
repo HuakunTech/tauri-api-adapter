@@ -1,5 +1,5 @@
 import { IClipboard } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _clipboard from 'tauri-plugin-clipboard-api'
 import { IClipboardServer } from './server-types'
@@ -50,3 +50,5 @@ export const nativeClipboard: IClipboard = {
   hasFiles: _clipboard.hasFiles,
   startMonitor: _clipboard.startMonitor
 }
+
+export const clipboard = isMain ? nativeClipboard : comlinkClipboard

@@ -1,5 +1,5 @@
 import { IOs } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _os from '@tauri-apps/plugin-os'
 import { IOsServer } from './server-types'
@@ -28,3 +28,5 @@ export const nativeOs: IOs = {
   version: _os.version,
   locale: _os.locale
 }
+
+export const os = isMain ? nativeOs : comlinkOs

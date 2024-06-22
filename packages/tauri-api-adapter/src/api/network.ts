@@ -1,5 +1,5 @@
 import { INetwork } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _network from 'tauri-plugin-network-api'
 import { INetworkServer } from './server-types'
@@ -32,3 +32,5 @@ export const nativeNetwork: INetwork = {
   localServerIsRunning: _network.localServerIsRunning,
   scanLocalNetworkOnlineHostsByPort: _network.scanLocalNetworkOnlineHostsByPort
 }
+
+export const network = isMain ? nativeNetwork : comlinkNetwork

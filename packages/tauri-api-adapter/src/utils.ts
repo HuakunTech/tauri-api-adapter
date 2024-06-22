@@ -101,11 +101,17 @@ export function constructAPICallbackExecuter<Payload>(
   }
 }
 
+/**
+ * Prevent iframe from accessing Tauri APIs through window.parent.__TAURI_INTERNALS__
+ * It's possible that this blocks request provided by comlink. 
+ * For example, in the demo sveltekit project, running the hack script in iframe directly works, but running it from the parent window does not.
+ * In React, running the hack script from parent window works.
+ * @param iframeWin
+ */
 export function isolateIframeFromTauri(iframeWin: Window) {
   ;(iframeWin as any).eval(`window.parent = {
     postMessage: window.parent.postMessage
   };`)
-  // ;(iframeWin as any).eval(`window.parent = {};`)
 }
 
 export function hackIframeToUseParentWindow(iframeWin: Window) {

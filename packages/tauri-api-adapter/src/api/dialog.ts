@@ -1,5 +1,5 @@
 import { IDialog } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
 import * as _dialogApi from '@tauri-apps/plugin-dialog'
 import { IDialogServer, IFullAPI } from './server-types'
@@ -21,3 +21,5 @@ export const nativeDialog: IDialog = {
   open: _dialogApi.open,
   save: _dialogApi.save
 }
+
+export const dialog = isMain ? nativeDialog : comlinkDialog
