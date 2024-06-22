@@ -1,13 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import {
-    defaultServerAPI,
-    exposeApiToWindow,
-    exposeApiToWorker,
-    getWorkerApiClient,
-    utils
-  } from 'tauri-api-adapter'
+  import { defaultServerAPI, exposeApiToWindow, exposeApiToWorker, utils } from 'tauri-api-adapter'
   import SampleWorker from '../lib/sample-worker?worker'
+
   // import SampleWorker from '../lib/sample-worker.ts'
   // import { createWorker } from '../lib/worker'
 
@@ -16,16 +11,11 @@
   onMount(async () => {
     const worker = new SampleWorker()
     worker.postMessage('Hello from parent')
+    window.addEventListener('message', (event) => {
+      console.log('Parent received message: ', event.data)
+    })
     exposeApiToWorker(worker, defaultServerAPI)
-    // worker.postMessage('Hello from parent')
-    // const workerClient = getWorkerApiClient(worker)
-    // const worker = new Worker("worker.js")
-    // const worker = createWorker(`
-    // console.log('Worker is running')
-    // console.log(window)
-    // `)
-    // console.log(worker)
-    if (!iframe.contentWindow) {
+    if (!(iframe && iframe.contentWindow)) {
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
