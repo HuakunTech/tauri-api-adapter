@@ -1,9 +1,8 @@
 import { INotification } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import * as Comlink from '@huakunshen/comlink'
-import { Remote } from '@huakunshen/comlink'
+import Comlink, { Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
-import * as notificationApi from '@tauri-apps/plugin-notification'
+import notificationApi from '@tauri-apps/plugin-notification'
 import { INotificationServer } from './server-types'
 
 export function constructAPI(api: Remote<INotificationServer>): INotification {

@@ -3,15 +3,15 @@
  * For example, the client can call the APIs from an iframe.
  */
 import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import * as _event from '@tauri-apps/api/event'
-import * as dialog from '@tauri-apps/plugin-dialog'
-import * as fs from '@tauri-apps/plugin-fs'
-import * as notification from '@tauri-apps/plugin-notification'
-import * as os from '@tauri-apps/plugin-os'
-import * as clipboard from 'tauri-plugin-clipboard-api'
-import * as network from 'tauri-plugin-network-api'
-import * as shellx from 'tauri-plugin-shellx-api'
-import * as sysInfo from 'tauri-plugin-system-info-api'
+import _event from '@tauri-apps/api/event'
+import dialog from '@tauri-apps/plugin-dialog'
+import fs from '@tauri-apps/plugin-fs'
+import notification from '@tauri-apps/plugin-notification'
+import os from '@tauri-apps/plugin-os'
+import clipboard from 'tauri-plugin-clipboard-api'
+import network from 'tauri-plugin-network-api'
+import shellx from 'tauri-plugin-shellx-api'
+import sysInfo from 'tauri-plugin-system-info-api'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */

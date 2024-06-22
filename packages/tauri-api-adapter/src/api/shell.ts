@@ -2,8 +2,7 @@ import { IShell, IShellInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
 import { Remote } from '@huakunshen/comlink'
-import * as shellx from 'tauri-plugin-shellx-api'
-import { IOPayload } from 'tauri-plugin-shellx-api'
+import shellx, { IOPayload } from 'tauri-plugin-shellx-api'
 import { IShellServer } from './server-types'
 
 export function constructAPI(api: Remote<IShellServer>): IShellInternal {

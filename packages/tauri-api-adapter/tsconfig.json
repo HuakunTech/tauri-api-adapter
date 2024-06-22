@@ -12,6 +12,8 @@
     "declarationMap": true,
     "outDir": "dist",
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": [
         "src/*"

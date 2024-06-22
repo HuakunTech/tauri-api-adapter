@@ -10,7 +10,7 @@ import {
   IShellInternal,
   ISystemInfo
 } from '@/api/client-types'
-import * as _event from '@tauri-apps/api/event'
+import _event from '@tauri-apps/api/event'
 
 export interface IEventServer {
   eventRawListen<T>(

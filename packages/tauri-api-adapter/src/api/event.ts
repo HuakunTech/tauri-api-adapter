@@ -2,7 +2,7 @@ import { IEvent, IEventInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
 import { Remote } from '@huakunshen/comlink'
-import * as _eventApi from '@tauri-apps/api/event'
+import _eventApi from '@tauri-apps/api/event'
 import { IEventServer } from './server-types'
 
 export function constructAPI(api: Remote<IEventServer>): IEventInternal {

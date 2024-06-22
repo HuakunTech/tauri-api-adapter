@@ -1,4 +1,4 @@
-import * as Comlink from '@huakunshen/comlink'
+import Comlink from '@huakunshen/comlink'
 
 /**
  *

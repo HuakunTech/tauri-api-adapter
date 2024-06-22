@@ -1,7 +1,7 @@
 import { IOs } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
-import * as _os from '@tauri-apps/plugin-os'
+import _os from '@tauri-apps/plugin-os'
 import { IOsServer } from './server-types'
 
 export function constructAPI(api: Remote<IOsServer>): IOs {

@@ -1,7 +1,7 @@
 import { IFs } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
-import * as _fs from '@tauri-apps/plugin-fs'
+import _fs from '@tauri-apps/plugin-fs'
 import { IFsServer } from './server-types'
 
 export function constructAPI(api: Remote<IFsServer>): IFs {
