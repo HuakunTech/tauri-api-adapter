@@ -4,7 +4,7 @@
   "version": "0.0.3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HuakunTech/tauri-api-adapter.git"
+    "url": "https://github.com/HuakunShen/tauri-api-adapter.git"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",

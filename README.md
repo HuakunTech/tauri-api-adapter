@@ -1,9 +1,9 @@
 # tauri-api-adapter
 
-[![Generate and Deploy Docs](https://github.com/HuakunTech/tauri-api-adapter/actions/workflows/docs.yml/badge.svg)](https://github.com/HuakunTech/tauri-api-adapter/actions/workflows/docs.yml)
-[![CI](https://github.com/HuakunTech/tauri-api-adapter/actions/workflows/ci.yml/badge.svg)](https://github.com/HuakunTech/tauri-api-adapter/actions/workflows/ci.yml)
+[![Generate and Deploy Docs](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/docs.yml/badge.svg)](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/docs.yml)
+[![CI](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/ci.yml/badge.svg)](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/ci.yml)
 
-### Documentation: https://huakuntech.github.io/tauri-api-adapter/
+### Documentation: https://huakunshen.github.io/tauri-api-adapter/
 
 Regular Tauri APIs allow communication between Rust and JavaScript, so system APIs can be called from JavaScript.
 
