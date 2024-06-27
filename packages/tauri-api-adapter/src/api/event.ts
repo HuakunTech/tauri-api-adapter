@@ -1,7 +1,6 @@
 import { type IEvent, type IEventInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Comlink } from '@/comlink'
-import { type Remote } from '@huakunshen/comlink'
+import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import {
   emit,
   emitTo,
@@ -21,7 +20,7 @@ export function constructAPI(api: Remote<IEventServer>): IEventInternal {
       event: EventName,
       target: EventTarget,
       handler: (event: Event<T>) => void
-    ): Promise<number> => api.eventRawListen(event, target, Comlink.proxy(handler)),
+    ): Promise<number> => api.eventRawListen(event, target, comlinkProxy(handler)),
     rawUnlisten: (event: string, eventId: number): Promise<void> =>
       api.eventRawUnlisten(event, eventId),
     emit: (event: string, payload?: unknown): Promise<void> => api.eventEmit(event, payload),

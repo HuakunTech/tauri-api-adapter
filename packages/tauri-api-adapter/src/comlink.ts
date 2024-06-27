@@ -28,5 +28,3 @@ export function exposeApiToWindow<API>(win: Window, api: API) {
 export function exposeApiToWorker<API>(worker: Worker, api: API) {
   return expose(api, worker)
 }
-
-export * as Comlink from '@huakunshen/comlink'

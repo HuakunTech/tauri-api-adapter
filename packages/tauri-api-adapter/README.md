@@ -1,5 +1,6 @@
 # tauri-api-adapter
 
+![NPM Version](https://img.shields.io/npm/v/tauri-api-adapter)
 [![Generate and Deploy Docs](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/docs.yml/badge.svg)](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/docs.yml)
 [![CI](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/ci.yml/badge.svg)](https://github.com/HuakunShen/tauri-api-adapter/actions/workflows/ci.yml)
 

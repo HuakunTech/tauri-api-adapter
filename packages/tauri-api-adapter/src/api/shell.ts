@@ -1,7 +1,6 @@
 import type { IShell, IShellInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Comlink } from '@/comlink'
-import { type Remote } from '@huakunshen/comlink'
+import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import {
   Child as ShellxChild,
   Command as ShellxCommand,
@@ -83,7 +82,7 @@ export class Command<O extends IOPayload> extends ShellxCommand<O> {
         this.program,
         args,
         this.options,
-        Comlink.proxy((evt) => {
+        comlinkProxy((evt) => {
           switch (evt.event) {
             case 'Error':
               this.emit('error', evt.payload)
