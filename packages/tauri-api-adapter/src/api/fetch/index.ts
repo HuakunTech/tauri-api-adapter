@@ -1,2 +1,2 @@
 export { fetch } from './request'
-export { ClientOptions } from './types'
+export { type ClientOptions } from './types'

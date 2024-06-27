@@ -1,8 +1,28 @@
-import { IClipboard } from '@/api/client-types'
+import { type IClipboard } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Remote } from '@huakunshen/comlink'
-import _clipboard from 'tauri-plugin-clipboard-api'
-import { IClipboardServer } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import {
+  hasFiles,
+  hasHTML,
+  hasImage,
+  hasRTF,
+  hasText,
+  readFiles,
+  readHtml,
+  readImageBase64,
+  readImageBinary,
+  readRtf,
+  readText,
+  startMonitor,
+  writeFiles,
+  writeHtml,
+  writeHtmlAndText,
+  writeImageBase64,
+  writeImageBinary,
+  writeRtf,
+  writeText
+} from 'tauri-plugin-clipboard-api'
+import { type IClipboardServer } from './server-types'
 
 export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
   return {
@@ -30,25 +50,25 @@ export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
 export const comlinkClipboard = constructAPI(defaultClientAPI)
 
 export const nativeClipboard: IClipboard = {
-  readText: _clipboard.readText,
-  writeText: _clipboard.writeText,
-  readImageBase64: _clipboard.readImageBase64,
-  readImageBinary: _clipboard.readImageBinary,
-  writeImageBase64: _clipboard.writeImageBase64,
-  writeImageBinary: _clipboard.writeImageBinary,
-  readFiles: _clipboard.readFiles,
-  writeFiles: _clipboard.writeFiles,
-  readRtf: _clipboard.readRtf,
-  writeRtf: _clipboard.writeRtf,
-  readHtml: _clipboard.readHtml,
-  writeHtml: _clipboard.writeHtml,
-  writeHtmlAndText: _clipboard.writeHtmlAndText,
-  hasText: _clipboard.hasText,
-  hasRTF: _clipboard.hasRTF,
-  hasHTML: _clipboard.hasHTML,
-  hasImage: _clipboard.hasImage,
-  hasFiles: _clipboard.hasFiles,
-  startMonitor: _clipboard.startMonitor
+  readText: readText,
+  writeText: writeText,
+  readImageBase64: readImageBase64,
+  readImageBinary: readImageBinary,
+  writeImageBase64: writeImageBase64,
+  writeImageBinary: writeImageBinary,
+  readFiles: readFiles,
+  writeFiles: writeFiles,
+  readRtf: readRtf,
+  writeRtf: writeRtf,
+  readHtml: readHtml,
+  writeHtml: writeHtml,
+  writeHtmlAndText: writeHtmlAndText,
+  hasText: hasText,
+  hasRTF: hasRTF,
+  hasHTML: hasHTML,
+  hasImage: hasImage,
+  hasFiles: hasFiles,
+  startMonitor: startMonitor
 }
 
 export const clipboard = isMain ? nativeClipboard : comlinkClipboard

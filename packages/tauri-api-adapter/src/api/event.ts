@@ -1,41 +1,48 @@
-import { IEvent, IEventInternal } from '@/api/client-types'
+import { type IEvent, type IEventInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
-import { Remote } from '@huakunshen/comlink'
-import _eventApi from '@tauri-apps/api/event'
-import { IEventServer } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import {
+  emit,
+  emitTo,
+  once,
+  type Event,
+  type EventCallback,
+  type EventName,
+  type EventTarget,
+  type Options,
+  type UnlistenFn
+} from '@tauri-apps/api/event'
+import { type IEventServer } from './server-types'
 
 export function constructAPI(api: Remote<IEventServer>): IEventInternal {
   return {
     rawListen: <T>(
-      event: _eventApi.EventName,
-      target: _eventApi.EventTarget,
-      handler: (event: _eventApi.Event<T>) => void
+      event: EventName,
+      target: EventTarget,
+      handler: (event: Event<T>) => void
     ): Promise<number> => api.eventRawListen(event, target, Comlink.proxy(handler)),
     rawUnlisten: (event: string, eventId: number): Promise<void> =>
       api.eventRawUnlisten(event, eventId),
     emit: (event: string, payload?: unknown): Promise<void> => api.eventEmit(event, payload),
-    emitTo: (
-      target: _eventApi.EventTarget | string,
-      event: string,
-      payload?: unknown
-    ): Promise<void> => api.eventEmitTo(target, event, payload),
+    emitTo: (target: EventTarget | string, event: string, payload?: unknown): Promise<void> =>
+      api.eventEmitTo(target, event, payload),
     once: <T>(
-      event: _eventApi.EventName,
-      handler: _eventApi.EventCallback<T>,
-      options?: _eventApi.Options
-    ): Promise<_eventApi.UnlistenFn> => api.eventOnce(event, handler, options)
+      event: EventName,
+      handler: EventCallback<T>,
+      options?: Options
+    ): Promise<UnlistenFn> => api.eventOnce(event, handler, options)
   }
 }
 
 const _event = constructAPI(defaultClientAPI)
 
 export const listen = async function listen<T>(
-  eventName: _eventApi.EventName,
-  handler: _eventApi.EventCallback<T>,
-  options?: _eventApi.Options
-): Promise<_eventApi.UnlistenFn> {
-  const target: _eventApi.EventTarget =
+  eventName: EventName,
+  handler: EventCallback<T>,
+  options?: Options
+): Promise<UnlistenFn> {
+  const target: EventTarget =
     typeof options?.target === 'string'
       ? { kind: 'AnyLabel', label: options.target }
       : options?.target ?? { kind: 'Any' }
@@ -56,10 +63,10 @@ export const comlinkEvent: IEvent = {
 }
 
 export const nativeEvent: IEvent = {
-  emit: _eventApi.emit,
-  emitTo: _eventApi.emitTo,
-  once: _eventApi.once,
-  listen: _eventApi.listen
+  emit: emit,
+  emitTo: emitTo,
+  once: once,
+  listen: listen
 }
 
 export const event = isMain ? nativeEvent : comlinkEvent

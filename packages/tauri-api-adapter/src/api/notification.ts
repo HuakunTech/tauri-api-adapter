@@ -1,9 +1,26 @@
-import { INotification } from '@/api/client-types'
+import { type INotification } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import Comlink, { Remote } from '@huakunshen/comlink'
+import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
-import notificationApi from '@tauri-apps/plugin-notification'
-import { INotificationServer } from './server-types'
+import {
+  active,
+  cancel,
+  cancelAll,
+  channels,
+  createChannel,
+  isPermissionGranted,
+  onAction,
+  onNotificationReceived,
+  pending,
+  registerActionTypes,
+  removeActive,
+  removeAllActive,
+  removeChannel,
+  requestPermission,
+  sendNotification,
+  type Options as NotificationOptions
+} from '@tauri-apps/plugin-notification'
+import { type INotificationServer } from './server-types'
 
 export function constructAPI(api: Remote<INotificationServer>): INotification {
   return {
@@ -24,34 +41,34 @@ export function constructAPI(api: Remote<INotificationServer>): INotification {
     channels: api.notificationChannels,
     // this may not work
     onNotificationReceived: (
-      cb: (notification: notificationApi.Options) => void
+      cb: (notification: NotificationOptions) => void
     ): Promise<PluginListener> => {
-      return api.notificationOnNotificationReceived(Comlink.proxy(cb))
+      return api.notificationOnNotificationReceived(comlinkProxy(cb))
     },
     // this may not work
-    onAction: (cb: (notification: notificationApi.Options) => void): Promise<PluginListener> => {
-      return api.notificationOnAction(Comlink.proxy(cb))
+    onAction: (cb: (notification: NotificationOptions) => void): Promise<PluginListener> => {
+      return api.notificationOnAction(comlinkProxy(cb))
     }
   }
 }
 export const comlinkNotification: INotification = constructAPI(defaultClientAPI)
 
 export const nativeNotification: INotification = {
-  sendNotification: notificationApi.sendNotification,
-  requestPermission: notificationApi.requestPermission,
-  isPermissionGranted: notificationApi.isPermissionGranted,
-  registerActionTypes: notificationApi.registerActionTypes,
-  pending: notificationApi.pending,
-  cancel: notificationApi.cancel,
-  cancelAll: notificationApi.cancelAll,
-  active: notificationApi.active,
-  removeActive: notificationApi.removeActive,
-  removeAllActive: notificationApi.removeAllActive,
-  createChannel: notificationApi.createChannel,
-  removeChannel: notificationApi.removeChannel,
-  channels: notificationApi.channels,
-  onNotificationReceived: notificationApi.onNotificationReceived,
-  onAction: notificationApi.onAction
+  sendNotification: sendNotification,
+  requestPermission: requestPermission,
+  isPermissionGranted: isPermissionGranted,
+  registerActionTypes: registerActionTypes,
+  pending: pending,
+  cancel: cancel,
+  cancelAll: cancelAll,
+  active: active,
+  removeActive: removeActive,
+  removeAllActive: removeAllActive,
+  createChannel: createChannel,
+  removeChannel: removeChannel,
+  channels: channels,
+  onNotificationReceived: onNotificationReceived,
+  onAction: onAction
 }
 
 export const notification = isMain ? nativeNotification : comlinkNotification

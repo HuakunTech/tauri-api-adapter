@@ -1,8 +1,23 @@
-import { IFs } from '@/api/client-types'
+import { type IFs } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Remote } from '@huakunshen/comlink'
-import _fs from '@tauri-apps/plugin-fs'
-import { IFsServer } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import {
+  copyFile,
+  create,
+  exists,
+  lstat,
+  mkdir,
+  readDir,
+  readFile,
+  readTextFile,
+  remove,
+  rename,
+  stat,
+  truncate,
+  writeFile,
+  writeTextFile
+} from '@tauri-apps/plugin-fs'
+import { type IFsServer } from './server-types'
 
 export function constructAPI(api: Remote<IFsServer>): IFs {
   return {
@@ -25,20 +40,20 @@ export function constructAPI(api: Remote<IFsServer>): IFs {
 export const comlinkFs: IFs = constructAPI(defaultClientAPI)
 
 export const nativeFs: IFs = {
-  readDir: _fs.readDir,
-  readFile: _fs.readFile,
-  readTextFile: _fs.readTextFile,
-  stat: _fs.stat,
-  lstat: _fs.lstat,
-  exists: _fs.exists,
-  mkdir: _fs.mkdir,
-  create: _fs.create,
-  copyFile: _fs.copyFile,
-  remove: _fs.remove,
-  rename: _fs.rename,
-  truncate: _fs.truncate,
-  writeFile: _fs.writeFile,
-  writeTextFile: _fs.writeTextFile
+  readDir: readDir,
+  readFile: readFile,
+  readTextFile: readTextFile,
+  stat: stat,
+  lstat: lstat,
+  exists: exists,
+  mkdir: mkdir,
+  create: create,
+  copyFile: copyFile,
+  remove: remove,
+  rename: rename,
+  truncate: truncate,
+  writeFile: writeFile,
+  writeTextFile: writeTextFile
 }
 
 export const fs = isMain ? nativeFs : comlinkFs

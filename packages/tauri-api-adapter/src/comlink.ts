@@ -1,19 +1,19 @@
-import Comlink from '@huakunshen/comlink'
+import { expose, windowEndpoint, wrap, type Endpoint, type Remote } from '@huakunshen/comlink'
 
 /**
  *
- * @param win for example: window.parent if you want to call functions from parent window within an iframe
+ * @param targetWindow for example: window.parent if you want to call functions from parent window within an iframe
  * @returns
  */
-export function getWindowApiClient<API>(targetWindow: Window): Comlink.Remote<API> {
-  return Comlink.wrap<API>(Comlink.windowEndpoint(targetWindow))
+export function getWindowApiClient<API>(targetWindow: Window): Remote<API> {
+  return wrap<API>(windowEndpoint(targetWindow))
 }
 
 /**
  *
  */
-export function getWorkerApiClient<API>(): Comlink.Remote<API> {
-  return Comlink.wrap<API>(self as Comlink.Endpoint)
+export function getWorkerApiClient<API>(): Remote<API> {
+  return wrap<API>(self as Endpoint)
 }
 
 /**
@@ -22,11 +22,11 @@ export function getWorkerApiClient<API>(): Comlink.Remote<API> {
  * @returns
  */
 export function exposeApiToWindow<API>(win: Window, api: API) {
-  return Comlink.expose(api, Comlink.windowEndpoint(win))
+  return expose(api, windowEndpoint(win))
 }
 
 export function exposeApiToWorker<API>(worker: Worker, api: API) {
-  return Comlink.expose(api, worker)
+  return expose(api, worker)
 }
 
 export * as Comlink from '@huakunshen/comlink'

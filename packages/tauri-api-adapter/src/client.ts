@@ -1,4 +1,3 @@
-import { Endpoint } from '@huakunshen/comlink'
 import type { IFullAPI } from './api/server-types'
 import { getWindowApiClient, getWorkerApiClient } from './comlink'
 

@@ -1,8 +1,33 @@
-import { ISystemInfo } from '@/api/client-types'
+import { type ISystemInfo } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Remote } from '@huakunshen/comlink'
-import _sysinfo from 'tauri-plugin-system-info-api'
-import { ISystemInfoServer } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import {
+  allSysInfo,
+  batteries,
+  components,
+  cpuCount,
+  cpuInfo,
+  cpus,
+  debugCommand,
+  disks,
+  hostname,
+  kernelVersion,
+  memoryInfo,
+  name,
+  networks,
+  osVersion,
+  processes,
+  refreshAll,
+  refreshCpu,
+  refreshMemory,
+  refreshProcesses,
+  staticInfo,
+  totalMemory,
+  totalSwap,
+  usedMemory,
+  usedSwap
+} from 'tauri-plugin-system-info-api'
+import { type ISystemInfoServer } from './server-types'
 
 export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
   return {
@@ -35,30 +60,30 @@ export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
 export const comlinkSysInfo: ISystemInfo = constructAPI(defaultClientAPI)
 
 export const nativeSysInfo: ISystemInfo = {
-  allSysInfo: _sysinfo.allSysInfo,
-  totalMemory: _sysinfo.totalMemory,
-  usedMemory: _sysinfo.usedMemory,
-  totalSwap: _sysinfo.totalSwap,
-  usedSwap: _sysinfo.usedSwap,
-  memoryInfo: _sysinfo.memoryInfo,
-  hostname: _sysinfo.hostname,
-  name: _sysinfo.name,
-  kernelVersion: _sysinfo.kernelVersion,
-  osVersion: _sysinfo.osVersion,
-  staticInfo: _sysinfo.staticInfo,
-  components: _sysinfo.components,
-  cpus: _sysinfo.cpus,
-  cpuCount: _sysinfo.cpuCount,
-  cpuInfo: _sysinfo.cpuInfo,
-  disks: _sysinfo.disks,
-  networks: _sysinfo.networks,
-  processes: _sysinfo.processes,
-  refreshAll: _sysinfo.refreshAll,
-  refreshMemory: _sysinfo.refreshMemory,
-  refreshCpu: _sysinfo.refreshCpu,
-  refreshProcesses: _sysinfo.refreshProcesses,
-  debugCommand: _sysinfo.debugCommand,
-  batteries: _sysinfo.batteries
+  allSysInfo,
+  totalMemory,
+  usedMemory,
+  totalSwap,
+  usedSwap,
+  memoryInfo,
+  hostname,
+  name,
+  kernelVersion,
+  osVersion,
+  staticInfo,
+  components,
+  cpus,
+  cpuCount,
+  cpuInfo,
+  disks,
+  networks,
+  processes,
+  refreshAll,
+  refreshMemory,
+  refreshCpu,
+  refreshProcesses,
+  debugCommand,
+  batteries
 }
 
 export const sysInfo = isMain ? nativeSysInfo : comlinkSysInfo

@@ -3,18 +3,121 @@
  * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
  * Client from iframe or web worker can call APIs exposed from here
  */
-import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
+import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
-import _event from '@tauri-apps/api/event'
-import dialog from '@tauri-apps/plugin-dialog'
-import fs from '@tauri-apps/plugin-fs'
-import notification from '@tauri-apps/plugin-notification'
-import os from '@tauri-apps/plugin-os'
-import clipboard from 'tauri-plugin-clipboard-api'
-import network from 'tauri-plugin-network-api'
-import shellx from 'tauri-plugin-shellx-api'
-import sysInfo from 'tauri-plugin-system-info-api'
 import {
+  emit,
+  emitTo,
+  once,
+  type EventCallback,
+  type EventName,
+  type EventTarget
+} from '@tauri-apps/api/event'
+import {
+  ask as dialogAsk,
+  confirm as dialogConfirm,
+  message as dialogMessage,
+  open as dialogOpen,
+  save as dialogSave
+} from '@tauri-apps/plugin-dialog'
+import {
+  copyFile as fsCopyFile,
+  create as fsCreate,
+  exists as fsExists,
+  lstat as fsLstat,
+  mkdir as fsMkdir,
+  readDir as fsReadDir,
+  readFile as fsReadFile,
+  readTextFile as fsReadTextFile,
+  remove as fsRemove,
+  rename as fsRename,
+  stat as fsStat,
+  truncate as fsTruncate,
+  writeFile as fsWriteFile,
+  writeTextFile as fsWriteTextFile
+} from '@tauri-apps/plugin-fs'
+import {
+  active as notificationActive,
+  cancel as notificationCancel,
+  cancelAll as notificationCancelAll,
+  channels as notificationChannels,
+  createChannel as notificationCreateChannel,
+  isPermissionGranted as notificationIsPermissionGranted,
+  onAction as notificationOnAction,
+  onNotificationReceived as notificationOnNotificationReceived,
+  pending as notificationPending,
+  registerActionTypes as notificationRegisterActionTypes,
+  removeActive as notificationRemoveActive,
+  removeAllActive as notificationRemoveAllActive,
+  removeChannel as notificationRemoveChannel,
+  requestPermission as notificationRequestPermission,
+  sendNotification as notificationSendNotification
+} from '@tauri-apps/plugin-notification'
+import {
+  arch as osArch,
+  eol as osEol,
+  exeExtension as osExeExtension,
+  family as osFamily,
+  hostname as osHostname,
+  locale as osLocale,
+  platform as osPlatform,
+  version as osVersion
+} from '@tauri-apps/plugin-os'
+import clipboard from 'tauri-plugin-clipboard-api'
+import {
+  findAvailablePort as networkFindAvailablePort,
+  getInterfaces as networkGetInterfaces,
+  getNonEmptyInterfaces as networkGetNonEmptyInterfaces,
+  isHttpPortOpen as networkIsHttpPortOpen,
+  isPortTaken as networkIsPortTaken,
+  localServerIsRunning as networkLocalServerIsRunning,
+  nonLocalhostNetworks as networkNonLocalhostNetworks,
+  scanLocalNetworkOnlineHostsByPort as networkScanLocalNetworkOnlineHostsByPort,
+  scanOnlineIpPortPairs as networkScanOnlineIpPortPairs,
+  scanOnlineIpsByPort as networkScanOnlineIpsByPort
+} from 'tauri-plugin-network-api'
+import {
+  executeAppleScript as shellExecuteAppleScript,
+  executeBashScript as shellExecuteBashScript,
+  executeNodeScript as shellExecuteNodeScript,
+  executePowershellScript as shellExecutePowershellScript,
+  executePythonScript as shellExecutePythonScript,
+  executeZshScript as shellExecuteZshScript,
+  hasCommand as shellHasCommand,
+  likelyOnWindows as shellLikelyOnWindows,
+  open as shellOpen,
+  type ChildProcess,
+  type CommandEvent,
+  type InternalSpawnOptions,
+  type IOPayload
+} from 'tauri-plugin-shellx-api'
+import {
+  allSysInfo as sysInfoAllSysInfo,
+  batteries as sysInfoBatteries,
+  components as sysInfoComponents,
+  cpuCount as sysInfoCpuCount,
+  cpuInfo as sysInfoCpuInfo,
+  cpus as sysInfoCpus,
+  debugCommand as sysInfoDebugCommand,
+  disks as sysInfoDisks,
+  hostname as sysInfoHostname,
+  kernelVersion as sysInfoKernelVersion,
+  memoryInfo as sysInfoMemoryInfo,
+  name as sysInfoName,
+  networks as sysInfoNetworks,
+  osVersion as sysInfoOsVersion,
+  processes as sysInfoProcesses,
+  refreshAll as sysInfoRefreshAll,
+  refreshCpu as sysInfoRefreshCpu,
+  refreshMemory as sysInfoRefreshMemory,
+  refreshProcesses as sysInfoRefreshProcesses,
+  staticInfo as sysInfoStaticInfo,
+  totalMemory as sysInfoTotalMemory,
+  totalSwap as sysInfoTotalSwap,
+  usedMemory as sysInfoUsedMemory,
+  usedSwap as sysInfoUsedSwap
+} from 'tauri-plugin-system-info-api'
+import type {
   IClipboardServer,
   IDialogServer,
   IEventServer,
@@ -33,9 +136,9 @@ import {
 /* -------------------------------------------------------------------------- */
 export const eventApi: IEventServer = {
   eventRawListen<T>(
-    event: _event.EventName,
-    target: _event.EventTarget,
-    handler: _event.EventCallback<T>
+    event: EventName,
+    target: EventTarget,
+    handler: EventCallback<T>
   ): Promise<number> {
     return invoke<number>('plugin:event|listen', {
       event,
@@ -48,9 +151,9 @@ export const eventApi: IEventServer = {
       event,
       eventId
     }),
-  eventEmit: _event.emit,
-  eventEmitTo: _event.emitTo,
-  eventOnce: _event.once
+  eventEmit: emit,
+  eventEmitTo: emitTo,
+  eventOnce: once
 }
 
 /* -------------------------------------------------------------------------- */
@@ -82,66 +185,66 @@ export const clipboardApi: IClipboardServer = {
 /*                                   Dialog                                   */
 /* -------------------------------------------------------------------------- */
 export const dialogApi: IDialogServer = {
-  dialogAsk: dialog.ask,
-  dialogConfirm: dialog.confirm,
-  dialogMessage: dialog.message,
-  dialogOpen: dialog.open,
-  dialogSave: dialog.save
+  dialogAsk,
+  dialogConfirm,
+  dialogMessage,
+  dialogOpen,
+  dialogSave
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                Notification                                */
 /* -------------------------------------------------------------------------- */
 export const notificationApi: INotificationServer = {
-  notificationIsPermissionGranted: notification.isPermissionGranted,
-  notificationRequestPermission: notification.requestPermission,
-  notificationSendNotification: notification.sendNotification,
-  notificationRegisterActionTypes: notification.registerActionTypes,
-  notificationPending: notification.pending,
-  notificationCancel: notification.cancel,
-  notificationCancelAll: notification.cancelAll,
-  notificationActive: notification.active,
-  notificationRemoveActive: notification.removeActive,
-  notificationRemoveAllActive: notification.removeAllActive,
-  notificationCreateChannel: notification.createChannel,
-  notificationRemoveChannel: notification.removeChannel,
-  notificationChannels: notification.channels,
-  notificationOnNotificationReceived: notification.onNotificationReceived,
-  notificationOnAction: notification.onAction
+  notificationIsPermissionGranted,
+  notificationRequestPermission,
+  notificationSendNotification,
+  notificationRegisterActionTypes,
+  notificationPending,
+  notificationCancel,
+  notificationCancelAll,
+  notificationActive,
+  notificationRemoveActive,
+  notificationRemoveAllActive,
+  notificationCreateChannel,
+  notificationRemoveChannel,
+  notificationChannels,
+  notificationOnNotificationReceived,
+  notificationOnAction
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                 File System                                */
 /* -------------------------------------------------------------------------- */
 export const fsApi: IFsServer = {
-  fsReadDir: fs.readDir,
-  fsReadFile: fs.readFile,
-  fsReadTextFile: fs.readTextFile,
-  fsStat: fs.stat,
-  fsLstat: fs.lstat,
-  fsExists: fs.exists,
-  fsMkdir: fs.mkdir,
-  fsCreate: fs.create,
-  fsCopyFile: fs.copyFile,
-  fsRemove: fs.remove,
-  fsRename: fs.rename,
-  fsTruncate: fs.truncate,
-  fsWriteFile: fs.writeFile,
-  fsWriteTextFile: fs.writeTextFile
+  fsReadDir,
+  fsReadFile,
+  fsReadTextFile,
+  fsStat,
+  fsLstat,
+  fsExists,
+  fsMkdir,
+  fsCreate,
+  fsCopyFile,
+  fsRemove,
+  fsRename,
+  fsTruncate,
+  fsWriteFile,
+  fsWriteTextFile
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                     OS                                     */
 /* -------------------------------------------------------------------------- */
 export const osApi: IOsServer = {
-  osPlatform: os.platform,
-  osArch: os.arch,
-  osExeExtension: os.exeExtension,
-  osFamily: os.family,
-  osHostname: os.hostname,
-  osEol: () => Promise.resolve(os.eol()),
-  osVersion: os.version,
-  osLocale: os.locale
+  osPlatform,
+  osArch,
+  osExeExtension,
+  osFamily,
+  osHostname,
+  osEol: () => Promise.resolve(osEol()),
+  osVersion,
+  osLocale
 }
 
 /* -------------------------------------------------------------------------- */
@@ -151,9 +254,9 @@ export const shellApi: IShellServer = {
   shellExecute: (
     program: string,
     args: string[],
-    options: shellx.InternalSpawnOptions
-  ): Promise<shellx.ChildProcess<shellx.IOPayload>> =>
-    invoke<shellx.ChildProcess<shellx.IOPayload>>('plugin:shellx|execute', {
+    options: InternalSpawnOptions
+  ): Promise<ChildProcess<IOPayload>> =>
+    invoke<ChildProcess<IOPayload>>('plugin:shellx|execute', {
       program: program,
       args: args,
       options: options
@@ -168,14 +271,14 @@ export const shellApi: IShellServer = {
       buffer: buffer,
       pid: pid
     }),
-  shellOpen: shellx.open,
-  shellRawSpawn: <O extends shellx.IOPayload>(
+  shellOpen,
+  shellRawSpawn: <O extends IOPayload>(
     program: string,
     args: string[],
-    options: shellx.InternalSpawnOptions,
-    cb: (evt: shellx.CommandEvent<O>) => void
+    options: InternalSpawnOptions,
+    cb: (evt: CommandEvent<O>) => void
   ): Promise<number> => {
-    const onEvent = new Channel<shellx.CommandEvent<O>>()
+    const onEvent = new Channel<CommandEvent<O>>()
     onEvent.onmessage = cb
     return invoke<number>('plugin:shellx|spawn', {
       program: program,
@@ -184,14 +287,14 @@ export const shellApi: IShellServer = {
       onEvent
     })
   },
-  shellExecuteBashScript: shellx.executeBashScript,
-  shellExecutePowershellScript: shellx.executePowershellScript,
-  shellExecuteAppleScript: shellx.executeAppleScript,
-  shellExecutePythonScript: shellx.executePythonScript,
-  shellExecuteZshScript: shellx.executeZshScript,
-  shellExecuteNodeScript: shellx.executeNodeScript,
-  shellHasCommand: shellx.hasCommand,
-  shellLikelyOnWindows: shellx.likelyOnWindows
+  shellExecuteBashScript,
+  shellExecutePowershellScript,
+  shellExecuteAppleScript,
+  shellExecutePythonScript,
+  shellExecuteZshScript,
+  shellExecuteNodeScript,
+  shellHasCommand,
+  shellLikelyOnWindows
 }
 
 /* -------------------------------------------------------------------------- */
@@ -209,46 +312,46 @@ export const fetchApi: IFetchServer = {
 /*                                 System Info                                */
 /* -------------------------------------------------------------------------- */
 export const systemInfoAPI: ISystemInfoServer = {
-  sysInfoAllSysInfo: sysInfo.allSysInfo,
-  sysInfoTotalMemory: sysInfo.totalMemory,
-  sysInfoUsedMemory: sysInfo.usedMemory,
-  sysInfoTotalSwap: sysInfo.totalSwap,
-  sysInfoUsedSwap: sysInfo.usedSwap,
-  sysInfoMemoryInfo: sysInfo.memoryInfo,
-  sysInfoHostname: sysInfo.hostname,
-  sysInfoName: sysInfo.name,
-  sysInfoKernelVersion: sysInfo.kernelVersion,
-  sysInfoOsVersion: sysInfo.osVersion,
-  sysInfoStaticInfo: sysInfo.staticInfo,
-  sysInfoComponents: sysInfo.components,
-  sysInfoCpus: sysInfo.cpus,
-  sysInfoCpuCount: sysInfo.cpuCount,
-  sysInfoCpuInfo: sysInfo.cpuInfo,
-  sysInfoDisks: sysInfo.disks,
-  sysInfoNetworks: sysInfo.networks,
-  sysInfoProcesses: sysInfo.processes,
-  sysInfoRefreshAll: sysInfo.refreshAll,
-  sysInfoRefreshMemory: sysInfo.refreshMemory,
-  sysInfoRefreshCpu: sysInfo.refreshCpu,
-  sysInfoRefreshProcesses: sysInfo.refreshProcesses,
-  sysInfoDebugCommand: sysInfo.debugCommand,
-  sysInfoBatteries: sysInfo.batteries
+  sysInfoAllSysInfo,
+  sysInfoTotalMemory,
+  sysInfoUsedMemory,
+  sysInfoTotalSwap,
+  sysInfoUsedSwap,
+  sysInfoMemoryInfo,
+  sysInfoHostname,
+  sysInfoName,
+  sysInfoKernelVersion,
+  sysInfoOsVersion,
+  sysInfoStaticInfo,
+  sysInfoComponents,
+  sysInfoCpus,
+  sysInfoCpuCount,
+  sysInfoCpuInfo,
+  sysInfoDisks,
+  sysInfoNetworks,
+  sysInfoProcesses,
+  sysInfoRefreshAll,
+  sysInfoRefreshMemory,
+  sysInfoRefreshCpu,
+  sysInfoRefreshProcesses,
+  sysInfoDebugCommand,
+  sysInfoBatteries
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                   Network                                  */
 /* -------------------------------------------------------------------------- */
 export const networkAPI: INetworkServer = {
-  networkGetInterfaces: network.getInterfaces,
-  networkGetNonEmptyInterfaces: network.getNonEmptyInterfaces,
-  networkFindAvailablePort: network.findAvailablePort,
-  networkIsPortTaken: network.isPortTaken,
-  networkIsHttpPortOpen: network.isHttpPortOpen,
-  networkScanOnlineIpPortPairs: network.scanOnlineIpPortPairs,
-  networkScanOnlineIpsByPort: network.scanOnlineIpsByPort,
-  networkNonLocalhostNetworks: network.nonLocalhostNetworks,
-  networkLocalServerIsRunning: network.localServerIsRunning,
-  networkScanLocalNetworkOnlineHostsByPort: network.scanLocalNetworkOnlineHostsByPort
+  networkGetInterfaces,
+  networkGetNonEmptyInterfaces,
+  networkFindAvailablePort,
+  networkIsPortTaken,
+  networkIsHttpPortOpen,
+  networkScanOnlineIpPortPairs,
+  networkScanOnlineIpsByPort,
+  networkNonLocalhostNetworks,
+  networkLocalServerIsRunning,
+  networkScanLocalNetworkOnlineHostsByPort
 }
 
 export const defaultServerAPI: IFullAPI = {

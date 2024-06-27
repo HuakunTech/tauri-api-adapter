@@ -1,8 +1,17 @@
-import { IOs } from '@/api/client-types'
+import { type IOs } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Remote } from '@huakunshen/comlink'
-import _os from '@tauri-apps/plugin-os'
-import { IOsServer } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import {
+  arch,
+  eol,
+  exeExtension,
+  family,
+  hostname,
+  locale,
+  platform,
+  version
+} from '@tauri-apps/plugin-os'
+import { type IOsServer } from './server-types'
 
 export function constructAPI(api: Remote<IOsServer>): IOs {
   return {
@@ -19,14 +28,14 @@ export function constructAPI(api: Remote<IOsServer>): IOs {
 export const comlinkOs: IOs = constructAPI(defaultClientAPI)
 
 export const nativeOs: IOs = {
-  platform: _os.platform,
-  arch: _os.arch,
-  exeExtension: _os.exeExtension,
-  family: _os.family,
-  hostname: _os.hostname,
-  eol: () => Promise.resolve(_os.eol()),
-  version: _os.version,
-  locale: _os.locale
+  platform: platform,
+  arch: arch,
+  exeExtension: exeExtension,
+  family: family,
+  hostname: hostname,
+  eol: () => Promise.resolve(eol()),
+  version: version,
+  locale: locale
 }
 
 export const os = isMain ? nativeOs : comlinkOs

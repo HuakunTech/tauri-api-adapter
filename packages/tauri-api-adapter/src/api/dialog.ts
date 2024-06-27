@@ -1,8 +1,8 @@
-import { IDialog } from '@/api/client-types'
+import { type IDialog } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Remote } from '@huakunshen/comlink'
-import _dialogApi from '@tauri-apps/plugin-dialog'
-import { IDialogServer, IFullAPI } from './server-types'
+import { type Remote } from '@huakunshen/comlink'
+import { ask, confirm, message, open, save } from '@tauri-apps/plugin-dialog'
+import { type IDialogServer } from './server-types'
 
 export function constructAPI(api: Remote<IDialogServer>): IDialog {
   return {
@@ -15,11 +15,11 @@ export function constructAPI(api: Remote<IDialogServer>): IDialog {
 }
 export const comlinkDialog: IDialog = constructAPI(defaultClientAPI)
 export const nativeDialog: IDialog = {
-  ask: _dialogApi.ask,
-  confirm: _dialogApi.confirm,
-  message: _dialogApi.message,
-  open: _dialogApi.open,
-  save: _dialogApi.save
+  ask: ask,
+  confirm: confirm,
+  message: message,
+  open: open,
+  save: save
 }
 
 export const dialog = isMain ? nativeDialog : comlinkDialog
