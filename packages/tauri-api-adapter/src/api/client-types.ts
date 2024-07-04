@@ -323,7 +323,7 @@ export interface ISystemInfo {
   refreshMemory: typeof refreshMemory
   refreshCpu: typeof refreshCpu
   refreshProcesses: typeof refreshProcesses
-  debugCommand: typeof debugCommand
+  // debugCommand: typeof debugCommand
   batteries: typeof batteries
 }
 
@@ -333,9 +333,9 @@ export interface INetwork {
   findAvailablePort: typeof findAvailablePort
   isPortTaken: typeof isPortTaken
   isHttpPortOpen: typeof isHttpPortOpen
-  scanOnlineIpPortPairs: typeof scanOnlineIpPortPairs
-  scanOnlineIpsByPort: typeof scanOnlineIpsByPort
-  nonLocalhostNetworks: typeof nonLocalhostNetworks
-  localServerIsRunning: typeof localServerIsRunning
-  scanLocalNetworkOnlineHostsByPort: typeof scanLocalNetworkOnlineHostsByPort
+  // scanOnlineIpPortPairs: typeof scanOnlineIpPortPairs
+  // scanOnlineIpsByPort: typeof scanOnlineIpsByPort
+  // nonLocalhostNetworks: typeof nonLocalhostNetworks
+  // localServerIsRunning: typeof localServerIsRunning
+  // scanLocalNetworkOnlineHostsByPort: typeof scanLocalNetworkOnlineHostsByPort
 }

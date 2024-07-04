@@ -156,7 +156,7 @@ export interface ISystemInfoServer {
   sysInfoRefreshMemory: ISystemInfo['refreshMemory']
   sysInfoRefreshCpu: ISystemInfo['refreshCpu']
   sysInfoRefreshProcesses: ISystemInfo['refreshProcesses']
-  sysInfoDebugCommand: ISystemInfo['debugCommand']
+  // sysInfoDebugCommand: ISystemInfo['debugCommand']
   sysInfoBatteries: ISystemInfo['batteries']
 }
 
@@ -166,11 +166,11 @@ export interface INetworkServer {
   networkFindAvailablePort: INetwork['findAvailablePort']
   networkIsPortTaken: INetwork['isPortTaken']
   networkIsHttpPortOpen: INetwork['isHttpPortOpen']
-  networkScanOnlineIpPortPairs: INetwork['scanOnlineIpPortPairs']
-  networkScanOnlineIpsByPort: INetwork['scanOnlineIpsByPort']
-  networkNonLocalhostNetworks: INetwork['nonLocalhostNetworks']
-  networkLocalServerIsRunning: INetwork['localServerIsRunning']
-  networkScanLocalNetworkOnlineHostsByPort: INetwork['scanLocalNetworkOnlineHostsByPort']
+  // networkScanOnlineIpPortPairs: INetwork['scanOnlineIpPortPairs']
+  // networkScanOnlineIpsByPort: INetwork['scanOnlineIpsByPort']
+  // networkNonLocalhostNetworks: INetwork['nonLocalhostNetworks']
+  // networkLocalServerIsRunning: INetwork['localServerIsRunning']
+  // networkScanLocalNetworkOnlineHostsByPort: INetwork['scanLocalNetworkOnlineHostsByPort']
 }
 
 /**

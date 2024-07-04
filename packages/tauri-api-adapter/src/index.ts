@@ -1,6 +1,17 @@
-export * from '@/comlink'
+export { getWindowApiClient, getWorkerApiClient, exposeApiToWindow, exposeApiToWorker } from '@/comlink'
 export { defaultClientAPI, hasWindow, isInWorker, isInIframe, isMain } from '@/client'
-export { defaultServerAPI, constructClipboardApi } from '@/server'
+export {
+  defaultServerAPI,
+  constructClipboardApi,
+  constructDialogApi,
+  constructNotificationApi,
+  constructFsApi,
+  constructOsApi,
+  constructShellApi,
+  constructFetchApi,
+  constructSystemInfoApi,
+  constructNetworkApi
+} from '@/server'
 export * from '@/api/server-types'
 export * from '@/api/client-types'
 export * as utils from './utils'

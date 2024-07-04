@@ -53,7 +53,7 @@ export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
     refreshMemory: api.sysInfoRefreshMemory,
     refreshCpu: api.sysInfoRefreshCpu,
     refreshProcesses: api.sysInfoRefreshProcesses,
-    debugCommand: api.sysInfoDebugCommand,
+    // debugCommand: api.sysInfoDebugCommand,
     batteries: api.sysInfoBatteries
   }
 }
@@ -82,7 +82,7 @@ export const nativeSysInfo: ISystemInfo = {
   refreshMemory,
   refreshCpu,
   refreshProcesses,
-  debugCommand,
+  // debugCommand,
   batteries
 }
 

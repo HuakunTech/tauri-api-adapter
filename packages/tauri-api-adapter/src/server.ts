@@ -123,7 +123,18 @@ import type {
   IShellServer,
   ISystemInfoServer
 } from './api/server-types'
-import { checkPermission, type ClipboardPermissions } from './permissions'
+import {
+  checkPermission,
+  type ClipboardPermission,
+  type DialogPermission,
+  type FetchPermission,
+  type FsPermission,
+  type NetworkPermission,
+  type NotificationPermission,
+  type OsPermission,
+  type ShellPermission,
+  type SystemInfoPermission
+} from './permissions'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
@@ -149,65 +160,65 @@ export const eventApi: IEventServer = {
 /* -------------------------------------------------------------------------- */
 /*                                  Clipboard                                 */
 /* -------------------------------------------------------------------------- */
-export function constructClipboardApi(permissions: ClipboardPermissions[]): IClipboardServer {
+export function constructClipboardApi(permissions: ClipboardPermission[]): IClipboardServer {
   return {
-    clipboardReadText: checkPermission<ClipboardPermissions>(
+    clipboardReadText: checkPermission<ClipboardPermission>(
       ['clipboard:read-text', 'clipboard:read-all'],
       permissions
     )(clipboard.readText),
-    clipboardWriteText: checkPermission<ClipboardPermissions>(
+    clipboardWriteText: checkPermission<ClipboardPermission>(
       ['clipboard:write-text', 'clipboard:write-all'],
       permissions
     )(clipboard.writeText),
-    clipboardReadImageBase64: checkPermission<ClipboardPermissions>(
+    clipboardReadImageBase64: checkPermission<ClipboardPermission>(
       ['clipboard:read-all', 'clipboard:read-image'],
       permissions
     )(clipboard.readImageBase64),
-    clipboardReadImageBinary: checkPermission<ClipboardPermissions>(
+    clipboardReadImageBinary: checkPermission<ClipboardPermission>(
       ['clipboard:read-all', 'clipboard:read-image'],
       permissions
     )(clipboard.readImageBinary),
-    clipboardWriteImageBase64: checkPermission<ClipboardPermissions>(
+    clipboardWriteImageBase64: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-image'],
       permissions
     )(clipboard.writeImageBase64),
-    clipboardWriteImageBinary: checkPermission<ClipboardPermissions>(
+    clipboardWriteImageBinary: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-image'],
       permissions
     )(clipboard.writeImageBinary),
-    clipboardReadFiles: checkPermission<ClipboardPermissions>(
+    clipboardReadFiles: checkPermission<ClipboardPermission>(
       ['clipboard:read-all', 'clipboard:read-files'],
       permissions
     )(clipboard.readFiles),
-    clipboardWriteFiles: checkPermission<ClipboardPermissions>(
+    clipboardWriteFiles: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-files'],
       permissions
     )(clipboard.writeFiles),
-    clipboardReadRtf: checkPermission<ClipboardPermissions>(
+    clipboardReadRtf: checkPermission<ClipboardPermission>(
       ['clipboard:read-all', 'clipboard:read-text'],
       permissions
     )(clipboard.readRtf),
-    clipboardWriteRtf: checkPermission<ClipboardPermissions>(
+    clipboardWriteRtf: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-text'],
       permissions
     )(clipboard.writeRtf),
-    clipboardReadHtml: checkPermission<ClipboardPermissions>(
+    clipboardReadHtml: checkPermission<ClipboardPermission>(
       ['clipboard:read-all', 'clipboard:read-text'],
       permissions
     )(clipboard.readHtml),
-    clipboardWriteHtml: checkPermission<ClipboardPermissions>(
+    clipboardWriteHtml: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-text'],
       permissions
     )(clipboard.writeHtml),
-    clipboardWriteHtmlAndText: checkPermission<ClipboardPermissions>(
+    clipboardWriteHtmlAndText: checkPermission<ClipboardPermission>(
       ['clipboard:write-all', 'clipboard:write-text'],
       permissions
     )(clipboard.writeHtmlAndText),
-    clipboardHasText: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasText),
-    clipboardHasRTF: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasRTF),
-    clipboardHasHTML: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasHTML),
-    clipboardHasImage: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasImage),
-    clipboardHasFiles: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasFiles)
+    clipboardHasText: checkPermission<ClipboardPermission>([], permissions)(clipboard.hasText),
+    clipboardHasRTF: checkPermission<ClipboardPermission>([], permissions)(clipboard.hasRTF),
+    clipboardHasHTML: checkPermission<ClipboardPermission>([], permissions)(clipboard.hasHTML),
+    clipboardHasImage: checkPermission<ClipboardPermission>([], permissions)(clipboard.hasImage),
+    clipboardHasFiles: checkPermission<ClipboardPermission>([], permissions)(clipboard.hasFiles)
     // clipboardStartMonitor: checkPermission<ClipboardPermissions>([], permissions)(clipboard.startMonitor)
   }
 }
@@ -216,170 +227,340 @@ export const defaultClipboardApi = constructClipboardApi(['clipboard:read-all', 
 /* -------------------------------------------------------------------------- */
 /*                                   Dialog                                   */
 /* -------------------------------------------------------------------------- */
-export const dialogApi: IDialogServer = {
-  dialogAsk,
-  dialogConfirm,
-  dialogMessage,
-  dialogOpen,
-  dialogSave
+export function constructDialogApi(permissions: DialogPermission[]): IDialogServer {
+  return {
+    dialogAsk: checkPermission<DialogPermission>(['dialog:all'], permissions)(dialogAsk),
+    dialogConfirm: checkPermission<DialogPermission>(['dialog:all'], permissions)(dialogConfirm),
+    dialogMessage: checkPermission<DialogPermission>(['dialog:all'], permissions)(dialogMessage),
+    dialogOpen: checkPermission<DialogPermission>(['dialog:all'], permissions)(dialogOpen),
+    dialogSave: checkPermission<DialogPermission>(['dialog:all'], permissions)(dialogSave)
+  }
 }
+export const defaultDialogApi = constructDialogApi(['dialog:all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                Notification                                */
 /* -------------------------------------------------------------------------- */
-export const notificationApi: INotificationServer = {
-  notificationIsPermissionGranted,
-  notificationRequestPermission,
-  notificationSendNotification,
-  notificationRegisterActionTypes,
-  notificationPending,
-  notificationCancel,
-  notificationCancelAll,
-  notificationActive,
-  notificationRemoveActive,
-  notificationRemoveAllActive,
-  notificationCreateChannel,
-  notificationRemoveChannel,
-  notificationChannels,
-  notificationOnNotificationReceived,
-  notificationOnAction
+
+export function constructNotificationApi(permissions: NotificationPermission[]): INotificationServer {
+  return {
+    notificationIsPermissionGranted: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationIsPermissionGranted),
+    notificationRequestPermission: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationRequestPermission),
+    notificationSendNotification: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationSendNotification),
+    notificationRegisterActionTypes: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationRegisterActionTypes),
+    notificationPending: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationPending),
+    notificationCancel: checkPermission<NotificationPermission>(['notification:all'], permissions)(notificationCancel),
+    notificationCancelAll: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationCancelAll),
+    notificationActive: checkPermission<NotificationPermission>(['notification:all'], permissions)(notificationActive),
+    notificationRemoveActive: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationRemoveActive),
+    notificationRemoveAllActive: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationRemoveAllActive),
+    notificationCreateChannel: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationCreateChannel),
+    notificationRemoveChannel: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationRemoveChannel),
+    notificationChannels: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationChannels),
+    notificationOnNotificationReceived: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationOnNotificationReceived),
+    notificationOnAction: checkPermission<NotificationPermission>(
+      ['notification:all'],
+      permissions
+    )(notificationOnAction)
+  }
 }
+
+export const defaultNotificationApi = constructNotificationApi(['notification:all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                 File System                                */
 /* -------------------------------------------------------------------------- */
-export const fsApi: IFsServer = {
-  fsReadDir,
-  fsReadFile,
-  fsReadTextFile,
-  fsStat,
-  fsLstat,
-  fsExists,
-  fsMkdir,
-  fsCreate,
-  fsCopyFile,
-  fsRemove,
-  fsRename,
-  fsTruncate,
-  fsWriteFile,
-  fsWriteTextFile
+export function constructFsApi(permissions: FsPermission[]): IFsServer {
+  return {
+    fsReadDir: checkPermission<FsPermission>(['fs:read'], permissions)(fsReadDir),
+    fsReadFile: checkPermission<FsPermission>(['fs:read'], permissions)(fsReadFile),
+    fsReadTextFile: checkPermission<FsPermission>(['fs:read'], permissions)(fsReadTextFile),
+    fsStat: checkPermission<FsPermission>(['fs:read'], permissions)(fsStat),
+    fsLstat: checkPermission<FsPermission>(['fs:read'], permissions)(fsLstat),
+    fsExists: checkPermission<FsPermission>(['fs:read', 'fs:exists'], permissions)(fsExists),
+    fsMkdir: checkPermission<FsPermission>(['fs:write'], permissions)(fsMkdir),
+    fsCreate: checkPermission<FsPermission>(['fs:write'], permissions)(fsCreate),
+    fsCopyFile: checkPermission<FsPermission>(['fs:write'], permissions)(fsCopyFile),
+    fsRemove: checkPermission<FsPermission>(['fs:write'], permissions)(fsRemove),
+    fsRename: checkPermission<FsPermission>(['fs:write'], permissions)(fsRename),
+    fsTruncate: checkPermission<FsPermission>(['fs:write'], permissions)(fsTruncate),
+    fsWriteFile: checkPermission<FsPermission>(['fs:write'], permissions)(fsWriteFile),
+    fsWriteTextFile: checkPermission<FsPermission>(['fs:write'], permissions)(fsWriteTextFile)
+  }
 }
-
+export const defaultFsApi = constructFsApi(['fs:read', 'fs:write'])
 /* -------------------------------------------------------------------------- */
 /*                                     OS                                     */
 /* -------------------------------------------------------------------------- */
-export const osApi: IOsServer = {
-  osPlatform,
-  osArch,
-  osExeExtension,
-  osFamily,
-  osHostname,
-  osEol: () => Promise.resolve(osEol()),
-  osVersion,
-  osLocale
+export function constructOsApi(permissions: OsPermission[]): IOsServer {
+  return {
+    osPlatform: checkPermission<OsPermission>(['os:all'], permissions)(osPlatform),
+    osArch: checkPermission<OsPermission>(['os:all'], permissions)(osArch),
+    osExeExtension: checkPermission<OsPermission>(['os:all'], permissions)(osExeExtension),
+    osFamily: checkPermission<OsPermission>(['os:all'], permissions)(osFamily),
+    osHostname: checkPermission<OsPermission>(['os:all'], permissions)(osHostname),
+    osEol: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osEol())),
+    osVersion: checkPermission<OsPermission>(['os:all'], permissions)(osVersion),
+    osLocale: checkPermission<OsPermission>(['os:all'], permissions)(osLocale)
+  }
 }
+
+export const defaultOsApi = constructOsApi(['os:all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                    Shell                                   */
 /* -------------------------------------------------------------------------- */
-export const shellApi: IShellServer = {
-  shellExecute: (program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>> =>
-    invoke<ChildProcess<IOPayload>>('plugin:shellx|execute', {
-      program: program,
-      args: args,
-      options: options
-    }),
-  shellKill: (pid: number) =>
-    invoke<void>('plugin:shellx|kill', {
-      cmd: 'killChild',
-      pid: pid
-    }),
-  shellStdinWrite: (buffer: string | number[], pid: number) =>
-    invoke('plugin:shellx|stdin_write', {
-      buffer: buffer,
-      pid: pid
-    }),
-  shellOpen,
-  shellRawSpawn: <O extends IOPayload>(
-    program: string,
-    args: string[],
-    options: InternalSpawnOptions,
-    cb: (evt: CommandEvent<O>) => void
-  ): Promise<number> => {
-    const onEvent = new Channel<CommandEvent<O>>()
-    onEvent.onmessage = cb
-    return invoke<number>('plugin:shellx|spawn', {
-      program: program,
-      args: args,
-      options: options,
-      onEvent
-    })
-  },
-  shellExecuteBashScript,
-  shellExecutePowershellScript,
-  shellExecuteAppleScript,
-  shellExecutePythonScript,
-  shellExecuteZshScript,
-  shellExecuteNodeScript,
-  shellHasCommand,
-  shellLikelyOnWindows
+export function constructShellApi(permissions: ShellPermission[]): IShellServer {
+  return {
+    shellExecute: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )(
+      (program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>> =>
+        invoke<ChildProcess<IOPayload>>('plugin:shellx|execute', {
+          program: program,
+          args: args,
+          options: options
+        })
+    ),
+    shellKill: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )((pid: number) =>
+      invoke<void>('plugin:shellx|kill', {
+        cmd: 'killChild',
+        pid: pid
+      })
+    ),
+    shellStdinWrite: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )((buffer: string | number[], pid: number) =>
+      invoke('plugin:shellx|stdin_write', {
+        buffer: buffer,
+        pid: pid
+      })
+    ),
+    shellOpen: checkPermission<ShellPermission>(['shell:open'], permissions)(shellOpen),
+    shellRawSpawn: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )(
+      <O extends IOPayload>(
+        program: string,
+        args: string[],
+        options: InternalSpawnOptions,
+        cb: (evt: CommandEvent<O>) => void
+      ): Promise<number> => {
+        const onEvent = new Channel<CommandEvent<O>>()
+        onEvent.onmessage = cb
+        return invoke<number>('plugin:shellx|spawn', {
+          program: program,
+          args: args,
+          options: options,
+          onEvent
+        })
+      }
+    ),
+    shellExecuteBashScript: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellExecuteBashScript),
+    shellExecutePowershellScript: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )(shellExecutePowershellScript),
+    shellExecuteAppleScript: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellExecuteAppleScript),
+    shellExecutePythonScript: checkPermission<ShellPermission>(
+      ['shell:execute'],
+      permissions
+    )(shellExecutePythonScript),
+    shellExecuteZshScript: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellExecuteZshScript),
+    shellExecuteNodeScript: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellExecuteNodeScript),
+    shellHasCommand: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellHasCommand),
+    shellLikelyOnWindows: checkPermission<ShellPermission>(['shell:execute'], permissions)(shellLikelyOnWindows)
+  }
 }
+
+export const defaultShellApi = constructShellApi(['shell:open', 'shell:execute'])
 
 /* -------------------------------------------------------------------------- */
 /*                                    Fetch                                   */
 /* -------------------------------------------------------------------------- */
-export const fetchApi: IFetchServer = {
-  fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
-  fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
-  fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
-  fetchFetchReadBody: (rid: number) => invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid })
+
+export function constructFetchApi(permissions: FetchPermission[]): IFetchServer {
+  return {
+    fetchRawFetch: checkPermission<FetchPermission>(
+      ['fetch:all'],
+      permissions
+    )((options: FetchOptions) => invoke<number>('plugin:http|fetch', options)),
+    fetchFetchCancel: checkPermission<FetchPermission>(
+      ['fetch:all'],
+      permissions
+    )((rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid })),
+    fetchFetchSend: checkPermission<FetchPermission>(
+      ['fetch:all'],
+      permissions
+    )((rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid })),
+    fetchFetchReadBody: checkPermission<FetchPermission>(
+      ['fetch:all'],
+      permissions
+    )((rid: number) => invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid }))
+  }
 }
+export const defaultFetchApi = constructFetchApi(['fetch:all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                 System Info                                */
 /* -------------------------------------------------------------------------- */
-export const systemInfoAPI: ISystemInfoServer = {
-  sysInfoAllSysInfo,
-  sysInfoTotalMemory,
-  sysInfoUsedMemory,
-  sysInfoTotalSwap,
-  sysInfoUsedSwap,
-  sysInfoMemoryInfo,
-  sysInfoHostname,
-  sysInfoName,
-  sysInfoKernelVersion,
-  sysInfoOsVersion,
-  sysInfoStaticInfo,
-  sysInfoComponents,
-  sysInfoCpus,
-  sysInfoCpuCount,
-  sysInfoCpuInfo,
-  sysInfoDisks,
-  sysInfoNetworks,
-  sysInfoProcesses,
-  sysInfoRefreshAll,
-  sysInfoRefreshMemory,
-  sysInfoRefreshCpu,
-  sysInfoRefreshProcesses,
-  sysInfoDebugCommand,
-  sysInfoBatteries
+export function constructSystemInfoApi(permissions: SystemInfoPermission[]): ISystemInfoServer {
+  return {
+    sysInfoAllSysInfo: checkPermission<SystemInfoPermission>(['system-info:all'], permissions)(sysInfoAllSysInfo),
+    sysInfoTotalMemory: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:memory'],
+      permissions
+    )(sysInfoTotalMemory),
+    sysInfoUsedMemory: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:memory'],
+      permissions
+    )(sysInfoUsedMemory),
+    sysInfoTotalSwap: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:memory'],
+      permissions
+    )(sysInfoTotalSwap),
+    sysInfoUsedSwap: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:memory'],
+      permissions
+    )(sysInfoUsedSwap),
+    sysInfoMemoryInfo: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:memory'],
+      permissions
+    )(sysInfoMemoryInfo),
+    sysInfoHostname: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:network'],
+      permissions
+    )(sysInfoHostname),
+    sysInfoName: checkPermission<SystemInfoPermission>(['system-info:all', 'system-info:os'], permissions)(sysInfoName),
+    sysInfoKernelVersion: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:os'],
+      permissions
+    )(sysInfoKernelVersion),
+    sysInfoOsVersion: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:os'],
+      permissions
+    )(sysInfoOsVersion),
+    sysInfoStaticInfo: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:os'],
+      permissions
+    )(sysInfoStaticInfo),
+    sysInfoComponents: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:components'],
+      permissions
+    )(sysInfoComponents),
+    sysInfoCpus: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:cpu'],
+      permissions
+    )(sysInfoCpus),
+    sysInfoCpuCount: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:cpu'],
+      permissions
+    )(sysInfoCpuCount),
+    sysInfoCpuInfo: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:cpu'],
+      permissions
+    )(sysInfoCpuInfo),
+    sysInfoDisks: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:disk'],
+      permissions
+    )(sysInfoDisks),
+    sysInfoNetworks: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:network'],
+      permissions
+    )(sysInfoNetworks),
+    sysInfoProcesses: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:process'],
+      permissions
+    )(sysInfoProcesses),
+    sysInfoRefreshAll: checkPermission<SystemInfoPermission>(['system-info:all'], permissions)(sysInfoRefreshAll),
+    sysInfoRefreshMemory: checkPermission<SystemInfoPermission>(
+      ['system-info:memory'],
+      permissions
+    )(sysInfoRefreshMemory),
+    sysInfoRefreshCpu: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:cpu'],
+      permissions
+    )(sysInfoRefreshCpu),
+    sysInfoRefreshProcesses: checkPermission<SystemInfoPermission>(
+      ['system-info:process'],
+      permissions
+    )(sysInfoRefreshProcesses),
+    // sysInfoDebugCommand: checkPermission<SystemInfoPermission>(['system-info:all', 'system-info:all'], permissions)(sysInfoDebugCommand),
+    sysInfoBatteries: checkPermission<SystemInfoPermission>(
+      ['system-info:all', 'system-info:battery'],
+      permissions
+    )(sysInfoBatteries)
+  }
 }
+export const defaultSystemInfoApi = constructSystemInfoApi(['system-info:all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                   Network                                  */
 /* -------------------------------------------------------------------------- */
-export const networkAPI: INetworkServer = {
-  networkGetInterfaces,
-  networkGetNonEmptyInterfaces,
-  networkFindAvailablePort,
-  networkIsPortTaken,
-  networkIsHttpPortOpen,
-  networkScanOnlineIpPortPairs,
-  networkScanOnlineIpsByPort,
-  networkNonLocalhostNetworks,
-  networkLocalServerIsRunning,
-  networkScanLocalNetworkOnlineHostsByPort
+export function constructNetworkApi(permissions: NetworkPermission[]): INetworkServer {
+  return {
+    networkGetInterfaces: checkPermission<NetworkPermission>(['network:interface'], permissions)(networkGetInterfaces),
+    networkGetNonEmptyInterfaces: checkPermission<NetworkPermission>(
+      ['network:interface'],
+      permissions
+    )(networkGetNonEmptyInterfaces),
+    networkFindAvailablePort: checkPermission<NetworkPermission>(
+      ['network:port'],
+      permissions
+    )(networkFindAvailablePort),
+    networkIsPortTaken: checkPermission<NetworkPermission>(['network:port'], permissions)(networkIsPortTaken),
+    networkIsHttpPortOpen: checkPermission<NetworkPermission>(['network:port'], permissions)(networkIsHttpPortOpen)
+    // networkScanOnlineIpPortPairs,
+    // networkScanOnlineIpsByPort,
+    // networkNonLocalhostNetworks,
+    // networkLocalServerIsRunning,
+    // networkScanLocalNetworkOnlineHostsByPort
+  }
 }
+
+export const defaultNetworkApi = constructNetworkApi(['network:interface', 'network:port'])
 
 /**
  * The default server API enables all APIs, if you need to apply permission control,
@@ -397,13 +578,13 @@ export const networkAPI: INetworkServer = {
  */
 export const defaultServerAPI: IFullAPI = {
   ...defaultClipboardApi,
-  ...dialogApi,
-  ...notificationApi,
-  ...fsApi,
-  ...osApi,
-  ...shellApi,
-  ...fetchApi,
-  ...systemInfoAPI,
-  ...networkAPI,
+  ...defaultDialogApi,
+  ...defaultNotificationApi,
+  ...defaultFsApi,
+  ...defaultOsApi,
+  ...defaultShellApi,
+  ...defaultFetchApi,
+  ...defaultSystemInfoApi,
+  ...defaultNetworkApi,
   ...eventApi
 }

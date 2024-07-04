@@ -15,6 +15,12 @@
 
   onMount(async () => {
     setTimeout(async () => {
+      iframeApi.sysInfo.components().then((components) => {
+        console.log('iframe Components: ', components)
+      })
+      iframeApi.sysInfo.staticInfo().then((info) => {
+        console.log('iframe Static Info: ', info)
+      })
       iframeApi.clipboard.readText().then((text) => {
         console.log('iframe Clipboard Text: ', text)
       })

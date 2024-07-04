@@ -22,11 +22,11 @@ export function constructAPI(api: Remote<INetworkServer>): INetwork {
     findAvailablePort: api.networkFindAvailablePort,
     isPortTaken: api.networkIsPortTaken,
     isHttpPortOpen: api.networkIsHttpPortOpen,
-    scanOnlineIpPortPairs: api.networkScanOnlineIpPortPairs,
-    scanOnlineIpsByPort: api.networkScanOnlineIpsByPort,
-    nonLocalhostNetworks: api.networkNonLocalhostNetworks,
-    localServerIsRunning: api.networkLocalServerIsRunning,
-    scanLocalNetworkOnlineHostsByPort: api.networkScanLocalNetworkOnlineHostsByPort
+    // scanOnlineIpPortPairs: api.networkScanOnlineIpPortPairs,
+    // scanOnlineIpsByPort: api.networkScanOnlineIpsByPort,
+    // nonLocalhostNetworks: api.networkNonLocalhostNetworks,
+    // localServerIsRunning: api.networkLocalServerIsRunning,
+    // scanLocalNetworkOnlineHostsByPort: api.networkScanLocalNetworkOnlineHostsByPort
   }
 }
 export const comlinkNetwork: INetwork = constructAPI(defaultClientAPI)
@@ -37,11 +37,11 @@ export const nativeNetwork: INetwork = {
   findAvailablePort: findAvailablePort,
   isPortTaken: isPortTaken,
   isHttpPortOpen: isHttpPortOpen,
-  scanOnlineIpPortPairs: scanOnlineIpPortPairs,
-  scanOnlineIpsByPort: scanOnlineIpsByPort,
-  nonLocalhostNetworks: nonLocalhostNetworks,
-  localServerIsRunning: localServerIsRunning,
-  scanLocalNetworkOnlineHostsByPort: scanLocalNetworkOnlineHostsByPort
+  // scanOnlineIpPortPairs: scanOnlineIpPortPairs,
+  // scanOnlineIpsByPort: scanOnlineIpsByPort,
+  // nonLocalhostNetworks: nonLocalhostNetworks,
+  // localServerIsRunning: localServerIsRunning,
+  // scanLocalNetworkOnlineHostsByPort: scanLocalNetworkOnlineHostsByPort
 }
 
 export const network = isMain ? nativeNetwork : comlinkNetwork
