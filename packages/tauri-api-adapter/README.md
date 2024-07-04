@@ -77,6 +77,19 @@ import { clipboard } from 'tauri-api-adapter/iframe'
 import { clipboard } from 'tauri-api-adapter/worker'
 ```
 
-## TODO
+## Permission Control
 
-- [ ] Plan to add permission control system to this package.
+Permission control is provided by the package to limit API access from iframe and web worker.
+
+> Tauri 2 comes with a nice and strict permission control system for Tauri Plugins. However it doesn't allow dynamic permission control. Permissions for each window is hard coded during compilation. 
+> In cases where you want to dynamically load content with iframe or web worker, this library gives you the ability to control the permission of each iframe and web worker.
+
+```ts
+import { defaultServerAPI, exposeApiToWindow, exposeApiToWorker } from 'tauri-api-adapter'
+```
+
+`defaultServerAPI` by default exposes all APIs to 
+
+
+
+

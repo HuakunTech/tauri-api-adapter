@@ -50,25 +50,25 @@ export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
 export const comlinkClipboard = constructAPI(defaultClientAPI)
 
 export const nativeClipboard: IClipboard = {
-  readText: readText,
-  writeText: writeText,
-  readImageBase64: readImageBase64,
-  readImageBinary: readImageBinary,
-  writeImageBase64: writeImageBase64,
-  writeImageBinary: writeImageBinary,
-  readFiles: readFiles,
-  writeFiles: writeFiles,
-  readRtf: readRtf,
-  writeRtf: writeRtf,
-  readHtml: readHtml,
-  writeHtml: writeHtml,
-  writeHtmlAndText: writeHtmlAndText,
-  hasText: hasText,
-  hasRTF: hasRTF,
-  hasHTML: hasHTML,
-  hasImage: hasImage,
-  hasFiles: hasFiles
-  // startMonitor: startMonitor
+  readText,
+  writeText,
+  readImageBase64,
+  readImageBinary,
+  writeImageBase64,
+  writeImageBinary,
+  readFiles,
+  writeFiles,
+  readRtf,
+  writeRtf,
+  readHtml,
+  writeHtml,
+  writeHtmlAndText,
+  hasText,
+  hasRTF,
+  hasHTML,
+  hasImage,
+  hasFiles
+  // startMonitorr
 }
 
 export const clipboard = isMain ? nativeClipboard : comlinkClipboard

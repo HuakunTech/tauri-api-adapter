@@ -13,6 +13,7 @@ export {
   constructNetworkApi
 } from './server'
 export * from './api/server-types'
+export * from './permissions'
 export * from './api/client-types'
 export * as utils from './utils'
 
