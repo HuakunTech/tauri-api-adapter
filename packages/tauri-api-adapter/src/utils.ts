@@ -1,4 +1,4 @@
-import { EventType } from '@/constants'
+import { EventType } from './constants'
 
 export type PenxAPIResponseMessageEvent<T> = MessageEvent<{
   type: string
@@ -24,9 +24,7 @@ export type PenxAPIRequestMessageEvent<T> = MessageEvent<{
 export function constructAPI<Payload, Result>(
   evtType: EventType,
   retEvtType?: EventType
-): Exclude<Payload, undefined> extends never
-  ? () => Promise<Result>
-  : (payload: Payload) => Promise<Result> {
+): Exclude<Payload, undefined> extends never ? () => Promise<Result> : (payload: Payload) => Promise<Result> {
   return ((payload?: Payload) => {
     return new Promise((resolve, reject) => {
       const channel = new MessageChannel()
@@ -35,9 +33,7 @@ export function constructAPI<Payload, Result>(
         if (event.data.type === expectedEvtType) {
           resolve(event.data.result)
         } else {
-          reject(
-            new Error(`Unexpected message type: ${event.data.type} (expected: ${expectedEvtType})`)
-          )
+          reject(new Error(`Unexpected message type: ${event.data.type} (expected: ${expectedEvtType})`))
         }
       }
       window.parent.postMessage(
@@ -90,10 +86,7 @@ export function constructAPIExecuter<Payload, Result>(
   }
 }
 
-export function constructAPICallbackExecuter<Payload>(
-  evtType: EventType,
-  handlerFn: (payload: Payload) => void
-) {
+export function constructAPICallbackExecuter<Payload>(evtType: EventType, handlerFn: (payload: Payload) => void) {
   return (event: PenxAPIRequestMessageEvent<Payload>) => {
     if (event.data.type === evtType) {
       handlerFn(event.data.payload)
@@ -103,7 +96,7 @@ export function constructAPICallbackExecuter<Payload>(
 
 /**
  * Prevent iframe from accessing Tauri APIs through window.parent.__TAURI_INTERNALS__
- * It's possible that this blocks request provided by comlink. 
+ * It's possible that this blocks request provided by comlink.
  * For example, in the demo sveltekit project, running the hack script in iframe directly works, but running it from the parent window does not.
  * In React, running the hack script from parent window works.
  * @param iframeWin

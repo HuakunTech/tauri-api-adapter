@@ -1,5 +1,3 @@
-import { type IEvent, type IEventInternal } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import {
   emit,
@@ -12,25 +10,20 @@ import {
   type Options,
   type UnlistenFn
 } from '@tauri-apps/api/event'
+import { defaultClientAPI, isMain } from '../client'
+import { type IEvent, type IEventInternal } from './client-types'
 import { type IEventServer } from './server-types'
 
 export function constructAPI(api: Remote<IEventServer>): IEventInternal {
   return {
-    rawListen: <T>(
-      event: EventName,
-      target: EventTarget,
-      handler: (event: Event<T>) => void
-    ): Promise<number> => api.eventRawListen(event, target, comlinkProxy(handler)),
-    rawUnlisten: (event: string, eventId: number): Promise<void> =>
-      api.eventRawUnlisten(event, eventId),
+    rawListen: <T>(event: EventName, target: EventTarget, handler: (event: Event<T>) => void): Promise<number> =>
+      api.eventRawListen(event, target, comlinkProxy(handler)),
+    rawUnlisten: (event: string, eventId: number): Promise<void> => api.eventRawUnlisten(event, eventId),
     emit: (event: string, payload?: unknown): Promise<void> => api.eventEmit(event, payload),
     emitTo: (target: EventTarget | string, event: string, payload?: unknown): Promise<void> =>
       api.eventEmitTo(target, event, payload),
-    once: <T>(
-      event: EventName,
-      handler: EventCallback<T>,
-      options?: Options
-    ): Promise<UnlistenFn> => api.eventOnce(event, handler, options)
+    once: <T>(event: EventName, handler: EventCallback<T>, options?: Options): Promise<UnlistenFn> =>
+      api.eventOnce(event, handler, options)
   }
 }
 

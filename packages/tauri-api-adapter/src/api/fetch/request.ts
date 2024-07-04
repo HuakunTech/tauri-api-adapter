@@ -2,8 +2,8 @@
  * This module is a modified versioin of Tauri's official `http` plugin.
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
-import { type IFetch } from '@/api/client-types'
-import { defaultClientAPI } from '@/client'
+import { defaultClientAPI } from '../../client'
+import { type IFetch } from '../client-types'
 import { type ClientOptions } from './types'
 
 const webFetch: IFetch = {
@@ -24,10 +24,7 @@ const webFetch: IFetch = {
  * @param init
  * @returns
  */
-export async function fetch(
-  input: URL | Request | string,
-  init?: RequestInit & ClientOptions
-): Promise<Response> {
+export async function fetch(input: URL | Request | string, init?: RequestInit & ClientOptions): Promise<Response> {
   const maxRedirections = init?.maxRedirections
   const connectTimeout = init?.connectTimeout
   const proxy = init?.proxy
@@ -75,13 +72,7 @@ export async function fetch(
     void webFetch.fetchCancel(rid)
   })
 
-  const {
-    status,
-    statusText,
-    url,
-    headers: responseHeaders,
-    rid: responseRid
-  } = await webFetch.fetchSend(rid)
+  const { status, statusText, url, headers: responseHeaders, rid: responseRid } = await webFetch.fetchSend(rid)
 
   const body = await webFetch.fetchReadBody(responseRid)
 

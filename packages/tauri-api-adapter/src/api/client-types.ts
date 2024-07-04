@@ -2,24 +2,8 @@
  * This file defines API interfaces for client. The client is the side that calls the API.
  * For example, the client can call the APIs from an iframe.
  */
-import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
-import type {
-  emit,
-  emitTo,
-  EventCallback,
-  EventName,
-  EventTarget,
-  listen,
-  once
-} from '@tauri-apps/api/event'
-import type {
-  ask,
-  confirm,
-  open as dialogOpen,
-  message,
-  OpenDialogOptions,
-  save
-} from '@tauri-apps/plugin-dialog'
+import type { emit, emitTo, EventCallback, EventName, EventTarget, listen, once } from '@tauri-apps/api/event'
+import type { ask, confirm, open as dialogOpen, message, OpenDialogOptions, save } from '@tauri-apps/plugin-dialog'
 import type {
   copyFile,
   create,
@@ -53,15 +37,7 @@ import type {
   requestPermission,
   sendNotification
 } from '@tauri-apps/plugin-notification'
-import {
-  arch,
-  exeExtension,
-  family,
-  locale,
-  hostname as osHostname,
-  platform,
-  version
-} from '@tauri-apps/plugin-os'
+import { arch, exeExtension, family, locale, hostname as osHostname, platform, version } from '@tauri-apps/plugin-os'
 import type {
   hasFiles,
   hasHTML,
@@ -144,6 +120,7 @@ import type {
   usedMemory,
   usedSwap
 } from 'tauri-plugin-system-info-api'
+import type { FetchOptions, FetchSendResponse } from './fetch/types'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
@@ -243,11 +220,7 @@ export interface IOs {
 }
 
 export interface IShellInternal {
-  execute(
-    program: string,
-    args: string[],
-    options: InternalSpawnOptions
-  ): Promise<ChildProcess<IOPayload>>
+  execute(program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>>
   kill(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
   rawSpawn<O extends IOPayload>(

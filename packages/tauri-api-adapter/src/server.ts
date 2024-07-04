@@ -3,7 +3,6 @@
  * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
  * Client from iframe or web worker can call APIs exposed from here
  */
-import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
 import { emit, emitTo, once, type EventCallback, type EventName, type EventTarget } from '@tauri-apps/api/event'
 import {
@@ -110,6 +109,7 @@ import {
   usedMemory as sysInfoUsedMemory,
   usedSwap as sysInfoUsedSwap
 } from 'tauri-plugin-system-info-api'
+import type { FetchOptions, FetchSendResponse } from './api/fetch/types'
 import type {
   IClipboardServer,
   IDialogServer,

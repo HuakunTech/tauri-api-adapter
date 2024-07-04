@@ -1,5 +1,3 @@
-import { type IFs } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { type Remote } from '@huakunshen/comlink'
 import {
   copyFile,
@@ -17,6 +15,8 @@ import {
   writeFile,
   writeTextFile
 } from '@tauri-apps/plugin-fs'
+import { defaultClientAPI, isMain } from '../client'
+import { type IFs } from './client-types'
 import { type IFsServer } from './server-types'
 
 export function constructAPI(api: Remote<IFsServer>): IFs {

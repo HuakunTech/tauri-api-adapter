@@ -1,5 +1,3 @@
-import { type INotification } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
 import {
@@ -20,6 +18,8 @@ import {
   sendNotification,
   type Options as NotificationOptions
 } from '@tauri-apps/plugin-notification'
+import { defaultClientAPI, isMain } from '../client'
+import { type INotification } from './client-types'
 import { type INotificationServer } from './server-types'
 
 export function constructAPI(api: Remote<INotificationServer>): INotification {
@@ -40,9 +40,7 @@ export function constructAPI(api: Remote<INotificationServer>): INotification {
     removeChannel: api.notificationRemoveChannel,
     channels: api.notificationChannels,
     // this may not work
-    onNotificationReceived: (
-      cb: (notification: NotificationOptions) => void
-    ): Promise<PluginListener> => {
+    onNotificationReceived: (cb: (notification: NotificationOptions) => void): Promise<PluginListener> => {
       return api.notificationOnNotificationReceived(comlinkProxy(cb))
     },
     // this may not work

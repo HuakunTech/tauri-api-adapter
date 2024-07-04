@@ -1,3 +1,4 @@
+import type { EventCallback, EventName, Options as EventOptions, EventTarget, UnlistenFn } from '@tauri-apps/api/event'
 import type {
   IClipboard,
   IDialog,
@@ -9,29 +10,14 @@ import type {
   IOs,
   IShellInternal,
   ISystemInfo
-} from '@/api/client-types'
-import type {
-  EventCallback,
-  EventName,
-  Options as EventOptions,
-  EventTarget,
-  UnlistenFn
-} from '@tauri-apps/api/event'
+} from './client-types'
 
 export interface IEventServer {
-  eventRawListen<T>(
-    event: EventName,
-    target: EventTarget,
-    handler: EventCallback<any>
-  ): Promise<number>
+  eventRawListen<T>(event: EventName, target: EventTarget, handler: EventCallback<any>): Promise<number>
   eventRawUnlisten: IEventInternal['rawUnlisten']
   eventEmit: IEventInternal['emit']
   eventEmitTo: IEventInternal['emitTo']
-  eventOnce<T>(
-    event: EventName,
-    handler: EventCallback<any>,
-    options?: EventOptions
-  ): Promise<UnlistenFn>
+  eventOnce<T>(event: EventName, handler: EventCallback<any>, options?: EventOptions): Promise<UnlistenFn>
 }
 
 export interface IClipboardServer {

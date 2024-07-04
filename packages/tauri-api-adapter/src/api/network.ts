@@ -1,5 +1,3 @@
-import { type INetwork } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { type Remote } from '@huakunshen/comlink'
 import {
   findAvailablePort,
@@ -13,6 +11,8 @@ import {
   scanOnlineIpPortPairs,
   scanOnlineIpsByPort
 } from 'tauri-plugin-network-api'
+import { defaultClientAPI, isMain } from '../client'
+import { type INetwork } from './client-types'
 import { type INetworkServer } from './server-types'
 
 export function constructAPI(api: Remote<INetworkServer>): INetwork {
@@ -21,7 +21,7 @@ export function constructAPI(api: Remote<INetworkServer>): INetwork {
     getNonEmptyInterfaces: api.networkGetNonEmptyInterfaces,
     findAvailablePort: api.networkFindAvailablePort,
     isPortTaken: api.networkIsPortTaken,
-    isHttpPortOpen: api.networkIsHttpPortOpen,
+    isHttpPortOpen: api.networkIsHttpPortOpen
     // scanOnlineIpPortPairs: api.networkScanOnlineIpPortPairs,
     // scanOnlineIpsByPort: api.networkScanOnlineIpsByPort,
     // nonLocalhostNetworks: api.networkNonLocalhostNetworks,
@@ -36,7 +36,7 @@ export const nativeNetwork: INetwork = {
   getNonEmptyInterfaces: getNonEmptyInterfaces,
   findAvailablePort: findAvailablePort,
   isPortTaken: isPortTaken,
-  isHttpPortOpen: isHttpPortOpen,
+  isHttpPortOpen: isHttpPortOpen
   // scanOnlineIpPortPairs: scanOnlineIpPortPairs,
   // scanOnlineIpsByPort: scanOnlineIpsByPort,
   // nonLocalhostNetworks: nonLocalhostNetworks,

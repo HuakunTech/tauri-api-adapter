@@ -1,5 +1,3 @@
-import { type ISystemInfo } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { type Remote } from '@huakunshen/comlink'
 import {
   allSysInfo,
@@ -27,6 +25,8 @@ import {
   usedMemory,
   usedSwap
 } from 'tauri-plugin-system-info-api'
+import { defaultClientAPI, isMain } from '../client'
+import { type ISystemInfo } from './client-types'
 import { type ISystemInfoServer } from './server-types'
 
 export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
