@@ -44,7 +44,7 @@ export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
     hasHTML: api.clipboardHasHTML,
     hasImage: api.clipboardHasImage,
     hasFiles: api.clipboardHasFiles,
-    startMonitor: api.clipboardStartMonitor
+    // startMonitor: api.clipboardStartMonitor
   }
 }
 export const comlinkClipboard = constructAPI(defaultClientAPI)
@@ -68,7 +68,7 @@ export const nativeClipboard: IClipboard = {
   hasHTML: hasHTML,
   hasImage: hasImage,
   hasFiles: hasFiles,
-  startMonitor: startMonitor
+  // startMonitor: startMonitor
 }
 
 export const clipboard = isMain ? nativeClipboard : comlinkClipboard

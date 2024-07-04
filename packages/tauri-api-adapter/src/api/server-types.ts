@@ -53,7 +53,7 @@ export interface IClipboardServer {
   clipboardHasHTML: IClipboard['hasHTML']
   clipboardHasImage: IClipboard['hasImage']
   clipboardHasFiles: IClipboard['hasFiles']
-  clipboardStartMonitor: IClipboard['startMonitor']
+  // clipboardStartMonitor: IClipboard['startMonitor']
 }
 
 export interface INotificationServer {

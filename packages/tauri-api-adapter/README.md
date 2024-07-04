@@ -23,9 +23,13 @@ This package provides a way to call Tauri APIs from iframe and web worker.
 Within Regular Webview (have access to Tauri APIs)
 
 ```ts
-import { defaultServerAPI, exposeApiToWindow } from 'tauri-api-adapter'
+import { defaultServerAPI, exposeApiToWindow, exposeApiToWorker } from 'tauri-api-adapter'
 
 exposeApiToWindow(iframe.contentWindow, defaultServerAPI)
+
+// Or expose to worker
+const worker = new Worker('worker.js')
+exposeApiToWorker(worker, defaultServerAPI)
 ```
 
 ### Client

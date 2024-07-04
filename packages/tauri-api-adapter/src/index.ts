@@ -1,6 +1,6 @@
 export * from '@/comlink'
 export { defaultClientAPI, hasWindow, isInWorker, isInIframe, isMain } from '@/client'
-export { defaultServerAPI } from '@/server'
+export { defaultServerAPI, constructClipboardApi } from '@/server'
 export * from '@/api/server-types'
 export * from '@/api/client-types'
 export * as utils from './utils'

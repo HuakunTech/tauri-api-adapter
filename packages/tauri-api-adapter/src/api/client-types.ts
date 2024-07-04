@@ -193,7 +193,7 @@ export interface IClipboard {
   hasHTML: typeof hasHTML
   hasImage: typeof hasImage
   hasFiles: typeof hasFiles
-  startMonitor: typeof startMonitor
+  // startMonitor: typeof startMonitor
 }
 
 export interface INotification {

@@ -5,14 +5,7 @@
  */
 import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
-import {
-  emit,
-  emitTo,
-  once,
-  type EventCallback,
-  type EventName,
-  type EventTarget
-} from '@tauri-apps/api/event'
+import { emit, emitTo, once, type EventCallback, type EventName, type EventTarget } from '@tauri-apps/api/event'
 import {
   ask as dialogAsk,
   confirm as dialogConfirm,
@@ -130,16 +123,13 @@ import type {
   IShellServer,
   ISystemInfoServer
 } from './api/server-types'
+import { checkPermission, type ClipboardPermissions } from './permissions'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
 /* -------------------------------------------------------------------------- */
 export const eventApi: IEventServer = {
-  eventRawListen<T>(
-    event: EventName,
-    target: EventTarget,
-    handler: EventCallback<T>
-  ): Promise<number> {
+  eventRawListen<T>(event: EventName, target: EventTarget, handler: EventCallback<T>): Promise<number> {
     return invoke<number>('plugin:event|listen', {
       event,
       target,
@@ -159,27 +149,69 @@ export const eventApi: IEventServer = {
 /* -------------------------------------------------------------------------- */
 /*                                  Clipboard                                 */
 /* -------------------------------------------------------------------------- */
-export const clipboardApi: IClipboardServer = {
-  clipboardReadText: clipboard.readText,
-  clipboardWriteText: clipboard.writeText,
-  clipboardReadImageBase64: clipboard.readImageBase64,
-  clipboardReadImageBinary: clipboard.readImageBinary,
-  clipboardWriteImageBase64: clipboard.writeImageBase64,
-  clipboardWriteImageBinary: clipboard.writeImageBinary,
-  clipboardReadFiles: clipboard.readFiles,
-  clipboardWriteFiles: clipboard.writeFiles,
-  clipboardReadRtf: clipboard.readRtf,
-  clipboardWriteRtf: clipboard.writeRtf,
-  clipboardReadHtml: clipboard.readHtml,
-  clipboardWriteHtml: clipboard.writeHtml,
-  clipboardWriteHtmlAndText: clipboard.writeHtmlAndText,
-  clipboardHasText: clipboard.hasText,
-  clipboardHasRTF: clipboard.hasRTF,
-  clipboardHasHTML: clipboard.hasHTML,
-  clipboardHasImage: clipboard.hasImage,
-  clipboardHasFiles: clipboard.hasFiles,
-  clipboardStartMonitor: clipboard.startMonitor
+export function constructClipboardApi(permissions: ClipboardPermissions[]): IClipboardServer {
+  return {
+    clipboardReadText: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-text', 'clipboard:read-all'],
+      permissions
+    )(clipboard.readText),
+    clipboardWriteText: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-text', 'clipboard:write-all'],
+      permissions
+    )(clipboard.writeText),
+    clipboardReadImageBase64: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-all', 'clipboard:read-image'],
+      permissions
+    )(clipboard.readImageBase64),
+    clipboardReadImageBinary: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-all', 'clipboard:read-image'],
+      permissions
+    )(clipboard.readImageBinary),
+    clipboardWriteImageBase64: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-image'],
+      permissions
+    )(clipboard.writeImageBase64),
+    clipboardWriteImageBinary: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-image'],
+      permissions
+    )(clipboard.writeImageBinary),
+    clipboardReadFiles: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-all', 'clipboard:read-files'],
+      permissions
+    )(clipboard.readFiles),
+    clipboardWriteFiles: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-files'],
+      permissions
+    )(clipboard.writeFiles),
+    clipboardReadRtf: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-all', 'clipboard:read-text'],
+      permissions
+    )(clipboard.readRtf),
+    clipboardWriteRtf: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-text'],
+      permissions
+    )(clipboard.writeRtf),
+    clipboardReadHtml: checkPermission<ClipboardPermissions>(
+      ['clipboard:read-all', 'clipboard:read-text'],
+      permissions
+    )(clipboard.readHtml),
+    clipboardWriteHtml: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-text'],
+      permissions
+    )(clipboard.writeHtml),
+    clipboardWriteHtmlAndText: checkPermission<ClipboardPermissions>(
+      ['clipboard:write-all', 'clipboard:write-text'],
+      permissions
+    )(clipboard.writeHtmlAndText),
+    clipboardHasText: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasText),
+    clipboardHasRTF: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasRTF),
+    clipboardHasHTML: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasHTML),
+    clipboardHasImage: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasImage),
+    clipboardHasFiles: checkPermission<ClipboardPermissions>([], permissions)(clipboard.hasFiles)
+    // clipboardStartMonitor: checkPermission<ClipboardPermissions>([], permissions)(clipboard.startMonitor)
+  }
 }
+export const defaultClipboardApi = constructClipboardApi(['clipboard:read-all', 'clipboard:write-all'])
 
 /* -------------------------------------------------------------------------- */
 /*                                   Dialog                                   */
@@ -251,11 +283,7 @@ export const osApi: IOsServer = {
 /*                                    Shell                                   */
 /* -------------------------------------------------------------------------- */
 export const shellApi: IShellServer = {
-  shellExecute: (
-    program: string,
-    args: string[],
-    options: InternalSpawnOptions
-  ): Promise<ChildProcess<IOPayload>> =>
+  shellExecute: (program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>> =>
     invoke<ChildProcess<IOPayload>>('plugin:shellx|execute', {
       program: program,
       args: args,
@@ -304,8 +332,7 @@ export const fetchApi: IFetchServer = {
   fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
   fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
   fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
-  fetchFetchReadBody: (rid: number) =>
-    invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid })
+  fetchFetchReadBody: (rid: number) => invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid })
 }
 
 /* -------------------------------------------------------------------------- */
@@ -354,8 +381,22 @@ export const networkAPI: INetworkServer = {
   networkScanLocalNetworkOnlineHostsByPort
 }
 
+/**
+ * The default server API enables all APIs, if you need to apply permission control,
+ * use the corresponding API constructor function to create the API object,
+ * then combine with the default `defaultServerAPI`
+ * @example
+ * ```ts
+ * // This clipboard API only allows read-image and write-text
+ * const clipboardApi = constructClipboardApi(['clipboard:read-image', 'clipboard:write-text'])
+ * const serverAPI = {
+ *  ...defaultServerAPI,
+ * ...clipboardApi
+ * }
+ * ```
+ */
 export const defaultServerAPI: IFullAPI = {
-  ...clipboardApi,
+  ...defaultClipboardApi,
   ...dialogApi,
   ...notificationApi,
   ...fsApi,
