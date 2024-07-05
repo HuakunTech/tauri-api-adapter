@@ -3,6 +3,42 @@
  * For example, the client can call the APIs from an iframe.
  */
 import type { emit, emitTo, EventCallback, EventName, EventTarget, listen, once } from '@tauri-apps/api/event'
+import {
+  appCacheDir,
+  appConfigDir,
+  appDataDir,
+  appLocalDataDir,
+  appLogDir,
+  audioDir,
+  BaseDirectory,
+  basename,
+  cacheDir,
+  configDir,
+  dataDir,
+  delimiter,
+  desktopDir,
+  dirname,
+  documentDir,
+  downloadDir,
+  executableDir,
+  extname,
+  fontDir,
+  homeDir,
+  isAbsolute,
+  join,
+  localDataDir,
+  normalize,
+  pictureDir,
+  publicDir,
+  resolve,
+  resolveResource,
+  resourceDir,
+  runtimeDir,
+  sep,
+  tempDir,
+  templateDir,
+  videoDir
+} from '@tauri-apps/api/path'
 import type { ask, confirm, open as dialogOpen, message, OpenDialogOptions, save } from '@tauri-apps/plugin-dialog'
 import type {
   copyFile,
@@ -20,6 +56,7 @@ import type {
   writeFile,
   writeTextFile
 } from '@tauri-apps/plugin-fs'
+import { attachConsole, attachLogger, debug, error, info, trace, warn, type LogOptions } from '@tauri-apps/plugin-log'
 import type {
   active,
   cancel,
@@ -122,9 +159,54 @@ import type {
 } from 'tauri-plugin-system-info-api'
 import type { FetchOptions, FetchSendResponse } from './fetch/types'
 
-/* -------------------------------------------------------------------------- */
-/*                                    Event                                   */
-/* -------------------------------------------------------------------------- */
+export interface ILogger {
+  // attachConsole: typeof attachConsole
+  // attachLogger: typeof attachLogger
+  debug: typeof debug
+  error: typeof error
+  info: typeof info
+  trace: typeof trace
+  warn: typeof warn
+  // LogOptions: LogOptions
+}
+
+export interface IPath {
+  appCacheDir: typeof appCacheDir
+  appConfigDir: typeof appConfigDir
+  appDataDir: typeof appDataDir
+  appLocalDataDir: typeof appLocalDataDir
+  appLogDir: typeof appLogDir
+  audioDir: typeof audioDir
+  BaseDirectory: typeof BaseDirectory
+  basename: typeof basename
+  cacheDir: typeof cacheDir
+  configDir: typeof configDir
+  dataDir: typeof dataDir
+  delimiter: () => Promise<string>
+  desktopDir: typeof desktopDir
+  dirname: typeof dirname
+  documentDir: typeof documentDir
+  downloadDir: typeof downloadDir
+  executableDir: typeof executableDir
+  extname: typeof extname
+  fontDir: typeof fontDir
+  homeDir: typeof homeDir
+  isAbsolute: typeof isAbsolute
+  join: typeof join
+  localDataDir: typeof localDataDir
+  normalize: typeof normalize
+  pictureDir: typeof pictureDir
+  publicDir: typeof publicDir
+  resolve: typeof resolve
+  resolveResource: typeof resolveResource
+  resourceDir: typeof resourceDir
+  runtimeDir: typeof runtimeDir
+  sep: () => Promise<string>
+  tempDir: typeof tempDir
+  templateDir: typeof templateDir
+  videoDir: typeof videoDir
+}
+
 export interface IEventInternal {
   rawListen<T>(event: EventName, target: EventTarget, handler: EventCallback<T>): Promise<number>
   rawUnlisten(event: string, eventId: number): Promise<void>
@@ -140,9 +222,6 @@ export interface IEvent {
   listen: typeof listen
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                   Dialog                                   */
-/* -------------------------------------------------------------------------- */
 export interface IDialog {
   ask: typeof ask
   confirm: typeof confirm

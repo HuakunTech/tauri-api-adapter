@@ -40,20 +40,20 @@ export function constructAPI(api: Remote<IFsServer>): IFs {
 export const comlinkFs: IFs = constructAPI(defaultClientAPI)
 
 export const nativeFs: IFs = {
-  readDir: readDir,
-  readFile: readFile,
-  readTextFile: readTextFile,
-  stat: stat,
-  lstat: lstat,
-  exists: exists,
-  mkdir: mkdir,
-  create: create,
-  copyFile: copyFile,
-  remove: remove,
-  rename: rename,
-  truncate: truncate,
-  writeFile: writeFile,
-  writeTextFile: writeTextFile
+  readDir,
+  readFile,
+  readTextFile,
+  stat,
+  lstat,
+  exists,
+  mkdir,
+  create,
+  copyFile,
+  remove,
+  rename,
+  truncate,
+  writeFile,
+  writeTextFile
 }
 
 export const fs = isMain ? nativeFs : comlinkFs

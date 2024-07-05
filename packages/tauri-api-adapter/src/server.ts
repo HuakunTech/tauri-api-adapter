@@ -6,6 +6,42 @@
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
 import { emit, emitTo, once, type EventCallback, type EventName, type EventTarget } from '@tauri-apps/api/event'
 import {
+  appCacheDir as pathAppCacheDir,
+  appConfigDir as pathAppConfigDir,
+  appDataDir as pathAppDataDir,
+  appLocalDataDir as pathAppLocalDataDir,
+  appLogDir as pathAppLogDir,
+  audioDir as pathAudioDir,
+  BaseDirectory as pathBaseDirectory,
+  basename as pathBasename,
+  cacheDir as pathCacheDir,
+  configDir as pathConfigDir,
+  dataDir as pathDataDir,
+  delimiter as pathDelimiter,
+  desktopDir as pathDesktopDir,
+  dirname as pathDirname,
+  documentDir as pathDocumentDir,
+  downloadDir as pathDownloadDir,
+  executableDir as pathExecutableDir,
+  extname as pathExtname,
+  fontDir as pathFontDir,
+  homeDir as pathHomeDir,
+  isAbsolute as pathIsAbsolute,
+  join as pathJoin,
+  localDataDir as pathLocalDataDir,
+  normalize as pathNormalize,
+  pictureDir as pathPictureDir,
+  publicDir as pathPublicDir,
+  resolve as pathResolve,
+  resolveResource as pathResolveResource,
+  resourceDir as pathResourceDir,
+  runtimeDir as pathRuntimeDir,
+  sep as pathSep,
+  tempDir as pathTempDir,
+  templateDir as pathTemplateDir,
+  videoDir as pathVideoDir
+} from '@tauri-apps/api/path'
+import {
   ask as dialogAsk,
   confirm as dialogConfirm,
   message as dialogMessage,
@@ -28,6 +64,16 @@ import {
   writeFile as fsWriteFile,
   writeTextFile as fsWriteTextFile
 } from '@tauri-apps/plugin-fs'
+import {
+  attachConsole as loggerAttachConsole,
+  attachLogger as loggerAttachLogger,
+  debug as loggerDebug,
+  error as loggerError,
+  info as loggerInfo,
+  trace as loggerTrace,
+  warn as loggerWarn,
+  type LogOptions
+} from '@tauri-apps/plugin-log'
 import {
   active as notificationActive,
   cancel as notificationCancel,
@@ -117,9 +163,11 @@ import type {
   IFetchServer,
   IFsServer,
   IFullAPI,
+  ILoggerServer,
   INetworkServer,
   INotificationServer,
   IOsServer,
+  IPathServer,
   IShellServer,
   ISystemInfoServer
 } from './api/server-types'
@@ -135,6 +183,58 @@ import {
   type ShellPermission,
   type SystemInfoPermission
 } from './permissions'
+
+/* -------------------------------------------------------------------------- */
+/*                                   Logger                                   */
+/* -------------------------------------------------------------------------- */
+export const loggerApi: ILoggerServer = {
+  // loggerAttachConsole,
+  // loggerAttachLogger,
+  loggerDebug,
+  loggerError,
+  loggerInfo,
+  loggerTrace,
+  loggerWarn
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Path                                    */
+/* -------------------------------------------------------------------------- */
+export const pathApi: IPathServer = {
+  pathAppCacheDir,
+  pathAppConfigDir,
+  pathAppDataDir,
+  pathAppLocalDataDir,
+  pathAppLogDir,
+  pathAudioDir,
+  pathBasename,
+  pathCacheDir,
+  pathConfigDir,
+  pathDataDir,
+  pathDelimiter: () => Promise.resolve(pathDelimiter()),
+  pathDesktopDir,
+  pathDirname,
+  pathDocumentDir,
+  pathDownloadDir,
+  pathExecutableDir,
+  pathExtname,
+  pathFontDir,
+  pathHomeDir,
+  pathIsAbsolute,
+  pathJoin,
+  pathLocalDataDir,
+  pathNormalize,
+  pathPictureDir,
+  pathPublicDir,
+  pathResolve,
+  pathResolveResource,
+  pathResourceDir,
+  pathRuntimeDir,
+  pathSep: () => Promise.resolve(pathSep()),
+  pathTempDir,
+  pathTemplateDir,
+  pathVideoDir
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
@@ -586,5 +686,7 @@ export const defaultServerAPI: IFullAPI = {
   ...defaultFetchApi,
   ...defaultSystemInfoApi,
   ...defaultNetworkApi,
-  ...eventApi
+  ...eventApi,
+  ...pathApi,
+  ...loggerApi
 }

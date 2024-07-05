@@ -1,13 +1,24 @@
 import type { EventCallback, EventName, Options as EventOptions, EventTarget, UnlistenFn } from '@tauri-apps/api/event'
+import {
+  attachConsole as loggerAttachConsole,
+  attachLogger as loggerAttachLogger,
+  debug as loggerDebug,
+  error as loggerError,
+  info as loggerInfo,
+  trace as loggerTrace,
+  warn as loggerWarn
+} from '@tauri-apps/plugin-log'
 import type {
   IClipboard,
   IDialog,
   IEventInternal,
   IFetch,
   IFs,
+  ILogger,
   INetwork,
   INotification,
   IOs,
+  IPath,
   IShellInternal,
   ISystemInfo
 } from './client-types'
@@ -18,6 +29,54 @@ export interface IEventServer {
   eventEmit: IEventInternal['emit']
   eventEmitTo: IEventInternal['emitTo']
   eventOnce<T>(event: EventName, handler: EventCallback<any>, options?: EventOptions): Promise<UnlistenFn>
+}
+
+export interface ILoggerServer {
+  // loggerAttachConsole: ILogger['attachConsole']
+  // loggerAttachLogger: ILogger['attachLogger']
+  loggerDebug: ILogger['debug']
+  loggerError: ILogger['error']
+  loggerInfo: ILogger['info']
+  loggerTrace: ILogger['trace']
+  loggerWarn: ILogger['warn']
+  // LogOptions: ILogger['LogOptions']
+}
+
+export interface IPathServer {
+  pathAppCacheDir: IPath['appCacheDir']
+  pathAppConfigDir: IPath['appConfigDir']
+  pathAppDataDir: IPath['appDataDir']
+  pathAppLocalDataDir: IPath['appLocalDataDir']
+  pathAppLogDir: IPath['appLogDir']
+  pathAudioDir: IPath['audioDir']
+  // pathBaseDirectory: IPath['BaseDirectory']
+  pathBasename: IPath['basename']
+  pathCacheDir: IPath['cacheDir']
+  pathConfigDir: IPath['configDir']
+  pathDataDir: IPath['dataDir']
+  pathDelimiter: IPath['delimiter']
+  pathDesktopDir: IPath['desktopDir']
+  pathDirname: IPath['dirname']
+  pathDocumentDir: IPath['documentDir']
+  pathDownloadDir: IPath['downloadDir']
+  pathExecutableDir: IPath['executableDir']
+  pathExtname: IPath['extname']
+  pathFontDir: IPath['fontDir']
+  pathHomeDir: IPath['homeDir']
+  pathIsAbsolute: IPath['isAbsolute']
+  pathJoin: IPath['join']
+  pathLocalDataDir: IPath['localDataDir']
+  pathNormalize: IPath['normalize']
+  pathPictureDir: IPath['pictureDir']
+  pathPublicDir: IPath['publicDir']
+  pathResolve: IPath['resolve']
+  pathResolveResource: IPath['resolveResource']
+  pathResourceDir: IPath['resourceDir']
+  pathRuntimeDir: IPath['runtimeDir']
+  pathSep: IPath['sep']
+  pathTempDir: IPath['tempDir']
+  pathTemplateDir: IPath['templateDir']
+  pathVideoDir: IPath['videoDir']
 }
 
 export interface IClipboardServer {
@@ -175,4 +234,6 @@ export type IFullAPI = IClipboardServer &
   IFetchServer &
   ISystemInfoServer &
   INetworkServer &
-  IEventServer
+  IEventServer &
+  ILoggerServer &
+  IPathServer

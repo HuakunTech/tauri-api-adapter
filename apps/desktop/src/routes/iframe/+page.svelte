@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { attachConsole, error, info, trace } from '@tauri-apps/plugin-log'
   import { onMount } from 'svelte'
   import {
     defaultServerAPI,
@@ -8,6 +9,7 @@
     isInIframe,
     isInWorker,
     isMain,
+    path,
     utils
   } from 'tauri-api-adapter'
   import * as iframeApi from 'tauri-api-adapter/iframe'
@@ -27,7 +29,6 @@
       nativeApi.clipboard.readText().then((text) => {
         console.log('native API Clipboard Text: ', text)
       })
-
       console.log(
         'hack with __TAURI_INTERNALS__ in iframe',
         await window.parent.__TAURI_INTERNALS__.invoke('plugin:clipboard|read_text')

@@ -35,8 +35,7 @@
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
       exposeApiToWindow(iframe.contentWindow, api)
-      // exposeApiToWindow(iframe.contentWindow, defaultServerAPI)
-      utils.hackIframeToUseParentWindow(iframe.contentWindow)
+      // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
   })
 </script>
