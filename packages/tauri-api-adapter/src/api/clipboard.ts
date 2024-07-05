@@ -71,4 +71,4 @@ export const nativeClipboard: IClipboard = {
   // startMonitorr
 }
 
-export const clipboard = isMain ? nativeClipboard : comlinkClipboard
+export const clipboard = isMain() ? nativeClipboard : comlinkClipboard

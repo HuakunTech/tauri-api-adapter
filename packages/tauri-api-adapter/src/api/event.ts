@@ -61,4 +61,4 @@ export const nativeEvent: IEvent = {
   listen: listen
 }
 
-export const event = isMain ? nativeEvent : comlinkEvent
+export const event = isMain() ? nativeEvent : comlinkEvent

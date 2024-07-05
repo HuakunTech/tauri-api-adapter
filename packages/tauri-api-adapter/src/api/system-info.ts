@@ -86,4 +86,4 @@ export const nativeSysInfo: ISystemInfo = {
   batteries
 }
 
-export const sysInfo = isMain ? nativeSysInfo : comlinkSysInfo
+export const sysInfo = isMain() ? nativeSysInfo : comlinkSysInfo

@@ -24,4 +24,4 @@ export const nativeLog: ILogger = {
   trace,
   warn
 }
-export const log = isMain ? nativeLog : comlinkLog
+export const log = isMain() ? nativeLog : comlinkLog

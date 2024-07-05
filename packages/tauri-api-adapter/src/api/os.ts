@@ -29,4 +29,4 @@ export const nativeOs: IOs = {
   locale: locale
 }
 
-export const os = isMain ? nativeOs : comlinkOs
+export const os = isMain() ? nativeOs : comlinkOs

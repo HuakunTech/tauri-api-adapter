@@ -69,4 +69,4 @@ export const nativeNotification: INotification = {
   onAction: onAction
 }
 
-export const notification = isMain ? nativeNotification : comlinkNotification
+export const notification = isMain() ? nativeNotification : comlinkNotification

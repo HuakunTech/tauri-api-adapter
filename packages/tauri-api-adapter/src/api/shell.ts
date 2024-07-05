@@ -166,4 +166,4 @@ export const nativeShell: IShell = {
   Child: ShellxChild
 }
 
-export const shell = isMain ? nativeShell : comlinkShell
+export const shell = isMain() ? nativeShell : comlinkShell

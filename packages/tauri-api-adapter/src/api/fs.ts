@@ -56,4 +56,4 @@ export const nativeFs: IFs = {
   writeTextFile
 }
 
-export const fs = isMain ? nativeFs : comlinkFs
+export const fs = isMain() ? nativeFs : comlinkFs

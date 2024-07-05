@@ -28,4 +28,4 @@ export const nativeUpdownload: IUpdownload = {
   download
 }
 
-export const updownload = isMain ? nativeUpdownload : comlinkUpdownload
+export const updownload = isMain() ? nativeUpdownload : comlinkUpdownload

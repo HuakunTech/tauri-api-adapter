@@ -22,4 +22,4 @@ export const nativeDialog: IDialog = {
   save: save
 }
 
-export const dialog = isMain ? nativeDialog : comlinkDialog
+export const dialog = isMain() ? nativeDialog : comlinkDialog

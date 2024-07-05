@@ -118,4 +118,4 @@ export const nativePath: IPath = {
   videoDir
 }
 
-export const path = isMain ? nativePath : comlinkPath
+export const path = isMain() ? nativePath : comlinkPath

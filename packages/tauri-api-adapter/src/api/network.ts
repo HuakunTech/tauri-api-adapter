@@ -44,4 +44,4 @@ export const nativeNetwork: INetwork = {
   // scanLocalNetworkOnlineHostsByPort: scanLocalNetworkOnlineHostsByPort
 }
 
-export const network = isMain ? nativeNetwork : comlinkNetwork
+export const network = isMain() ? nativeNetwork : comlinkNetwork
