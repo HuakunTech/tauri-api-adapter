@@ -175,6 +175,8 @@ import type {
 } from './api/server-types'
 import {
   checkPermission,
+  PermissionCategory,
+  type AllPermission,
   type ClipboardPermission,
   type DialogPermission,
   type FetchPermission,
@@ -703,4 +705,20 @@ export const defaultServerAPI: IFullAPI = {
   ...pathApi,
   ...loggerApi,
   ...defaultUpdownloadApi
+}
+
+export function constructServerAPIWithPermissions(permissions: AllPermission[]): IFullAPI {
+  const apis = [
+    constructClipboardApi(permissions.filter((p) => p.startsWith('clipboard:')) as ClipboardPermission[]),
+    constructDialogApi(permissions.filter((p) => p.startsWith('dialog:')) as DialogPermission[]),
+    constructNotificationApi(permissions.filter((p) => p.startsWith('notification:')) as NotificationPermission[]),
+    constructFsApi(permissions.filter((p) => p.startsWith('fs:')) as FsPermission[]),
+    constructOsApi(permissions.filter((p) => p.startsWith('os:')) as OsPermission[]),
+    constructShellApi(permissions.filter((p) => p.startsWith('shell:')) as ShellPermission[]),
+    constructFetchApi(permissions.filter((p) => p.startsWith('fetch:')) as FetchPermission[]),
+    constructSystemInfoApi(permissions.filter((p) => p.startsWith('system-info:')) as SystemInfoPermission[]),
+    constructNetworkApi(permissions.filter((p) => p.startsWith('network:')) as NetworkPermission[]),
+    constructUpdownloadApi(permissions.filter((p) => p.startsWith('updownload:')) as UpdownloadPermission[])
+  ]
+  return Object.assign({}, ...apis)
 }
