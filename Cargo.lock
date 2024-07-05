@@ -1098,6 +1098,7 @@ dependencies = [
  "tauri-plugin-os",
  "tauri-plugin-shellx",
  "tauri-plugin-system-info",
+ "tauri-plugin-upload",
 ]
 
 [[package]]
@@ -4004,6 +4005,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "read-progress-stream"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6435842fc2fea44b528719eb8c32203bbc1bb2f5b619fbe0c0a3d8350fd8d2a8"
+dependencies = [
+ "bytes",
+ "futures",
+ "pin-project-lite",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5352,6 +5364,25 @@ dependencies = [
  "tauri-plugin",
  "thiserror",
  "uom 0.35.0",
+]
+
+[[package]]
+name = "tauri-plugin-upload"
+version = "2.0.0-beta.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23f2552db1c9d1ce7facf6395c490cc1c1e22a113c0c3ef5c35e3bb30383e42c"
+dependencies = [
+ "futures-util",
+ "log",
+ "read-progress-stream",
+ "reqwest 0.12.5",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-plugin",
+ "thiserror",
+ "tokio",
+ "tokio-util",
 ]
 
 [[package]]

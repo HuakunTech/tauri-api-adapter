@@ -153,6 +153,9 @@ importers:
       '@tauri-apps/plugin-shell':
         specifier: 2.0.0-beta.6
         version: 2.0.0-beta.6
+      '@tauri-apps/plugin-upload':
+        specifier: 2.0.0-beta.7
+        version: 2.0.0-beta.7
       tauri-plugin-clipboard-api:
         specifier: ^2.0.2
         version: 2.0.2
@@ -924,6 +927,9 @@ packages:
 
   '@tauri-apps/plugin-shell@2.0.0-beta.6':
     resolution: {integrity: sha512-g3nM9cQQGl7Iv4MvyFuco/aPTiwOI/MixcoKso3VQIg5Aqd64NqR0r+GfsB0qx52txItqzSXwmeaj1eZjO9Q6Q==}
+
+  '@tauri-apps/plugin-upload@2.0.0-beta.7':
+    resolution: {integrity: sha512-9rRO2J1qr+PlyecnJZLBIp5e41KKuJpoyb+RgJblD8HdF0+Ha4h/lHp94brK1Pr0CB6YuC5j7ozr2GK3Kc5Y4g==}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -4284,6 +4290,10 @@ snapshots:
   '@tauri-apps/plugin-shell@2.0.0-beta.6':
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.13
+
+  '@tauri-apps/plugin-upload@2.0.0-beta.7':
+    dependencies:
+      '@tauri-apps/api': 2.0.0-beta.14
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 

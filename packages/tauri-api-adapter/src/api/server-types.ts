@@ -20,7 +20,8 @@ import type {
   IOs,
   IPath,
   IShellInternal,
-  ISystemInfo
+  ISystemInfo,
+  IUpdownload
 } from './client-types'
 
 export interface IEventServer {
@@ -29,6 +30,11 @@ export interface IEventServer {
   eventEmit: IEventInternal['emit']
   eventEmitTo: IEventInternal['emitTo']
   eventOnce<T>(event: EventName, handler: EventCallback<any>, options?: EventOptions): Promise<UnlistenFn>
+}
+
+export interface IUpdownloadServer {
+  upload: IUpdownload['upload']
+  download: IUpdownload['download']
 }
 
 export interface ILoggerServer {
@@ -236,4 +242,5 @@ export type IFullAPI = IClipboardServer &
   INetworkServer &
   IEventServer &
   ILoggerServer &
-  IPathServer
+  IPathServer &
+  IUpdownload

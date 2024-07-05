@@ -75,6 +75,7 @@ import type {
   sendNotification
 } from '@tauri-apps/plugin-notification'
 import { arch, exeExtension, family, locale, hostname as osHostname, platform, version } from '@tauri-apps/plugin-os'
+import { download, upload } from '@tauri-apps/plugin-upload'
 import type {
   hasFiles,
   hasHTML,
@@ -158,6 +159,11 @@ import type {
   usedSwap
 } from 'tauri-plugin-system-info-api'
 import type { FetchOptions, FetchSendResponse } from './fetch/types'
+
+export interface IUpdownload {
+  download: typeof download
+  upload: typeof upload
+}
 
 export interface ILogger {
   // attachConsole: typeof attachConsole

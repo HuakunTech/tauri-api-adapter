@@ -25,6 +25,7 @@ export type SystemInfoPermission =
   | 'system-info:process'
   | 'system-info:components'
 export type NetworkPermission = 'network:interface' | 'network:port'
+export type UpdownloadPermission = 'updownload:download' | 'updownload:upload'
 
 export function checkPermission<P>(requiredPermissions: P[], userPermissions: P[]) {
   return <T extends (...args: any[]) => any>(fn: T): T => {

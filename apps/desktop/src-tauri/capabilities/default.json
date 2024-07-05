@@ -57,6 +57,7 @@
     "notification:default",
     "system-info:allow-all",
     "network:allow-all",
-    "log:default"
+    "log:default",
+    "upload:default"
   ]
 }

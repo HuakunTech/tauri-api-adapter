@@ -6,6 +6,7 @@ use tauri_plugin_log::{Target, TargetKind};
 fn main() {
     let unlock_shell = true;
     tauri::Builder::default()
+        .plugin(tauri_plugin_upload::init())
         .plugin(
             tauri_plugin_log::Builder::new()
                 .targets([

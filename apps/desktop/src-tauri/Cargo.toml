@@ -24,4 +24,5 @@ tauri-plugin-http = "2.0.0-beta.10"
 tauri-plugin-network = "2.0.1"
 tauri-plugin-system-info = "2.0.1"
 tauri-plugin-log = "2.0.0-beta.7"
+tauri-plugin-upload = "2.0.0-beta.8"
 

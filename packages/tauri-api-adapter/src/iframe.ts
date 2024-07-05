@@ -9,5 +9,5 @@ export { comlinkShell as shell } from './api/shell'
 export { comlinkSysInfo as sysInfo } from './api/system-info'
 export { comlinkPath as path } from './api/path'
 export { comlinkLog as log } from './api/log'
-
+export { comlinkUpdownload as updownload } from './api/updownload'
 export { fetch } from './api/fetch'

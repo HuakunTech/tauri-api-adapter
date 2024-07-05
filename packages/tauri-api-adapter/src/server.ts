@@ -101,6 +101,7 @@ import {
   platform as osPlatform,
   version as osVersion
 } from '@tauri-apps/plugin-os'
+import { download, upload } from '@tauri-apps/plugin-upload'
 import clipboard from 'tauri-plugin-clipboard-api'
 import {
   findAvailablePort as networkFindAvailablePort,
@@ -169,7 +170,8 @@ import type {
   IOsServer,
   IPathServer,
   IShellServer,
-  ISystemInfoServer
+  ISystemInfoServer,
+  IUpdownloadServer
 } from './api/server-types'
 import {
   checkPermission,
@@ -181,9 +183,20 @@ import {
   type NotificationPermission,
   type OsPermission,
   type ShellPermission,
-  type SystemInfoPermission
+  type SystemInfoPermission,
+  type UpdownloadPermission
 } from './permissions'
 
+/* -------------------------------------------------------------------------- */
+/*                               Upload Download                              */
+/* -------------------------------------------------------------------------- */
+export function constructUpdownloadApi(permissions: UpdownloadPermission[]): IUpdownloadServer {
+  return {
+    upload: checkPermission<UpdownloadPermission>(['updownload:upload'], permissions)(upload),
+    download: checkPermission<UpdownloadPermission>(['updownload:download'], permissions)(download)
+  }
+}
+export const defaultUpdownloadApi = constructUpdownloadApi(['updownload:upload', 'updownload:download'])
 /* -------------------------------------------------------------------------- */
 /*                                   Logger                                   */
 /* -------------------------------------------------------------------------- */
@@ -688,5 +701,6 @@ export const defaultServerAPI: IFullAPI = {
   ...defaultNetworkApi,
   ...eventApi,
   ...pathApi,
-  ...loggerApi
+  ...loggerApi,
+  ...defaultUpdownloadApi
 }
