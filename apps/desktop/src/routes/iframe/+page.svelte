@@ -16,6 +16,13 @@
   import * as nativeApi from 'tauri-api-adapter/native'
 
   onMount(async () => {
+    // iframeApi.updownload
+    //   .download('https://github.com/huakunshen.png', '/Users/hacker/Downloads/avatar.png', (progress) => {
+    //     console.log('iframe Downloading png: ', progress)
+    //   })
+    //   .then(() => {
+    //     console.log('iframe Downloaded png')
+    //   })
     setTimeout(async () => {
       iframeApi.sysInfo.components().then((components) => {
         console.log('iframe Components: ', components)
@@ -31,6 +38,7 @@
       })
       console.log(
         'hack with __TAURI_INTERNALS__ in iframe',
+        // @ts-ignore
         await window.parent.__TAURI_INTERNALS__.invoke('plugin:clipboard|read_text')
       )
     }, 1000)

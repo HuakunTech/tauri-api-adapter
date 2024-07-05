@@ -1,5 +1,5 @@
 import { type Remote } from '@huakunshen/comlink'
-import { debug, error, info, trace, warn } from '@tauri-apps/plugin-log'
+import { attachConsole, attachLogger, debug, error, info, trace, warn } from '@tauri-apps/plugin-log'
 import { defaultClientAPI, isMain } from '../client'
 import { type ILogger } from './client-types'
 import { type ILoggerServer } from './server-types'
