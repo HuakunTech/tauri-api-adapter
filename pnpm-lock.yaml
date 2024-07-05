@@ -51,8 +51,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.1.2
+        version: 2.1.2
       tauri-plugin-network-api:
         specifier: ^2.0.2
         version: 2.0.2
@@ -133,8 +133,8 @@ importers:
         specifier: 2.0.0-beta.7
         version: 2.0.0-beta.7
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.1.2
+        version: 2.1.2
       tauri-plugin-network-api:
         specifier: ^2.0.2
         version: 2.0.2
@@ -1534,8 +1534,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tauri-plugin-clipboard-api@2.0.2:
-    resolution: {integrity: sha512-52KUG3E6/ebYCvXDS1KeGWSnHYnQaK868GtC+MFF4SeZrBX6LGe7ZuWtSC0B56LK8A3OXfZbH70hdEtHHbRgtA==}
+  tauri-plugin-clipboard-api@2.1.2:
+    resolution: {integrity: sha512-lI8hw6u8o3yXq0uvAraEBL0tVVpC+XJ3ZlcsfCzstIbP78AAW1xbc5XyfqZ4bWU5UQU4+uKhWXlU9IWh3S29sw==}
 
   tauri-plugin-network-api@2.0.2:
     resolution: {integrity: sha512-d+CyolaAlsaAHHjjWWHjayOBDl2nInFcgaxso5pQYlqzwzGOL5ztD7r52ZeH0L7Jf47J0i+kkxGJh4mqMEO9dA==}
@@ -1657,6 +1657,9 @@ packages:
 
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+
+  valibot@0.35.0:
+    resolution: {integrity: sha512-+i2aCRkReTrd5KBN/dW2BrPOvFnU5LXTV2xjZnjnqUIO8YUx6P2+MgRrkwF2FhkexgyKq/NIZdPdknhHf5A/Ww==}
 
   vite@5.3.1:
     resolution: {integrity: sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ==}
@@ -3005,10 +3008,10 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
-  tauri-plugin-clipboard-api@2.0.2:
+  tauri-plugin-clipboard-api@2.1.2:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
-      zod: 3.23.8
+      valibot: 0.35.0
 
   tauri-plugin-network-api@2.0.2:
     dependencies:
@@ -3129,6 +3132,8 @@ snapshots:
 
   v8-compile-cache-lib@3.0.1:
     optional: true
+
+  valibot@0.35.0: {}
 
   vite@5.3.1(@types/node@20.12.14):
     dependencies:
