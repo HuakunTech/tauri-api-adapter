@@ -10,7 +10,7 @@ import {
   type Options,
   type UnlistenFn
 } from '@tauri-apps/api/event'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type IEvent, type IEventInternal } from './client-types'
 import { type IEventServer } from './server-types'
 
@@ -27,6 +27,7 @@ export function constructAPI(api: Remote<IEventServer>): IEventInternal {
   }
 }
 
+const defaultClientAPI = getDefaultClientAPI<IEventServer>()
 const _event = constructAPI(defaultClientAPI)
 
 export const listen = async function listen<T>(

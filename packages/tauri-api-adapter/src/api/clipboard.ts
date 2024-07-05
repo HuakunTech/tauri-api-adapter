@@ -20,7 +20,7 @@ import {
   writeRtf,
   writeText
 } from 'tauri-plugin-clipboard-api'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type IClipboard } from './client-types'
 import { type IClipboardServer } from './server-types'
 
@@ -47,6 +47,7 @@ export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
     // startMonitor: api.clipboardStartMonitor
   }
 }
+const defaultClientAPI = getDefaultClientAPI<IClipboardServer>()
 export const comlinkClipboard = constructAPI(defaultClientAPI)
 
 export const nativeClipboard: IClipboard = {

@@ -21,7 +21,7 @@ import {
   type IOPayload,
   type SpawnOptions
 } from 'tauri-plugin-shellx-api'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import type { IShell, IShellInternal } from './client-types'
 import { type IShellServer } from './server-types'
 
@@ -49,6 +49,7 @@ export function constructAPI(api: Remote<IShellServer>): IShellInternal {
   }
 }
 
+const defaultClientAPI = getDefaultClientAPI<IShellServer>()
 const _comlinkShell: IShellInternal = constructAPI(defaultClientAPI)
 
 export class Child extends ShellxChild {

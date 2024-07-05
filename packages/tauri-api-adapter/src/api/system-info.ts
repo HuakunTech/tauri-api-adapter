@@ -25,7 +25,7 @@ import {
   usedMemory,
   usedSwap
 } from 'tauri-plugin-system-info-api'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type ISystemInfo } from './client-types'
 import { type ISystemInfoServer } from './server-types'
 
@@ -57,6 +57,7 @@ export function constructAPI(api: Remote<ISystemInfoServer>): ISystemInfo {
     batteries: api.sysInfoBatteries
   }
 }
+const defaultClientAPI = getDefaultClientAPI<ISystemInfoServer>()
 export const comlinkSysInfo: ISystemInfo = constructAPI(defaultClientAPI)
 
 export const nativeSysInfo: ISystemInfo = {

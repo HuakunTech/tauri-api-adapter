@@ -11,7 +11,7 @@ import {
   scanOnlineIpPortPairs,
   scanOnlineIpsByPort
 } from 'tauri-plugin-network-api'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type INetwork } from './client-types'
 import { type INetworkServer } from './server-types'
 
@@ -29,6 +29,7 @@ export function constructAPI(api: Remote<INetworkServer>): INetwork {
     // scanLocalNetworkOnlineHostsByPort: api.networkScanLocalNetworkOnlineHostsByPort
   }
 }
+const defaultClientAPI = getDefaultClientAPI<INetworkServer>()
 export const comlinkNetwork: INetwork = constructAPI(defaultClientAPI)
 
 export const nativeNetwork: INetwork = {

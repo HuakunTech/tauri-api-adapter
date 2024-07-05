@@ -1,5 +1,5 @@
 export { getWindowApiClient, getWorkerApiClient, exposeApiToWindow, exposeApiToWorker } from './comlink'
-export { defaultClientAPI, hasWindow, isInWorker, isInIframe, isMain } from './client'
+export { hasWindow, isInWorker, isInIframe, isMain, getDefaultClientAPI } from './client'
 export {
   defaultServerAPI,
   constructClipboardApi,

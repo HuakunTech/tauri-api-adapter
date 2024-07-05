@@ -2,10 +2,12 @@
  * This module is a modified versioin of Tauri's official `http` plugin.
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
-import { defaultClientAPI } from '../../client'
+import { getDefaultClientAPI } from '../../client'
 import { type IFetch } from '../client-types'
+import type { IFetchServer } from '../server-types'
 import { type ClientOptions } from './types'
 
+const defaultClientAPI = getDefaultClientAPI<IFetchServer>()
 const webFetch: IFetch = {
   rawFetch: defaultClientAPI.fetchRawFetch,
   fetchCancel: defaultClientAPI.fetchFetchCancel,

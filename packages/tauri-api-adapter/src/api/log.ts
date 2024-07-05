@@ -1,6 +1,6 @@
 import { type Remote } from '@huakunshen/comlink'
 import { attachConsole, attachLogger, debug, error, info, trace, warn } from '@tauri-apps/plugin-log'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type ILogger } from './client-types'
 import { type ILoggerServer } from './server-types'
 
@@ -15,6 +15,7 @@ export function constructAPI(api: Remote<ILoggerServer>): ILogger {
     warn: api.loggerWarn
   }
 }
+const defaultClientAPI = getDefaultClientAPI<ILoggerServer>()
 export const comlinkLog: ILogger = constructAPI(defaultClientAPI)
 
 export const nativeLog: ILogger = {

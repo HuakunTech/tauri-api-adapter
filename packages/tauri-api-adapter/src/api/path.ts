@@ -36,7 +36,7 @@ import {
   templateDir,
   videoDir
 } from '@tauri-apps/api/path'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isMain } from '../client'
 import { type IPath } from './client-types'
 import { type IPathServer } from './server-types'
 
@@ -79,6 +79,7 @@ export function constructAPI(api: Remote<IPathServer>): IPath {
     videoDir: api.pathVideoDir
   }
 }
+const defaultClientAPI = getDefaultClientAPI<IPathServer>()
 export const comlinkPath: IPath = constructAPI(defaultClientAPI)
 
 export const nativePath: IPath = {

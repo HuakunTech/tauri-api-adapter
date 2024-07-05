@@ -18,7 +18,8 @@ import {
   sendNotification,
   type Options as NotificationOptions
 } from '@tauri-apps/plugin-notification'
-import { defaultClientAPI, isMain } from '../client'
+import { getDefaultClientAPI, isInIframe, isMain } from '../client'
+import { getWindowApiClient, getWorkerApiClient } from '../comlink'
 import { type INotification } from './client-types'
 import { type INotificationServer } from './server-types'
 
@@ -49,6 +50,7 @@ export function constructAPI(api: Remote<INotificationServer>): INotification {
     }
   }
 }
+const defaultClientAPI = getDefaultClientAPI<INotificationServer>()
 export const comlinkNotification: INotification = constructAPI(defaultClientAPI)
 
 export const nativeNotification: INotification = {
