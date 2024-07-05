@@ -17,7 +17,6 @@ export * from './permissions'
 export * from './api/client-types'
 export * as utils from './utils'
 
-
 export { log, type LogOptions } from './api/log'
 export { clipboard } from './api/clipboard'
 export { dialog } from './api/dialog'
@@ -29,4 +28,5 @@ export { shell } from './api/shell'
 export { sysInfo } from './api/system-info'
 export { fetch } from './api/fetch'
 export { path } from './api/path'
+export { updownload } from './api/updownload'
 export { listen, TauriEvent, comlinkEvent as event } from './api/event'

@@ -10,6 +10,7 @@
     isInIframe,
     isInWorker,
     isMain,
+    updownload,
     utils
   } from 'tauri-api-adapter'
   import SampleWorker from '../lib/sample-worker?worker'
@@ -17,6 +18,18 @@
   let iframe: HTMLIFrameElement
 
   onMount(async () => {
+    // updownload
+    //   .download(
+    //     'https://www.notion.so/desktop/mac-universal/download',
+    //     '/Users/hacker/Downloads/gitkraken.dmg',
+    //     (progress) => {
+    //       console.log(progress)
+    //     }
+    //   )
+    //   .then(() => {
+    //     console.log('Downloaded gitkraken.dmg')
+    //   })
+
     clipboard.readText().then((text) => {
       console.log('native clipboard text in parent window:', text)
     })

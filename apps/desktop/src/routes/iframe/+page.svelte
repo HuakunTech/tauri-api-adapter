@@ -16,13 +16,6 @@
   import * as nativeApi from 'tauri-api-adapter/native'
 
   onMount(async () => {
-    iframeApi.updownload
-      .download('https://github.com/huakunshen.png', '/Users/hacker/Downloads/huakun.png', (progress) => {
-        console.log('iframe Downloading png: ', progress)
-      })
-      .then(() => {
-        console.log('iframe Downloaded png')
-      })
     setTimeout(async () => {
       iframeApi.sysInfo.components().then((components) => {
         console.log('iframe Components: ', components)
