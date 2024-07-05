@@ -6,19 +6,29 @@
     "type": "git",
     "url": "https://github.com/HuakunShen/tauri-api-adapter.git"
   },
-  "main": "./src/index.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./worker": {
-      "import": "./src/worker.ts"
+      "import": "./dist/worker.js",
+      "require": "./dist/worker.cjs",
+      "types": "./dist/worker.d.ts"
     },
     "./native": {
-      "import": "./src/native.ts"
+      "import": "./dist/native.js",
+      "require": "./dist/native.cjs",
+      "types": "./dist/native.d.ts"
     },
     "./iframe": {
-      "import": "./src/iframe.ts"
+      "import": "./dist/iframe.js",
+      "require": "./dist/iframe.cjs",
+      "types": "./dist/iframe.d.ts"
     },
     "./package.json": "./package.json"
   },
