@@ -175,7 +175,6 @@ import type {
 } from './api/server-types'
 import {
   checkPermission,
-  PermissionCategory,
   type AllPermission,
   type ClipboardPermission,
   type DialogPermission,

@@ -1,5 +1,3 @@
-import { z } from 'zod'
-
 export type ClipboardPermission =
   | 'clipboard:read-all'
   | 'clipboard:write-all'
@@ -39,19 +37,6 @@ export type AllPermission =
   | SystemInfoPermission
   | NetworkPermission
   | UpdownloadPermission
-export const PermissionCategory = z.enum([
-  'clipboard',
-  'dialog',
-  'notification',
-  'fs',
-  'os',
-  'shell',
-  'fetch',
-  'system-info',
-  'network',
-  'updownload'
-])
-export type PermissionCategory = z.infer<typeof PermissionCategory>
 
 export function checkPermission<P>(requiredPermissions: P[], userPermissions: P[]) {
   return <T extends (...args: any[]) => any>(fn: T): T => {
