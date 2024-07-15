@@ -1,3 +1,4 @@
+import { Endpoint } from '@huakunshen/comlink'
 import {
   getWindowApiClient,
   getWorkerApiClient,
