@@ -444,13 +444,13 @@ export const defaultFsApi = constructFsApi(['fs:read', 'fs:write'])
 /* -------------------------------------------------------------------------- */
 export function constructOsApi(permissions: OsPermission[]): IOsServer {
   return {
-    osPlatform: checkPermission<OsPermission>(['os:all'], permissions)(osPlatform),
-    osArch: checkPermission<OsPermission>(['os:all'], permissions)(osArch),
-    osExeExtension: checkPermission<OsPermission>(['os:all'], permissions)(osExeExtension),
-    osFamily: checkPermission<OsPermission>(['os:all'], permissions)(osFamily),
+    osPlatform: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osPlatform())),
+    osArch: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osArch())),
+    osExeExtension: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osExeExtension())),
+    osFamily: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osFamily())),
     osHostname: checkPermission<OsPermission>(['os:all'], permissions)(osHostname),
     osEol: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osEol())),
-    osVersion: checkPermission<OsPermission>(['os:all'], permissions)(osVersion),
+    osVersion: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osVersion())),
     osLocale: checkPermission<OsPermission>(['os:all'], permissions)(osLocale)
   }
 }

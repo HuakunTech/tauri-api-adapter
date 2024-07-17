@@ -74,7 +74,18 @@ import type {
   requestPermission,
   sendNotification
 } from '@tauri-apps/plugin-notification'
-import { arch, exeExtension, family, locale, hostname as osHostname, platform, version } from '@tauri-apps/plugin-os'
+import {
+  arch,
+  exeExtension,
+  family,
+  locale,
+  hostname as osHostname,
+  platform,
+  version,
+  type Arch,
+  type Family,
+  type Platform
+} from '@tauri-apps/plugin-os'
 import { download, upload } from '@tauri-apps/plugin-upload'
 import type {
   hasFiles,
@@ -294,13 +305,13 @@ export interface IFs {
 }
 
 export interface IOs {
-  platform: typeof platform
-  arch: typeof arch
-  exeExtension: typeof exeExtension
-  family: typeof family
+  platform: () => Promise<Platform>
+  arch: () => Promise<Arch>
+  exeExtension: () => Promise<string>
+  family: () => Promise<Family>
   hostname: typeof osHostname
   eol: () => Promise<string>
-  version: typeof version
+  version: () => Promise<string>
   locale: typeof locale
 }
 

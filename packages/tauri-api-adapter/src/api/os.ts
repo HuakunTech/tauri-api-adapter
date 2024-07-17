@@ -20,13 +20,13 @@ const defaultClientAPI = getDefaultClientAPI<IOsServer>()
 export const comlinkOs: IOs = constructAPI(defaultClientAPI)
 
 export const nativeOs: IOs = {
-  platform: platform,
-  arch: arch,
-  exeExtension: exeExtension,
-  family: family,
+  platform: () => Promise.resolve(platform()),
+  arch: () => Promise.resolve(arch()),
+  exeExtension: () => Promise.resolve(exeExtension()),
+  family: () => Promise.resolve(family()),
   hostname: hostname,
   eol: () => Promise.resolve(eol()),
-  version: version,
+  version: () => Promise.resolve(version()),
   locale: locale
 }
 
