@@ -142,8 +142,8 @@ importers:
         specifier: ^2.0.3-beta.1
         version: 2.0.3-beta.1
       tauri-plugin-shellx-api:
-        specifier: ^2.0.7
-        version: 2.0.7
+        specifier: ^2.0.8
+        version: 2.0.8
       tauri-plugin-system-info-api:
         specifier: ^2.0.2
         version: 2.0.2
@@ -1563,6 +1563,9 @@ packages:
 
   tauri-plugin-shellx-api@2.0.7:
     resolution: {integrity: sha512-yYV546xhOn4Z9bRLUpyQp89k0U32jR6nmgfg0W+JOjnunabgwwStilIo2wUyeTcGs89GAZIRSBeBhgVnF8/E7w==}
+
+  tauri-plugin-shellx-api@2.0.8:
+    resolution: {integrity: sha512-N2Xv5JOyEw8Mqh29rDmIUzZaluB8zhG18jcbTrXj0bTBNqWyeO0mAlVi2WPb6y4VCz7t4hpmoddwtXaPI1dc+g==}
 
   tauri-plugin-system-info-api@2.0.2:
     resolution: {integrity: sha512-YZ+LWpseipSQXb3rA/iZSgAqCnzP/vDeub9jCWNnDPBIUtHBtHZIfM4BWEVYlaJhvwmWTB0EoR50mltmcNZZ2g==}
@@ -3060,6 +3063,10 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.13
       zod: 3.23.8
+
+  tauri-plugin-shellx-api@2.0.8:
+    dependencies:
+      '@tauri-apps/api': 2.0.0-beta.13
 
   tauri-plugin-system-info-api@2.0.2:
     dependencies:
