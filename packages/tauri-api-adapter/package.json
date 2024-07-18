@@ -53,7 +53,8 @@
     "typedoc": "^0.25.13"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "valibot": "^0.35.0"
   },
   "dependencies": {
     "@huakunshen/comlink": "^4.4.1",
@@ -70,8 +71,7 @@
     "tauri-plugin-clipboard-api": "^2.1.2",
     "tauri-plugin-network-api": "^2.0.3-beta.1",
     "tauri-plugin-shellx-api": "^2.0.8",
-    "tauri-plugin-system-info-api": "^2.0.2",
-    "valibot": "^0.35.0"
+    "tauri-plugin-system-info-api": "^2.0.2"
   },
   "files": [
     "src",
