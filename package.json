@@ -1,5 +1,5 @@
 {
-  "name": "tauri-api-adapter",
+  "name": "tauri-api-adapter-repo",
   "private": true,
   "scripts": {
     "build": "turbo build",
