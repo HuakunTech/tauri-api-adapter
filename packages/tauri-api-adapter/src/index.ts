@@ -11,7 +11,11 @@ export {
   constructFetchApi,
   constructSystemInfoApi,
   constructNetworkApi,
-  constructUpdownloadApi
+  constructUpdownloadApi,
+  constructEventApi,
+  constructLoggerApi,
+  constructPathApi,
+  constructServerAPIWithPermissions
 } from './server'
 export * from './api/server-types'
 export * from './permissions'

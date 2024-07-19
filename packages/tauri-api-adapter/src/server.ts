@@ -201,76 +201,82 @@ export const defaultUpdownloadApi = constructUpdownloadApi(['updownload:upload',
 /* -------------------------------------------------------------------------- */
 /*                                   Logger                                   */
 /* -------------------------------------------------------------------------- */
-export const loggerApi: ILoggerServer = {
-  // loggerAttachConsole,
-  // loggerAttachLogger,
-  loggerDebug,
-  loggerError,
-  loggerInfo,
-  loggerTrace,
-  loggerWarn
+export function constructLoggerApi(): ILoggerServer {
+  return {
+    loggerDebug,
+    loggerError,
+    loggerInfo,
+    loggerTrace,
+    loggerWarn
+  }
 }
+export const defaultLoggerApi = constructLoggerApi()
 
 /* -------------------------------------------------------------------------- */
 /*                                    Path                                    */
 /* -------------------------------------------------------------------------- */
-export const pathApi: IPathServer = {
-  pathAppCacheDir,
-  pathAppConfigDir,
-  pathAppDataDir,
-  pathAppLocalDataDir,
-  pathAppLogDir,
-  pathAudioDir,
-  pathBasename,
-  pathCacheDir,
-  pathConfigDir,
-  pathDataDir,
-  pathDelimiter: () => Promise.resolve(pathDelimiter()),
-  pathDesktopDir,
-  pathDirname,
-  pathDocumentDir,
-  pathDownloadDir,
-  pathExecutableDir,
-  pathExtname,
-  pathFontDir,
-  pathHomeDir,
-  pathIsAbsolute,
-  pathJoin,
-  pathLocalDataDir,
-  pathNormalize,
-  pathPictureDir,
-  pathPublicDir,
-  pathResolve,
-  pathResolveResource,
-  pathResourceDir,
-  pathRuntimeDir,
-  pathSep: () => Promise.resolve(pathSep()),
-  pathTempDir,
-  pathTemplateDir,
-  pathVideoDir
+export function constructPathApi(): IPathServer {
+  return {
+    pathAppCacheDir,
+    pathAppConfigDir,
+    pathAppDataDir,
+    pathAppLocalDataDir,
+    pathAppLogDir,
+    pathAudioDir,
+    pathBasename,
+    pathCacheDir,
+    pathConfigDir,
+    pathDataDir,
+    pathDelimiter: () => Promise.resolve(pathDelimiter()),
+    pathDesktopDir,
+    pathDirname,
+    pathDocumentDir,
+    pathDownloadDir,
+    pathExecutableDir,
+    pathExtname,
+    pathFontDir,
+    pathHomeDir,
+    pathIsAbsolute,
+    pathJoin,
+    pathLocalDataDir,
+    pathNormalize,
+    pathPictureDir,
+    pathPublicDir,
+    pathResolve,
+    pathResolveResource,
+    pathResourceDir,
+    pathRuntimeDir,
+    pathSep: () => Promise.resolve(pathSep()),
+    pathTempDir,
+    pathTemplateDir,
+    pathVideoDir
+  }
 }
+export const defaultPathApi: IPathServer = constructPathApi()
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */
 /* -------------------------------------------------------------------------- */
-export const eventApi: IEventServer = {
-  eventRawListen<T>(event: EventName, target: EventTarget, handler: EventCallback<T>): Promise<number> {
-    return invoke<number>('plugin:event|listen', {
-      event,
-      target,
-      handler: transformCallback(handler)
-    })
-  },
-  eventRawUnlisten: (event: string, eventId: number): Promise<void> =>
-    invoke<void>('plugin:event|unlisten', {
-      event,
-      eventId
-    }),
-  eventEmit: emit,
-  eventEmitTo: emitTo,
-  eventOnce: once
+export function constructEventApi(): IEventServer {
+  return {
+    eventRawListen<T>(event: EventName, target: EventTarget, handler: EventCallback<T>): Promise<number> {
+      return invoke<number>('plugin:event|listen', {
+        event,
+        target,
+        handler: transformCallback(handler)
+      })
+    },
+    eventRawUnlisten: (event: string, eventId: number): Promise<void> =>
+      invoke<void>('plugin:event|unlisten', {
+        event,
+        eventId
+      }),
+    eventEmit: emit,
+    eventEmitTo: emitTo,
+    eventOnce: once
+  }
 }
-
+export const defaultEventApi: IEventServer = constructEventApi()
 /* -------------------------------------------------------------------------- */
 /*                                  Clipboard                                 */
 /* -------------------------------------------------------------------------- */
@@ -700,9 +706,9 @@ export const defaultServerAPI: IFullAPI = {
   ...defaultFetchApi,
   ...defaultSystemInfoApi,
   ...defaultNetworkApi,
-  ...eventApi,
-  ...pathApi,
-  ...loggerApi,
+  ...defaultEventApi,
+  ...defaultPathApi,
+  ...defaultLoggerApi,
   ...defaultUpdownloadApi
 }
 
@@ -717,7 +723,10 @@ export function constructServerAPIWithPermissions(permissions: AllPermission[]):
     constructFetchApi(permissions.filter((p) => p.startsWith('fetch:')) as FetchPermission[]),
     constructSystemInfoApi(permissions.filter((p) => p.startsWith('system-info:')) as SystemInfoPermission[]),
     constructNetworkApi(permissions.filter((p) => p.startsWith('network:')) as NetworkPermission[]),
-    constructUpdownloadApi(permissions.filter((p) => p.startsWith('updownload:')) as UpdownloadPermission[])
+    constructUpdownloadApi(permissions.filter((p) => p.startsWith('updownload:')) as UpdownloadPermission[]),
+    constructEventApi(),
+    constructLoggerApi(),
+    constructPathApi()
   ]
   return Object.assign({}, ...apis)
 }
