@@ -54,8 +54,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
       tauri-plugin-clipboard-api:
-        specifier: ^2.1.4
-        version: 2.1.4(valibot@0.35.0)
+        specifier: ^2.1.5
+        version: 2.1.5(valibot@0.35.0)
       tauri-plugin-network-api:
         specifier: ^2.0.3-beta.1
         version: 2.0.3-beta.1
@@ -136,8 +136,8 @@ importers:
         specifier: ~2.0.0-beta.8
         version: 2.0.0-beta.8
       tauri-plugin-clipboard-api:
-        specifier: ^2.1.4
-        version: 2.1.4(valibot@0.35.0)
+        specifier: ^2.1.5
+        version: 2.1.5(valibot@0.35.0)
       tauri-plugin-network-api:
         specifier: ^2.0.3-beta.1
         version: 2.0.3-beta.1
@@ -1554,8 +1554,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tauri-plugin-clipboard-api@2.1.4:
-    resolution: {integrity: sha512-qiMfPPTIKFZHQqXSL3m0IIl7vM51/Uz4oob2Q+EiSbZh+3YIZul3Zj9bDNG7uu5I4Bj93PxWKY+IrJJBGjIL9A==}
+  tauri-plugin-clipboard-api@2.1.5:
+    resolution: {integrity: sha512-K9bZS1DNvS0uQA1v3IVbaGFOmwTfO/kxZRPh8OcWfvaBdE9kyS3eVNKEhd3vX8Jb3gtNuxQsaUmOJ4kz47t4/g==}
     peerDependencies:
       valibot: ^0.36.0
 
@@ -3045,7 +3045,7 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
-  tauri-plugin-clipboard-api@2.1.4(valibot@0.35.0):
+  tauri-plugin-clipboard-api@2.1.5(valibot@0.35.0):
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
       valibot: 0.35.0
