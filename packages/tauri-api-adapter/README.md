@@ -151,7 +151,7 @@ This is the underlying function to expose and wrap APIs.
 ```ts
 // Runs in the iframe or worker (I call it client because it calls the API)
 export function getWorkerApiClient<API>(): Remote<API> {
-  return wrap<API>(self as Endpoint)
+  return wrap<API>(globalThis as Endpoint)
 }
 export function getWindowApiClient<API>(targetWindow: Window): Remote<API> {
   return wrap<API>(windowEndpoint(targetWindow))

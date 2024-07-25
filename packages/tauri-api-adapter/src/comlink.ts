@@ -10,7 +10,7 @@ export function getWindowApiClient<API>(targetWindow: Window): Remote<API> {
 }
 
 export function getWorkerApiClient<API>(): Remote<API> {
-  return wrap<API>(self as Endpoint)
+  return wrap<API>(globalThis as Endpoint)
 }
 
 /**
