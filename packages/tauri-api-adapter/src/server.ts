@@ -450,7 +450,8 @@ export const defaultFsApi = constructFsApi(['fs:read', 'fs:write'])
 /* -------------------------------------------------------------------------- */
 export function constructOsApi(permissions: OsPermission[]): IOsServer {
   return {
-    osPlatform: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osPlatform())),
+    // platform doesn't require any permission because the UI API relies on this to implement window dragging
+    osPlatform: checkPermission<OsPermission>([], permissions)(() => Promise.resolve(osPlatform())),
     osArch: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osArch())),
     osExeExtension: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osExeExtension())),
     osFamily: checkPermission<OsPermission>(['os:all'], permissions)(() => Promise.resolve(osFamily())),
