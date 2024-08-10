@@ -15,6 +15,8 @@
   import * as iframeApi from 'tauri-api-adapter/iframe'
   import * as nativeApi from 'tauri-api-adapter/native'
 
+  let clipboardText: string
+
   onMount(async () => {
     // iframeApi.updownload
     //   .download('https://github.com/huakunshen.png', '/Users/hacker/Downloads/avatar.png', (progress) => {
@@ -32,6 +34,7 @@
       })
       iframeApi.clipboard.readText().then((text) => {
         console.log('iframe Clipboard Text: ', text)
+        clipboardText = text
       })
       nativeApi.clipboard.readText().then((text) => {
         console.log('native API Clipboard Text: ', text)
@@ -47,7 +50,8 @@
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">iframe</h1>
-  <h2>isMain: {isMain}</h2>
-  <h2>isInIframe: {isInIframe}</h2>
-  <h2>isInWorker: {isInWorker}</h2>
+  <span><strong class="font-bold">clipboardText:</strong> {clipboardText}</span>
+  <h2>isMain: {isMain()}</h2>
+  <h2>isInIframe: {isInIframe()}</h2>
+  <h2>isInWorker: {isInWorker()}</h2>
 </div>
