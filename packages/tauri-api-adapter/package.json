@@ -1,7 +1,7 @@
 {
   "name": "tauri-api-adapter",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/HuakunShen/tauri-api-adapter.git"
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "dev": "rollup -c --watch",
-    "build:docs": "shx cp ../../README.md ./README.md && typedoc src/index.ts",
+    "build:docs": "shx cp ../../README.md ./README.md && typedoc",
     "build": "rimraf dist && rollup -c && pnpm build:docs",
     "test": "bun test --coverage"
   },
