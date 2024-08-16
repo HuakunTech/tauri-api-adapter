@@ -149,7 +149,7 @@ importers:
         version: 2.0.2
       typescript:
         specifier: ^5.0.0
-        version: 5.4.5
+        version: 5.5.3
       valibot:
         specifier: ^0.36.0
         version: 0.36.0
@@ -159,7 +159,7 @@ importers:
         version: 5.1.0(rollup@4.18.0)
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
-        version: 11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)
+        version: 11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.5.3)
       '@types/bun':
         specifier: latest
         version: 1.1.5
@@ -177,7 +177,7 @@ importers:
         version: 1.8.10
       typedoc:
         specifier: ^0.25.13
-        version: 0.25.13(typescript@5.4.5)
+        version: 0.25.13(typescript@5.5.3)
 
 packages:
 
@@ -2057,11 +2057,11 @@ snapshots:
     optionalDependencies:
       rollup: 4.18.0
 
-  '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)':
+  '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.5.3)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       resolve: 1.22.8
-      typescript: 5.4.5
+      typescript: 5.5.3
     optionalDependencies:
       rollup: 4.18.0
       tslib: 2.6.2
@@ -3148,13 +3148,13 @@ snapshots:
       turbo-windows-64: 2.0.12
       turbo-windows-arm64: 2.0.12
 
-  typedoc@0.25.13(typescript@5.4.5):
+  typedoc@0.25.13(typescript@5.5.3):
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
       minimatch: 9.0.3
       shiki: 0.14.7
-      typescript: 5.4.5
+      typescript: 5.5.3
 
   typescript@5.4.5: {}
 

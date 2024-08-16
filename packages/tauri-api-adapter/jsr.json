@@ -1,0 +1,12 @@
+{
+  "name": "@hk/tauri-api-adapter",
+  "version": "0.1.4",
+  "exports": {
+    ".": "./src/index.ts",
+    "./worker": "./src/worker.ts",
+    "./native": "./src/native.ts",
+    "./iframe": "./src/iframe.ts",
+    "./permissions": "./src/permissions/index.ts",
+    "./package.json": "./package.json"
+  }
+}
