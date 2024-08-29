@@ -8,7 +8,14 @@ const pkg = JSON.parse(readFileSync(join(cwd(), 'package.json'), 'utf8'))
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
-  input: ['src/index.ts', 'src/native.ts', 'src/worker.ts', 'src/iframe.ts', 'src/permissions/index.ts'],
+  input: [
+    'src/index.ts',
+    'src/native.ts',
+    'src/worker.ts',
+    'src/iframe.ts',
+    'src/permissions/index.ts',
+    'src/api/fetch/index.ts'
+  ],
   output: [
     {
       dir: 'dist',

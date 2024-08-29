@@ -1,7 +1,7 @@
 {
   "name": "tauri-api-adapter",
   "type": "module",
-  "version": "0.1.4",
+  "version": "0.2.0-alpha.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/HuakunShen/tauri-api-adapter.git"
@@ -35,12 +35,80 @@
       "require": "./dist/permissions/index.cjs",
       "types": "./dist/permissions/index.d.ts"
     },
+
+
+    "./api/clipboard": {
+      "import": "./dist/api/clipboard.js",
+      "require": "./dist/api/clipboard.cjs",
+      "types": "./dist/api/clipboard.d.ts"
+    },
+    "./api/dialog": {
+      "import": "./dist/api/dialog.js",
+      "require": "./dist/api/dialog.cjs",
+      "types": "./dist/api/dialog.d.ts"
+    },
+    "./api/event": {
+      "import": "./dist/api/event.js",
+      "require": "./dist/api/event.cjs",
+      "types": "./dist/api/event.d.ts"
+    },
+    "./api/fs": {
+      "import": "./dist/api/fs.js",
+      "require": "./dist/api/fs.cjs",
+      "types": "./dist/api/fs.d.ts"
+    },
+    "./api/network": {
+      "import": "./dist/api/network.js",
+      "require": "./dist/api/network.cjs",
+      "types": "./dist/api/network.d.ts"
+    },
+    "./api/notification": {
+      "import": "./dist/api/notification.js",
+      "require": "./dist/api/notification.cjs",
+      "types": "./dist/api/notification.d.ts"
+    },
+    "./api/os": {
+      "import": "./dist/api/os.js",
+      "require": "./dist/api/os.cjs",
+      "types": "./dist/api/os.d.ts"
+    },
+    "./api/shell": {
+      "import": "./dist/api/shell.js",
+      "require": "./dist/api/shell.cjs",
+      "types": "./dist/api/shell.d.ts"
+    },
+    "./api/system-info": {
+      "import": "./dist/api/system-info.js",
+      "require": "./dist/api/system-info.cjs",
+      "types": "./dist/api/system-info.d.ts"
+    },
+    "./api/path": {
+      "import": "./dist/api/path.js",
+      "require": "./dist/api/path.cjs",
+      "types": "./dist/api/path.d.ts"
+    },
+    "./api/log": {
+      "import": "./dist/api/log.js",
+      "require": "./dist/api/log.cjs",
+      "types": "./dist/api/log.d.ts"
+    },
+    "./api/updownload": {
+      "import": "./dist/api/updownload.js",
+      "require": "./dist/api/updownload.cjs",
+      "types": "./dist/api/updownload.d.ts"
+    },
+    "./api/fetch": {
+      "import": "./dist/api/fetch/index.js",
+      "require": "./dist/api/fetch/index.cjs",
+      "types": "./dist/api/fetch/index.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
     "dev": "rollup -c --watch",
     "build:docs": "shx cp ../../README.md ./README.md && typedoc",
-    "build": "rimraf dist && rollup -c && pnpm build:docs",
+    "build": "rimraf dist && rollup -c",
+    "postbuild": "bun test --coverage && pnpm build:docs",
     "test": "bun test --coverage"
   },
   "devDependencies": {
@@ -51,7 +119,7 @@
     "rollup": "^4.18.0",
     "shx": "^0.3.4",
     "tsc-alias": "^1.8.10",
-    "typedoc": "^0.25.13"
+    "typedoc": "^0.26.6"
   },
   "dependencies": {
     "@huakunshen/comlink": "^4.4.1",

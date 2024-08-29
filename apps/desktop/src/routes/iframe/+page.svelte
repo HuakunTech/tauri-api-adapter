@@ -12,6 +12,7 @@
     path,
     utils
   } from 'tauri-api-adapter'
+  import { clipboard } from 'tauri-api-adapter/api/clipboard'
   import iframeApi from 'tauri-api-adapter/iframe'
   import nativeApi from 'tauri-api-adapter/native'
 
@@ -32,7 +33,7 @@
       iframeApi.sysInfo.staticInfo().then((info) => {
         console.log('iframe Static Info: ', info)
       })
-      iframeApi.clipboard.readText().then((text) => {
+      clipboard.readText().then((text) => {
         console.log('iframe Clipboard Text: ', text)
         clipboardText = text
       })
