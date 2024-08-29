@@ -12,8 +12,8 @@
     path,
     utils
   } from 'tauri-api-adapter'
-  import * as iframeApi from 'tauri-api-adapter/iframe'
-  import * as nativeApi from 'tauri-api-adapter/native'
+  import iframeApi from 'tauri-api-adapter/iframe'
+  import nativeApi from 'tauri-api-adapter/native'
 
   let clipboardText: string
 
@@ -50,8 +50,20 @@
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">iframe</h1>
-  <span><strong class="font-bold">clipboardText:</strong> {clipboardText}</span>
   <h2>isMain: {isMain()}</h2>
   <h2>isInIframe: {isInIframe()}</h2>
   <h2>isInWorker: {isInWorker()}</h2>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    on:click={() => {
+      iframeApi.clipboard.readText().then((text) => {
+        console.log('iframe Clipboard Text: ', text)
+        clipboardText = text
+      })
+    }}>Read Clipboard Text</button
+  >
+  <span>
+    <strong class="font-bold">clipboardText:</strong>
+    <pre>{clipboardText}</pre>
+  </span>
 </div>

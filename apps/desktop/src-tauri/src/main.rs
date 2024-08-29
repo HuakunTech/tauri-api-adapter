@@ -5,6 +5,7 @@ use tauri_plugin_log::{Target, TargetKind};
 
 fn main() {
     let unlock_shell = true;
+    let context = tauri::generate_context!();
     tauri::Builder::default()
         .plugin(tauri_plugin_upload::init())
         .plugin(
@@ -26,14 +27,10 @@ fn main() {
         .plugin(tauri_plugin_network::init())
         .plugin(tauri_plugin_system_info::init())
         .setup(|app| {
-            #[cfg(debug_assertions)] // only include this code on debug builds
-            {
-                let window = app.get_webview_window("main").unwrap();
-                window.open_devtools();
-                // window.close_devtools();
-            }
+            let window = app.get_webview_window("main").unwrap();
+            window.open_devtools();
             Ok(())
         })
-        .run(tauri::generate_context!())
+        .run(context)
         .expect("error while running tauri application");
 }

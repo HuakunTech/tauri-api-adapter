@@ -18,6 +18,11 @@
   let iframe: HTMLIFrameElement
 
   onMount(async () => {
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'RELEASE') {
+        console.count('comlink release, will re-expose APIs')
+      }
+    })
     // updownload
     //   .download(
     //     'https://www.notion.so/desktop/mac-universal/download',
@@ -58,5 +63,5 @@
   <h2>isMain: {isMain}</h2>
   <h2>isInIframe: {isInIframe}</h2>
   <h2>isInWorker: {isInWorker}</h2>
-  <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500"></iframe>
+  <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500 w-full h-64"></iframe>
 </div>

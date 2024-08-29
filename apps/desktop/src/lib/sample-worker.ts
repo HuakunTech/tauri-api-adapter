@@ -13,6 +13,6 @@ client.clipboardReadText().then((text) => {
   console.log('Clipboard text from worker:', text)
 })
 
-console.log('worker isInIframe:', isInIframe)
-console.log('worker isInWorker:', isInWorker)
-console.log('worker isMain:', isMain)
+console.log('worker isInIframe:', isInIframe())
+console.log('worker isInWorker:', isInWorker())
+console.log('worker isMain:', isMain())
