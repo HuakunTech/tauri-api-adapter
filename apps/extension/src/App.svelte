@@ -1,19 +1,25 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import {
-    defaultServerAPI,
-    exposeApiToWindow,
-    exposeApiToWorker,
-    getWindowApiClient,
-    isInIframe,
-    isInWorker,
-    isMain,
-    path,
-    utils
-  } from 'tauri-api-adapter'
-  import { clipboard } from 'tauri-api-adapter/api/clipboard'
+  // import { clipboard } from 'tauri-api-adapter/api/clipboard'
   // import iframeApi from 'tauri-api-adapter/iframe'
   // import nativeApi from 'tauri-api-adapter/native'
+  import { windowEndpoint, wrap } from '@huakunshen/comlink'
+  import { onMount } from 'svelte'
+  // import {
+  //   defaultServerAPI,
+  //   exposeApiToWindow,
+  //   exposeApiToWorker,
+  //   getWindowApiClient,
+  //   isInIframe,
+  //   isInWorker,
+  //   isMain,
+  //   path,
+  //   utils
+  // } from 'tauri-api-adapter'
+
+  function readClipboardText() {
+    const clipboard = wrap<{ clipboardReadText: () => Promise<string> }>(windowEndpoint(window.parent))
+    return clipboard.clipboardReadText()
+  }
 
   let clipboardText: string
 
@@ -32,31 +38,31 @@
       // iframeApi.sysInfo.staticInfo().then((info) => {
       //   console.log('iframe Static Info: ', info)
       // })
-      clipboard.readText().then((text) => {
-        console.log('iframe Clipboard Text: ', text)
-        clipboardText = text
-      })
+      // readClipboardText().then((text) => {
+      //   console.log('iframe Clipboard Text: ', text)
+      //   clipboardText = text
+      // })
       // nativeApi.clipboard.readText().then((text) => {
       //   console.log('native API Clipboard Text: ', text)
       // })
-      console.log(
-        'hack with __TAURI_INTERNALS__ in iframe',
-        // @ts-ignore
-        await window.parent.__TAURI_INTERNALS__.invoke('plugin:clipboard|read_text')
-      )
+      // console.log(
+      //   'hack with __TAURI_INTERNALS__ in iframe',
+      //   // @ts-ignore
+      //   await window.parent.__TAURI_INTERNALS__.invoke('plugin:clipboard|read_text')
+      // )
     }, 1000)
   })
 </script>
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">iframe</h1>
-  <h2>isMain: {isMain()}</h2>
-  <h2>isInIframe: {isInIframe()}</h2>
-  <h2>isInWorker: {isInWorker()}</h2>
+  <!-- <h4>isMain: {isMain()}</h4>
+  <h4>isInIframe: {isInIframe()}</h4>
+  <h4>isInWorker: {isInWorker()}</h4> -->
   <button
     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     on:click={() => {
-      clipboard.readText().then((text) => {
+      readClipboardText().then((text) => {
         console.log('iframe Clipboard Text: ', text)
         clipboardText = text
       })

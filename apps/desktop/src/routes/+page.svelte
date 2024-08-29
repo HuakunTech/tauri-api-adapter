@@ -63,5 +63,6 @@
   <h2>isMain: {isMain}</h2>
   <h2>isInIframe: {isInIframe}</h2>
   <h2>isInWorker: {isInWorker}</h2>
-  <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500 w-full h-64"></iframe>
+  <!-- <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500 w-full h-64"></iframe> -->
+  <iframe bind:this={iframe} title="iframe" src="http://localhost:4173" frameborder="0" class="border border-red-500 w-full h-96"></iframe>
 </div>
