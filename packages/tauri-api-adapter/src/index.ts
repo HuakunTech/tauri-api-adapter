@@ -13,3 +13,22 @@ export { constructUpdownloadApi } from './api/server/updownload'
 export { constructNetworkApi } from './api/server/network'
 export { constructOsApi } from './api/server/os'
 export { constructServerAPIWithPermissions } from './api/server'
+
+export type { IShellServer, IEventServer } from './api/server/types'
+export type {
+  IUpdownload,
+  ILogger,
+  IPath,
+  IEventInternal,
+  IEvent,
+  IDialog,
+  IClipboard,
+  INotification,
+  IFs,
+  IOs,
+  IShellInternal,
+  IShell,
+  IFetchInternal,
+  ISystemInfo,
+  INetwork
+} from './api/client/types'
