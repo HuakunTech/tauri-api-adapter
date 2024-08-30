@@ -1,0 +1,17 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPoints": [
+		"src/index.ts",
+		"src/native.ts",
+		"src/worker.ts",
+		"src/iframe.ts",
+		"src/permissions/index.ts"
+	],
+	"visibilityFilters": {
+		"protected": false,
+		"private": false,
+		"inherited": true,
+		"external": true
+	},
+	"out": "docs",
+}

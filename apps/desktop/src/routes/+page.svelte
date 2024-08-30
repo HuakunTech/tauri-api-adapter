@@ -1,18 +1,20 @@
 <script lang="ts">
-  import { proxy } from '@huakunshen/comlink'
   import { onMount } from 'svelte'
   import {
-    clipboard,
     constructClipboardApi,
-    constructSystemInfoApi,
-    defaultServerAPI,
-    exposeApiToWindow,
-    exposeApiToWorker,
-    isInIframe,
-    isInWorker,
-    isMain,
-    updownload,
-    utils
+    //   clipboard,
+    //   constructClipboardApi,
+    //   constructSystemInfoApi,
+    //   defaultServerAPI,
+    //   exposeApiToWindow,
+    //   exposeApiToWorker,
+    //   isInIframe,
+    //   isInWorker,
+    //   isMain,
+    //   updownload,
+    //   utils
+    constructServerAPIWithPermissions,
+    exposeApiToWindow
   } from 'tauri-api-adapter'
   import SampleWorker from '../lib/sample-worker?worker'
 
@@ -41,33 +43,22 @@
     // })
     const worker = new SampleWorker()
     // apply permission control
-    const cbApi = constructClipboardApi(['clipboard:read-all', 'clipboard:write-all'])
-    const sysinfoApi = constructSystemInfoApi(['system-info:components', 'system-info:os'])
-    const api = {
-      ...defaultServerAPI,
-      ...cbApi,
-      ...sysinfoApi
-    }
-    exposeApiToWorker(worker, defaultServerAPI)
+    // const cbApi = constructClipboardApi(['clipboard:read-all', 'clipboard:write-all'])
+    // const sysinfoApi = constructSystemInfoApi(['system-info:components', 'system-info:os'])
+    // const api = {
+    //   ...defaultServerAPI,
+    //   ...cbApi,
+    //   ...sysinfoApi
+    // }
+    // exposeApiToWorker(worker, defaultServerAPI)
     if (!(iframe && iframe.contentWindow)) {
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
-      const api2 = {
-        a: {
-          add(a: number, b: number, callback: (result: string) => void) {
-            callback(`a.add(${a}, ${b}) = ${a + b}`)
-            return a + b
-          }
-        },
-        b: {
-          subtract(a: number, b: number, callback: (result: string) => void) {
-            callback(`b.subtract(${a}, ${b}) = ${a - b}`)
-            return a - b
-          }
-        }
-      }
-      exposeApiToWindow(iframe.contentWindow, api2)
+
+      exposeApiToWindow(iframe.contentWindow, {
+        clipboard: constructClipboardApi(['clipboard:read-all'])
+      })
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
   })
@@ -75,9 +66,9 @@
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">Parent Page</h1>
-  <h2>isMain: {isMain}</h2>
+  <!-- <h2>isMain: {isMain}</h2>
   <h2>isInIframe: {isInIframe}</h2>
-  <h2>isInWorker: {isInWorker}</h2>
+  <h2>isInWorker: {isInWorker}</h2> -->
   <!-- <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500 w-full h-64"></iframe> -->
   <iframe
     bind:this={iframe}

@@ -19,7 +19,7 @@
   }
 </script>
 
-<h1>Home Page</h1>
+<h1>About Page</h1>
 <button on:click={onClipboardRead}>Read Clipboard Text</button>
-<a href="/about">Go to About Page</a>
+<a href="/">Go to Home Page</a>
 <pre>{cbText}</pre>
