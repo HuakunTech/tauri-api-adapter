@@ -1,18 +1,8 @@
-// import {
-//   getWindowApiClient,
-//   getWorkerApiClient,
-//   isInIframe,
-//   isInWorker,
-//   isMain,
-//   type IFullAPI
-// } from 'tauri-api-adapter'
+import { clipboard, dialog } from 'tauri-api-adapter/worker'
 
-// const client = getWorkerApiClient<IFullAPI>()
-
-// client.clipboardReadText().then((text) => {
-//   console.log('Clipboard text from worker:', text)
+clipboard.readText().then((text) => {
+  console.log('From Worker: ', text)
+})
+// dialog.confirm('Are you sure?').then((response) => {
+//   console.log('From Worker: ', response)
 // })
-
-// console.log('worker isInIframe:', isInIframe())
-// console.log('worker isInWorker:', isInWorker())
-// console.log('worker isMain:', isMain())

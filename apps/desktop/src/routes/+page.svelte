@@ -26,8 +26,10 @@
     constructShellApi,
     constructSystemInfoApi,
     constructUpdownloadApi,
-    exposeApiToWindow
+    exposeApiToWindow,
+    exposeApiToWorker
   } from 'tauri-api-adapter'
+  import type { AllPermission } from 'tauri-api-adapter/permissions'
   import SampleWorker from '../lib/sample-worker?worker'
 
   let iframe: HTMLIFrameElement
@@ -62,27 +64,30 @@
     //   ...cbApi,
     //   ...sysinfoApi
     // }
-    // exposeApiToWorker(worker, defaultServerAPI)
+    const permissions: AllPermission[] = [
+      'clipboard:read-all',
+      'fetch:all',
+      'dialog:all',
+      'fs:read',
+      'fs:write',
+      'notification:all',
+      'os:all',
+      'shell:execute',
+      'shell:open',
+      'updownload:download',
+      'updownload:upload',
+      'system-info:all',
+      'network:port',
+      'network:interface'
+    ]
+    const serverAPI = constructServerAPIWithPermissions(permissions)
+    exposeApiToWorker(worker, serverAPI)
     if (!(iframe && iframe.contentWindow)) {
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
 
-      exposeApiToWindow(iframe.contentWindow, {
-        clipboard: constructClipboardApi(['clipboard:read-all']),
-        fetch: constructFetchApi(['fetch:all']),
-        dialog: constructDialogApi(['dialog:all']),
-        event: constructEventApi(),
-        fs: constructFsApi(['fs:read', 'fs:write']),
-        log: constructLoggerApi(),
-        notification: constructNotificationApi(['notification:all']),
-        os: constructOsApi(['os:all']),
-        path: constructPathApi(),
-        shell: constructShellApi(['shell:execute', 'shell:open']),
-        updownload: constructUpdownloadApi(['updownload:download', 'updownload:upload']),
-        sysInfo: constructSystemInfoApi(['system-info:all']),
-        network: constructNetworkApi(['network:port', 'network:interface'])
-      })
+      exposeApiToWindow(iframe.contentWindow, serverAPI)
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
   })
