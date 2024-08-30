@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { clipboard } from 'tauri-api-adapter/iframe'
+  import { clipboard, fetch, api } from 'tauri-api-adapter/iframe'
 
   let cbText = ''
 
@@ -9,7 +9,11 @@
       console.log('text in iframe:', text)
       cbText = text
     })
+    fetch('https://ifconfig.co/country')
+      .then((res) => res.text())
+      .then(console.log)
   })
+
 
   function onClipboardRead() {
     clipboard.readText().then((text) => {

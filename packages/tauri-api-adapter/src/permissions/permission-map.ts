@@ -1,7 +1,7 @@
 import type {
   IClipboard,
   IDialog,
-  IFetch,
+  IFetchInternal,
   IFs,
   INotification,
   IOs,
@@ -105,7 +105,7 @@ export const OsPermissionMap: Record<keyof IOs, OsPermission[]> = {
   locale: ['os:all']
 }
 
-export const FetchPermissionMap: Record<keyof IFetch, FetchPermission[]> = {
+export const FetchPermissionMap: Record<keyof IFetchInternal, FetchPermission[]> = {
   rawFetch: ['fetch:all'],
   fetchCancel: ['fetch:all'],
   fetchSend: ['fetch:all'],

@@ -169,7 +169,7 @@ import type {
   usedMemory,
   usedSwap
 } from 'tauri-plugin-system-info-api'
-import type { FetchOptions, FetchSendResponse } from './fetch/types'
+import type { ClientOptions, FetchOptions, FetchSendResponse } from './fetch/types'
 
 export interface IUpdownload {
   download: typeof download
@@ -362,12 +362,14 @@ export interface IShell {
   Child: typeof Child
 }
 
-export interface IFetch {
+export interface IFetchInternal {
   rawFetch(options: FetchOptions): Promise<number>
   fetchCancel(rid: number): Promise<void>
   fetchSend(rid: number): Promise<FetchSendResponse>
   fetchReadBody(rid: number): Promise<ArrayBuffer | number[]>
 }
+
+export type IFetch = (input: URL | Request | string, init?: RequestInit & ClientOptions) => Promise<Response>
 
 export interface ISystemInfo {
   allSysInfo: typeof allSysInfo

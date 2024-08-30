@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import {
     constructClipboardApi,
+    constructFetchApi,
     //   clipboard,
     //   constructClipboardApi,
     //   constructSystemInfoApi,
@@ -23,7 +24,7 @@
   onMount(async () => {
     window.addEventListener('message', (event) => {
       if (event.data.type === 'RELEASE') {
-        console.count('comlink release, will re-expose APIs')
+        console.count('comlink released')
       }
     })
     // updownload
@@ -57,7 +58,8 @@
       // utils.isolateIframeFromTauri(iframe.contentWindow)
 
       exposeApiToWindow(iframe.contentWindow, {
-        clipboard: constructClipboardApi(['clipboard:read-all'])
+        clipboard: constructClipboardApi(['clipboard:read-all']),
+        fetch: constructFetchApi(['fetch:all'])
       })
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
