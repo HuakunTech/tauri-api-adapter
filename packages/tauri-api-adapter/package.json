@@ -1,6 +1,6 @@
 {
   "name": "tauri-api-adapter",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
@@ -62,5 +62,8 @@
     "build": "rimraf dist && rollup -c",
     "postbuild": "bun test --coverage && pnpm build:docs",
     "test": "bun test --coverage"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
