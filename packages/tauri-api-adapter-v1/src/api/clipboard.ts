@@ -21,6 +21,7 @@ import {
   writeText
 } from 'tauri-plugin-clipboard-api'
 import { getDefaultClientAPI, isMain } from '../client'
+import type { Context } from '../context'
 import { type IClipboard } from './client-types'
 import { type IClipboardServer } from './server-types'
 
@@ -47,29 +48,32 @@ export function constructAPI(api: Remote<IClipboardServer>): IClipboard {
     // startMonitor: api.clipboardStartMonitor
   }
 }
-const defaultClientAPI = getDefaultClientAPI<IClipboardServer>()
-export const comlinkClipboard = constructAPI(defaultClientAPI)
+// const defaultClientAPI = getDefaultClientAPI<IClipboardServer>()
+// export const comlinkClipboard = constructAPI(defaultClientAPI)
+export const comlinkClipboard = (context: Context) => constructAPI(context as Remote<IClipboardServer>)
 
-export const nativeClipboard: IClipboard = {
-  readText,
-  writeText,
-  readImageBase64,
-  readImageBinary,
-  writeImageBase64,
-  writeImageBinary,
-  readFiles,
-  writeFiles,
-  readRtf,
-  writeRtf,
-  readHtml,
-  writeHtml,
-  writeHtmlAndText,
-  hasText,
-  hasRTF,
-  hasHTML,
-  hasImage,
-  hasFiles
-  // startMonitorr
+export const nativeClipboard = (context: Context): IClipboard => {
+  return {
+    readText,
+    writeText,
+    readImageBase64,
+    readImageBinary,
+    writeImageBase64,
+    writeImageBinary,
+    readFiles,
+    writeFiles,
+    readRtf,
+    writeRtf,
+    readHtml,
+    writeHtml,
+    writeHtmlAndText,
+    hasText,
+    hasRTF,
+    hasHTML,
+    hasImage,
+    hasFiles
+    // startMonitorr
+  }
 }
 
 export const clipboard = isMain() ? nativeClipboard : comlinkClipboard

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { proxy } from '@huakunshen/comlink'
   import { onMount } from 'svelte'
   import {
     clipboard,
@@ -35,9 +36,9 @@
     //     console.log('Downloaded gitkraken.dmg')
     //   })
 
-    clipboard.readText().then((text) => {
-      console.log('native clipboard text in parent window:', text)
-    })
+    // clipboard.readText().then((text) => {
+    //   console.log('native clipboard text in parent window:', text)
+    // })
     const worker = new SampleWorker()
     // apply permission control
     const cbApi = constructClipboardApi(['clipboard:read-all', 'clipboard:write-all'])
@@ -52,7 +53,21 @@
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
-      exposeApiToWindow(iframe.contentWindow, api)
+      const api2 = {
+        a: {
+          add(a: number, b: number, callback: (result: string) => void) {
+            callback(`a.add(${a}, ${b}) = ${a + b}`)
+            return a + b
+          }
+        },
+        b: {
+          subtract(a: number, b: number, callback: (result: string) => void) {
+            callback(`b.subtract(${a}, ${b}) = ${a - b}`)
+            return a - b
+          }
+        }
+      }
+      exposeApiToWindow(iframe.contentWindow, api2)
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
   })
@@ -64,5 +79,11 @@
   <h2>isInIframe: {isInIframe}</h2>
   <h2>isInWorker: {isInWorker}</h2>
   <!-- <iframe bind:this={iframe} title="iframe" src="/iframe" frameborder="0" class="border border-red-500 w-full h-64"></iframe> -->
-  <iframe bind:this={iframe} title="iframe" src="http://localhost:4173" frameborder="0" class="border border-red-500 w-full h-96"></iframe>
+  <iframe
+    bind:this={iframe}
+    title="iframe"
+    src="http://localhost:4173"
+    frameborder="0"
+    class="border border-red-500 w-full h-96"
+  ></iframe>
 </div>

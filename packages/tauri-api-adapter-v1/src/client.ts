@@ -6,6 +6,18 @@ export const isInWorker = () => !hasWindow()
 export const isInIframe = () => hasWindow() && window !== window.parent
 export const isMain = () => !isInWorker() && !isInIframe() && window === window.parent
 
+export type Environment = 'main' | 'iframe' | 'worker'
+
+export function getEnvironment() {
+  if (isInIframe()) {
+    return 'iframe'
+  }
+  if (isInWorker()) {
+    return 'worker'
+  }
+  return 'main'
+}
+
 /**
  * `defaultClientAPI` is auto selected depending on the environment.
  */

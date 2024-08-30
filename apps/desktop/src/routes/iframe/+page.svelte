@@ -1,17 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import {
-    defaultServerAPI,
-    exposeApiToWindow,
-    exposeApiToWorker,
-    getWindowApiClient,
-    isInIframe,
-    isInWorker,
-    isMain,
-    path,
-    utils
-  } from 'tauri-api-adapter'
-  import { clipboard } from 'tauri-api-adapter/api/clipboard'
+  // import {
+  //   defaultServerAPI,
+  //   exposeApiToWindow,
+  //   exposeApiToWorker,
+  //   getWindowApiClient,
+  //   isInIframe,
+  //   isInWorker,
+  //   isMain,
+  //   path,
+  //   utils
+  // } from 'tauri-api-adapter'
+  // import { clipboard } from 'tauri-api-adapter/iframe'
+
   // import iframeApi from 'tauri-api-adapter/iframe'
   // import nativeApi from 'tauri-api-adapter/native'
 
@@ -50,9 +51,9 @@
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">iframe</h1>
-  <h2>isMain: {isMain()}</h2>
+  <!-- <h2>isMain: {isMain()}</h2>
   <h2>isInIframe: {isInIframe()}</h2>
-  <h2>isInWorker: {isInWorker()}</h2>
+  <h2>isInWorker: {isInWorker()}</h2> -->
   <button
     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     on:click={() => {
