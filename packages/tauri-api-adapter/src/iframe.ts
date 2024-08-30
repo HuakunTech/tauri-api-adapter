@@ -1,12 +1,12 @@
 import { windowEndpoint, wrap, type Remote } from 'comlink'
+import { constructEventAPI } from './api/client/event'
 import { constructFetchAPI } from './api/client/fetch'
 import { constructPathAPI } from './api/client/path'
 import { constructShellAPI } from './api/client/shell'
 import type {
   IClipboard,
   IDialog,
-  IEvent,
-  IFetch,
+  IEventInternal,
   IFetchInternal,
   IFs,
   ILogger,
@@ -14,7 +14,6 @@ import type {
   INotification,
   IOs,
   IPath,
-  IShell,
   IShellInternal,
   ISystemInfo,
   IUpdownload
@@ -25,7 +24,7 @@ type API = {
   clipboard: Remote<IClipboard>
   dialog: Remote<IDialog>
   fetch: Remote<IFetchInternal>
-  event: Remote<IEvent>
+  event: IEventInternal
   fs: Remote<IFs>
   log: Remote<ILogger>
   notification: Remote<INotification>
@@ -37,14 +36,9 @@ type API = {
   network: Remote<INetwork>
 }
 const _api = wrap(windowEndpoint(globalThis.parent)) as unknown as API
-// fetch API is special, we expose fetch function, while it's a wrapper of other IFetchInternal methods
 export const fetch = constructFetchAPI(_api.fetch)
 export const path = constructPathAPI(_api.path)
 export const shell = constructShellAPI(_api.shell)
 export const updownload = constructUpdownloadAPI(_api.updownload)
-export const { os, clipboard, dialog, event, fs, log, notification, sysInfo, network } = _api
-// export const api = {
-//   ..._api,
-//   fetch
-//   //   path
-// } as API & { fetch: IFetch }
+export const event = constructEventAPI(_api.event)
+export const { os, clipboard, dialog, fs, log, notification, sysInfo, network } = _api
