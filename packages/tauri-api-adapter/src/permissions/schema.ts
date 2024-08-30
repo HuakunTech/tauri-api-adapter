@@ -12,10 +12,10 @@ export const ClipboardPermissionSchema = union([
 ])
 export type ClipboardPermission = InferOutput<typeof ClipboardPermissionSchema>
 
-export const DialogPermissionSchema = literal('dialog:all')
+export const DialogPermissionSchema = union([literal('dialog:all')])
 export type DialogPermission = InferOutput<typeof DialogPermissionSchema>
 
-export const NotificationPermissionSchema = literal('notification:all')
+export const NotificationPermissionSchema = union([literal('notification:all')])
 export type NotificationPermission = InferOutput<typeof NotificationPermissionSchema>
 
 export const FsPermissionSchema = union([literal('fs:read'), literal('fs:write'), literal('fs:exists')])

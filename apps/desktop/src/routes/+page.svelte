@@ -2,7 +2,15 @@
   import { onMount } from 'svelte'
   import {
     constructClipboardApi,
+    constructDialogApi,
+    constructEventApi,
     constructFetchApi,
+    constructFsApi,
+    constructLoggerApi,
+    constructNetworkApi,
+    constructNotificationApi,
+    constructOsApi,
+    constructPathApi,
     //   clipboard,
     //   constructClipboardApi,
     //   constructSystemInfoApi,
@@ -15,6 +23,9 @@
     //   updownload,
     //   utils
     constructServerAPIWithPermissions,
+    constructShellApi,
+    constructSystemInfoApi,
+    constructUpdownloadApi,
     exposeApiToWindow
   } from 'tauri-api-adapter'
   import SampleWorker from '../lib/sample-worker?worker'
@@ -59,7 +70,18 @@
 
       exposeApiToWindow(iframe.contentWindow, {
         clipboard: constructClipboardApi(['clipboard:read-all']),
-        fetch: constructFetchApi(['fetch:all'])
+        fetch: constructFetchApi(['fetch:all']),
+        dialog: constructDialogApi(['dialog:all']),
+        event: constructEventApi(),
+        fs: constructFsApi(['fs:read', 'fs:write']),
+        log: constructLoggerApi(),
+        notification: constructNotificationApi(['notification:all']),
+        os: constructOsApi(['os:all']),
+        path: constructPathApi(),
+        shell: constructShellApi(['shell:execute', 'shell:open']),
+        updownload: constructUpdownloadApi(['updownload:download', 'updownload:upload']),
+        sysInfo: constructSystemInfoApi(['system-info:all']),
+        network: constructNetworkApi(['network:port', 'network:interface'])
       })
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }

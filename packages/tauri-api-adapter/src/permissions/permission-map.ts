@@ -77,6 +77,7 @@ export const NotificationPermissionMap: Record<keyof INotification, Notification
   onAction: ['notification:all']
 }
 
+
 export const FsPermissionMap: Record<keyof IFs, FsPermission[]> = {
   readDir: ['fs:read'],
   readFile: ['fs:read'],

@@ -8,7 +8,7 @@ import { type IFetch, type IFetchInternal } from '../types'
 import { type ClientOptions } from './types'
 
 // const defaultClientAPI = getDefaultClientAPI<IFetchServer>()
-export function constructFetchAPI(api: { fetch: Remote<IFetchInternal> }): IFetch {
+export function constructFetchAPI(api: Remote<IFetchInternal>): IFetch {
   /**
    * @example
    * ```ts
@@ -21,7 +21,7 @@ export function constructFetchAPI(api: { fetch: Remote<IFetchInternal> }): IFetc
    * @returns
    */
   return async function fetch(input: URL | Request | string, init?: RequestInit & ClientOptions): Promise<Response> {
-    console.log('fetch', input, init);
+    console.log('fetch', input, init)
     const maxRedirections = init?.maxRedirections
     const connectTimeout = init?.connectTimeout
     const proxy = init?.proxy
@@ -54,7 +54,7 @@ export function constructFetchAPI(api: { fetch: Remote<IFetchInternal> }): IFetc
     const req = new Request(input, init)
     const buffer = await req.arrayBuffer()
     const reqData = buffer.byteLength !== 0 ? Array.from(new Uint8Array(buffer)) : null
-    const rid = await api.fetch.rawFetch({
+    const rid = await api.rawFetch({
       clientConfig: {
         method: req.method,
         url: req.url,
@@ -66,12 +66,12 @@ export function constructFetchAPI(api: { fetch: Remote<IFetchInternal> }): IFetc
       }
     })
     signal?.addEventListener('abort', () => {
-      void api.fetch.fetchCancel(rid)
+      void api.fetchCancel(rid)
     })
 
-    const { status, statusText, url, headers: responseHeaders, rid: responseRid } = await api.fetch.fetchSend(rid)
+    const { status, statusText, url, headers: responseHeaders, rid: responseRid } = await api.fetchSend(rid)
 
-    const body = await api.fetch.fetchReadBody(responseRid)
+    const body = await api.fetchReadBody(responseRid)
 
     const res = new Response(
       body instanceof ArrayBuffer && body.byteLength !== 0
