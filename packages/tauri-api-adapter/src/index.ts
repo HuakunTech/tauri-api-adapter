@@ -14,7 +14,7 @@ export { constructNetworkApi } from './api/server/network'
 export { constructOsApi } from './api/server/os'
 export { constructServerAPIWithPermissions } from './api/server'
 
-export type { IShellServer, IEventServer } from './api/server/types'
+export type { IEventServer, IShellServer } from './api/server/types'
 export type {
   IUpdownload,
   ILogger,
@@ -27,6 +27,7 @@ export type {
   IFs,
   IOs,
   IShellInternal,
+  IFetch,
   IShell,
   IFetchInternal,
   ISystemInfo,

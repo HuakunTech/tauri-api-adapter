@@ -326,20 +326,6 @@ export interface IShellInternal {
     cb: (evt: CommandEvent<O>) => void
   ): Promise<number>
   open: typeof shellxOpen
-  makeBashScript: typeof makeBashScript
-  makePowershellScript: typeof makePowershellScript
-  makeAppleScript: typeof makeAppleScript
-  makePythonScript: typeof makePythonScript
-  makeZshScript: typeof makeZshScript
-  makeNodeScript: typeof makeNodeScript
-  executeBashScript: typeof executeBashScript
-  executePowershellScript: typeof executePowershellScript
-  executeAppleScript: typeof executeAppleScript
-  executePythonScript: typeof executePythonScript
-  executeZshScript: typeof executeZshScript
-  executeNodeScript: typeof executeNodeScript
-  hasCommand: typeof hasCommand
-  likelyOnWindows: typeof likelyOnWindows
 }
 
 export interface IShell {

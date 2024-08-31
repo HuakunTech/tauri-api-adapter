@@ -1,4 +1,4 @@
-import { windowEndpoint, wrap, type Remote } from 'comlink'
+import { windowEndpoint, wrap, type Remote } from '@huakunshen/comlink'
 import { constructEventAPI } from './api/client/event'
 import { constructFetchAPI } from './api/client/fetch'
 import { constructPathAPI } from './api/client/path'

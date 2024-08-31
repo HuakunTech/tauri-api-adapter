@@ -25,6 +25,20 @@ import { constructShellApi } from './shell'
 import { constructSystemInfoApi } from './system-info'
 import { constructUpdownloadApi } from './updownload'
 
+export { constructClipboardApi } from './clipboard'
+export { constructDialogApi } from './dialog'
+export { constructEventApi } from './event'
+export { constructFetchApi } from './fetch'
+export { constructFsApi } from './fs'
+export { constructLoggerApi } from './log'
+export { constructNetworkApi } from './network'
+export { constructNotificationApi } from './notification'
+export { constructOsApi } from './os'
+export { constructPathApi } from './path'
+export { constructShellApi } from './shell'
+export { constructSystemInfoApi } from './system-info'
+export { constructUpdownloadApi } from './updownload'
+
 /**
  * This function constructs the server API that will be exposed to the client.
  *

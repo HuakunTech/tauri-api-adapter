@@ -3,7 +3,7 @@
  * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
  */
 // import { getDefaultClientAPI } from '../../client'
-import type { Remote } from 'comlink'
+import type { Remote } from '@huakunshen/comlink'
 import { type IFetch, type IFetchInternal } from '../types'
 import { type ClientOptions } from './types'
 

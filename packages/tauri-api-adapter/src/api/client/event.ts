@@ -6,7 +6,7 @@ import {
   type Options,
   type UnlistenFn
 } from '@tauri-apps/api/event'
-import { proxy as comlinkProxy, type Remote } from 'comlink'
+import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import type { IEvent, IEventInternal } from './types'
 
 export function constructEventAPI(api: IEventInternal): IEvent {

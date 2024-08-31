@@ -17,19 +17,9 @@ import {
 import { ShellPermissionMap } from '../../permissions/permission-map'
 import type { ShellPermission } from '../../permissions/schema'
 import { checkPermission } from '../../permissions/util'
-import type { IShellInternal } from '../client/types'
+import type { IShellServer } from './types'
 
-export function constructShellApi(
-  permissions: ShellPermission[]
-): Omit<
-  IShellInternal,
-  | 'makeBashScript'
-  | 'makePowershellScript'
-  | 'makeAppleScript'
-  | 'makePythonScript'
-  | 'makeZshScript'
-  | 'makeNodeScript'
-> {
+export function constructShellApi(permissions: ShellPermission[]): IShellServer {
   return {
     execute: checkPermission<ShellPermission>(
       ShellPermissionMap.execute,

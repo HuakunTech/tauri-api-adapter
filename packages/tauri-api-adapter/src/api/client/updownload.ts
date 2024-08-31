@@ -1,6 +1,5 @@
 import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import { download, upload } from '@tauri-apps/plugin-upload'
-import { getDefaultClientAPI, isMain } from '../client'
 import type { IUpdownload } from './types'
 
 interface ProgressPayload {

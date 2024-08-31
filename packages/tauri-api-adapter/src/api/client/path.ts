@@ -1,5 +1,5 @@
 import { BaseDirectory } from '@tauri-apps/api/path'
-import type { Remote } from 'comlink'
+import type { Remote } from '@huakunshen/comlink'
 import type { IPath } from './types'
 
 export function constructPathAPI(api: Remote<IPath>): IPath {
