@@ -1,6 +1,6 @@
 {
   "name": "tauri-api-adapter",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
@@ -38,6 +38,7 @@
       "types": "./dist/permissions/index.d.ts"
     }
   },
+  "license": "MIT",
   "dependencies": {
     "@huakunshen/comlink": "^4.4.1",
     "@rollup/plugin-alias": "^5.1.0",

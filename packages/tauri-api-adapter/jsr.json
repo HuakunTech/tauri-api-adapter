@@ -1,0 +1,15 @@
+{
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
+  "name": "@hk/tauri-api-adapter",
+  "version": "0.3.4",
+  "exports": {
+    ".": "./src/index.ts",
+    "./worker": "./src/worker.ts",
+    "./native": "./src/native.ts",
+    "./iframe": "./src/iframe.ts",
+    "./server": "./src/api/server/index.ts",
+    "./client": "./src/api/client/index.ts",
+    "./permissions": "./src/permissions/index.ts"
+  },
+  "license": "MIT"
+}
