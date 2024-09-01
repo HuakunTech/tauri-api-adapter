@@ -188,17 +188,17 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       tauri-plugin-clipboard-api:
-        specifier: ^2.1.6
-        version: 2.1.6(valibot@0.40.0(typescript@5.5.3))
+        specifier: ^2.1.7
+        version: 2.1.7(typescript@5.5.3)
       tauri-plugin-network-api:
-        specifier: ^2.0.3-beta.1
-        version: 2.0.3-beta.1
+        specifier: ^2.0.3
+        version: 2.0.3(typescript@5.5.3)
       tauri-plugin-shellx-api:
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       tauri-plugin-system-info-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.4
+        version: 2.0.4(typescript@5.5.3)
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
@@ -1727,14 +1727,26 @@ packages:
     peerDependencies:
       valibot: ^0.36.0
 
+  tauri-plugin-clipboard-api@2.1.7:
+    resolution: {integrity: sha512-A5RZezNB01t2bzL7OvN5X8Mh0vri4qzqLD8LX5CEsXxjR6Gn+70dS9hJrXTWqayeAo1JlAI4kCww9qAC55WTYw==}
+
+  tauri-plugin-network-api@2.0.3:
+    resolution: {integrity: sha512-aj/o315shIntam+vxVlgRJE8NnKcf0d93CQBK6zOb3Ia4V4HM+kYdFxg8Ji5jM5Yay8nq1HEJaqNIOIv7R1NpA==}
+
   tauri-plugin-network-api@2.0.3-beta.1:
     resolution: {integrity: sha512-AKm3r31Hrt/txFSUB2A6covzJtS9D3UFS37vT1R4klY/hVai0YOb0dsMe68nnwFJ7T4RPm6xXAPKJBBp2zWlDQ==}
 
   tauri-plugin-shellx-api@2.0.8:
     resolution: {integrity: sha512-N2Xv5JOyEw8Mqh29rDmIUzZaluB8zhG18jcbTrXj0bTBNqWyeO0mAlVi2WPb6y4VCz7t4hpmoddwtXaPI1dc+g==}
 
+  tauri-plugin-shellx-api@2.0.9:
+    resolution: {integrity: sha512-0vjE7dPgKzNA2bzW5unc5rkpJCbL0brio8xCNKuZKrRe3V3BpXES52du1HyZgCyk3T+bYPDIQ+Ou8xnOuiu3VQ==}
+
   tauri-plugin-system-info-api@2.0.2:
     resolution: {integrity: sha512-YZ+LWpseipSQXb3rA/iZSgAqCnzP/vDeub9jCWNnDPBIUtHBtHZIfM4BWEVYlaJhvwmWTB0EoR50mltmcNZZ2g==}
+
+  tauri-plugin-system-info-api@2.0.4:
+    resolution: {integrity: sha512-wlB4Da1KkfBazP6BT8UDH0t3I504kX24HJC+YQNoWWgFZyKynoFFl82wXIJdSB//IwuKxCv08BCvvliPNh1EkQ==}
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -3458,10 +3470,19 @@ snapshots:
       '@tauri-apps/api': 2.0.0-beta.11
       valibot: 0.40.0(typescript@5.4.5)
 
-  tauri-plugin-clipboard-api@2.1.6(valibot@0.40.0(typescript@5.5.3)):
+  tauri-plugin-clipboard-api@2.1.7(typescript@5.5.3):
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
       valibot: 0.40.0(typescript@5.5.3)
+    transitivePeerDependencies:
+      - typescript
+
+  tauri-plugin-network-api@2.0.3(typescript@5.5.3):
+    dependencies:
+      '@tauri-apps/api': 2.0.0-rc.4
+      valibot: 0.40.0(typescript@5.5.3)
+    transitivePeerDependencies:
+      - typescript
 
   tauri-plugin-network-api@2.0.3-beta.1:
     dependencies:
@@ -3472,11 +3493,22 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.0
 
+  tauri-plugin-shellx-api@2.0.9:
+    dependencies:
+      '@tauri-apps/api': 2.0.0-rc.4
+
   tauri-plugin-system-info-api@2.0.2:
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.0
       valibot: 0.35.0
       zod: 3.23.8
+
+  tauri-plugin-system-info-api@2.0.4(typescript@5.5.3):
+    dependencies:
+      '@tauri-apps/api': 2.0.0-rc.4
+      valibot: 0.40.0(typescript@5.5.3)
+    transitivePeerDependencies:
+      - typescript
 
   thenify-all@1.6.0:
     dependencies:
