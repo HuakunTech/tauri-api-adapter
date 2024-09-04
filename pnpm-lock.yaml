@@ -197,8 +197,8 @@ importers:
         specifier: ^2.0.9
         version: 2.0.9
       tauri-plugin-system-info-api:
-        specifier: ^2.0.4
-        version: 2.0.4(typescript@5.5.3)
+        specifier: ^2.0.5
+        version: 2.0.6(typescript@5.5.3)
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
@@ -1740,8 +1740,8 @@ packages:
   tauri-plugin-system-info-api@2.0.2:
     resolution: {integrity: sha512-YZ+LWpseipSQXb3rA/iZSgAqCnzP/vDeub9jCWNnDPBIUtHBtHZIfM4BWEVYlaJhvwmWTB0EoR50mltmcNZZ2g==}
 
-  tauri-plugin-system-info-api@2.0.4:
-    resolution: {integrity: sha512-wlB4Da1KkfBazP6BT8UDH0t3I504kX24HJC+YQNoWWgFZyKynoFFl82wXIJdSB//IwuKxCv08BCvvliPNh1EkQ==}
+  tauri-plugin-system-info-api@2.0.6:
+    resolution: {integrity: sha512-7q8ieMK1bweMiLDbIWNNX3Dy7KNNwiB+WNEqKQutl0TKEGAb+efpy2SAzVLGu+i9tjDagCai8fZNuLLIpoQ9TA==}
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -3500,7 +3500,7 @@ snapshots:
       valibot: 0.35.0
       zod: 3.23.8
 
-  tauri-plugin-system-info-api@2.0.4(typescript@5.5.3):
+  tauri-plugin-system-info-api@2.0.6(typescript@5.5.3):
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.4
       valibot: 0.40.0(typescript@5.5.3)
