@@ -63,8 +63,8 @@ importers:
         specifier: ^2.0.3-beta.1
         version: 2.0.3-beta.1
       tauri-plugin-shellx-api:
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.10
+        version: 2.0.10
       tauri-plugin-system-info-api:
         specifier: ^2.0.2
         version: 2.0.2
@@ -194,8 +194,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3(typescript@5.5.3)
       tauri-plugin-shellx-api:
-        specifier: ^2.0.9
-        version: 2.0.9
+        specifier: ^2.0.10
+        version: 2.0.10
       tauri-plugin-system-info-api:
         specifier: ^2.0.5
         version: 2.0.6(typescript@5.5.3)
@@ -1731,11 +1731,8 @@ packages:
   tauri-plugin-network-api@2.0.3-beta.1:
     resolution: {integrity: sha512-AKm3r31Hrt/txFSUB2A6covzJtS9D3UFS37vT1R4klY/hVai0YOb0dsMe68nnwFJ7T4RPm6xXAPKJBBp2zWlDQ==}
 
-  tauri-plugin-shellx-api@2.0.8:
-    resolution: {integrity: sha512-N2Xv5JOyEw8Mqh29rDmIUzZaluB8zhG18jcbTrXj0bTBNqWyeO0mAlVi2WPb6y4VCz7t4hpmoddwtXaPI1dc+g==}
-
-  tauri-plugin-shellx-api@2.0.9:
-    resolution: {integrity: sha512-0vjE7dPgKzNA2bzW5unc5rkpJCbL0brio8xCNKuZKrRe3V3BpXES52du1HyZgCyk3T+bYPDIQ+Ou8xnOuiu3VQ==}
+  tauri-plugin-shellx-api@2.0.10:
+    resolution: {integrity: sha512-rRu91cqzU3ylCP9r0uA5diSj/3ZFFwm8Jc1Ai5Fn3bFVbo7XAb80EEgqYwn9JzDttOq9WbxaCFGjhzblXYENiw==}
 
   tauri-plugin-system-info-api@2.0.2:
     resolution: {integrity: sha512-YZ+LWpseipSQXb3rA/iZSgAqCnzP/vDeub9jCWNnDPBIUtHBtHZIfM4BWEVYlaJhvwmWTB0EoR50mltmcNZZ2g==}
@@ -3486,11 +3483,7 @@ snapshots:
       '@tauri-apps/api': 2.0.0-rc.0
       valibot: 0.35.0
 
-  tauri-plugin-shellx-api@2.0.8:
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.0
-
-  tauri-plugin-shellx-api@2.0.9:
+  tauri-plugin-shellx-api@2.0.10:
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.4
 

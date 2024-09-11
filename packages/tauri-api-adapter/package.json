@@ -1,6 +1,6 @@
 {
   "name": "tauri-api-adapter",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "type": "module",
   "exports": {
     ".": {
@@ -58,7 +58,7 @@
     "tsc-alias": "^1.8.10",
     "tauri-plugin-clipboard-api": "^2.1.8",
     "tauri-plugin-network-api": "^2.0.3",
-    "tauri-plugin-shellx-api": "^2.0.9",
+    "tauri-plugin-shellx-api": "^2.0.10",
     "tauri-plugin-system-info-api": "^2.0.5",
     "typescript": "^5.0.0",
     "valibot": "^0.40.0"
