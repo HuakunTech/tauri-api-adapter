@@ -22,7 +22,15 @@ export function constructFetchApi(permissions: FetchPermission[]): IFetchInterna
     fetchReadBody: checkPermission<FetchPermission>(
       FetchPermissionMap.fetchReadBody,
       permissions
-    )((rid: number) => invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid }))
+    )((rid: number) =>
+      invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid }).then((body) => {
+        if (body instanceof ArrayBuffer) {
+          // convert ArrayBuffer to number[], kkrpc channel uses JSON.stringify, which doesn't work with ArrayBuffer
+          return Array.from(new Uint8Array(body))
+        }
+        return body
+      })
+    )
   }
 }
 export const defaultFetchApi = constructFetchApi(['fetch:all'])
