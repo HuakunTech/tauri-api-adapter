@@ -25,7 +25,9 @@
     })
     fetch('https://ifconfig.co/country')
       .then((res) => res.text())
-      .then(console.log)
+      .then((data) => {
+        console.log('In Iframe Extension fetch ip country: ', data)
+      })
     // console.log(await os.platform())
     // console.log(await path.desktopDir())
     // console.log(path.BaseDirectory)

@@ -11,17 +11,17 @@ edition = "2021"
 tauri-build = { version = "2.0.0-rc", features = ["isolation"] }
 
 [dependencies]
-tauri = { version = "2.0.0-rc", features = ["isolation", "devtools"] }
+tauri = { version = "2.1.1", features = ["isolation", "devtools"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tauri-plugin-clipboard = "2.1.8"
-tauri-plugin-shellx = "2.0.10"
-tauri-plugin-fs = "2.0.0-rc"
-tauri-plugin-dialog = "2.0.0-rc"
-tauri-plugin-notification = "2.0.0-rc"
-tauri-plugin-os = "2.0.0-rc"
-tauri-plugin-http = "2.0.0-rc"
-tauri-plugin-network = "2.0.2"
-tauri-plugin-system-info = "2.0.2"
-tauri-plugin-log = "2.0.0-rc"
-tauri-plugin-upload = "2.0.0-rc"
+tauri-plugin-clipboard = "2.1.11"
+tauri-plugin-shellx = "2.0.12"
+tauri-plugin-fs = "2.0.3"
+tauri-plugin-dialog = "2.0.3"
+tauri-plugin-notification = "2.0.1"
+tauri-plugin-os = "2.0.1"
+tauri-plugin-http = "2.0.3"
+tauri-plugin-network = "2.0.4"
+tauri-plugin-system-info = "2.0.8"
+tauri-plugin-log = "2.0.2"
+tauri-plugin-upload = "2.1.0"
