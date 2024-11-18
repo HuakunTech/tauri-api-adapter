@@ -4,6 +4,7 @@ import type { IUpdownload } from './types'
 interface ProgressPayload {
   progress: number
   total: number
+  transferSpeed: number
 }
 type ProgressHandler = (progress: ProgressPayload) => void
 
