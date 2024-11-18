@@ -1,6 +1,6 @@
 {
   "name": "tauri-api-adapter",
-  "version": "0.3.8",
+  "version": "0.3.10",
   "type": "module",
   "exports": {
     ".": {
@@ -40,7 +40,6 @@
     "typedoc": "^0.26.6"
   },
   "dependencies": {
-    "@huakunshen/comlink": "^4.4.1",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@tauri-apps/api": "^2.0.0-rc.4",
@@ -52,14 +51,15 @@
     "@tauri-apps/plugin-os": "~2.0.0-rc.0",
     "@tauri-apps/plugin-shell": "~2.0.0-rc.0",
     "@tauri-apps/plugin-upload": "~2.0.0-rc.0",
+    "kkrpc": "^0.0.6",
     "rimraf": "^5.0.7",
     "rollup": "^4.18.0",
     "shx": "^0.3.4",
-    "tsc-alias": "^1.8.10",
     "tauri-plugin-clipboard-api": "^2.1.8",
     "tauri-plugin-network-api": "^2.0.3",
     "tauri-plugin-shellx-api": "^2.0.10",
     "tauri-plugin-system-info-api": "^2.0.5",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.0.0",
     "valibot": "^0.40.0"
   },

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { IframeParentIO, RPCChannel, WorkerParentIO, type DestroyableIoInterface } from 'kkrpc/browser'
   import { onMount } from 'svelte'
   import {
     constructClipboardApi,
@@ -25,9 +26,9 @@
     constructServerAPIWithPermissions,
     constructShellApi,
     constructSystemInfoApi,
-    constructUpdownloadApi,
-    exposeApiToWindow,
-    exposeApiToWorker
+    constructUpdownloadApi
+    // exposeApiToWindow,
+    // exposeApiToWorker
   } from 'tauri-api-adapter'
   import type { AllPermission } from 'tauri-api-adapter/permissions'
   import SampleWorker from '../lib/sample-worker?worker'
@@ -35,11 +36,6 @@
   let iframe: HTMLIFrameElement
 
   onMount(async () => {
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'RELEASE') {
-        console.count('comlink released')
-      }
-    })
     // updownload
     //   .download(
     //     'https://www.notion.so/desktop/mac-universal/download',
@@ -81,13 +77,19 @@
       'network:interface'
     ]
     const serverAPI = constructServerAPIWithPermissions(permissions)
-    exposeApiToWorker(worker, serverAPI)
+    const io = new WorkerParentIO(worker)
+    const rpc = new RPCChannel(io, {
+      expose: serverAPI
+    })
+    // exposeApiToWorker(worker, serverAPI)
     if (!(iframe && iframe.contentWindow)) {
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
 
-      exposeApiToWindow(iframe.contentWindow, serverAPI)
+      // exposeApiToWindow(iframe.contentWindow, serverAPI)
+      const io = new IframeParentIO(iframe.contentWindow)
+      const rpc = new RPCChannel(io, { expose: serverAPI })
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)
     }
   })
