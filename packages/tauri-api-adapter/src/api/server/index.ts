@@ -46,9 +46,11 @@ export { constructUpdownloadApi } from './updownload'
  *
  * @example
  * ```ts
- * import { exposeApiToWindow, constructServerAPIWithPermissions } from 'tauri-api-adapter'
+ * import { IframeParentIO, RPCChannel } from 'kkrpc/browser'
+ * import { constructServerAPIWithPermissions } from 'tauri-api-adapter'
  * const permissions = ['fetch:all']
- * exposeApiToWindow(iframe.contentWindow, constructServerAPIWithPermissions(permissions))
+ * const io = new IframeParentIO(iframe.contentWindow)
+ * const rpc = new RPCChannel(io, { expose: constructServerAPIWithPermissions(permissions) })
  * ```
  * @param permissions
  * @returns

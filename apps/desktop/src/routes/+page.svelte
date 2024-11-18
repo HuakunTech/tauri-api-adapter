@@ -16,8 +16,6 @@
     //   constructClipboardApi,
     //   constructSystemInfoApi,
     //   defaultServerAPI,
-    //   exposeApiToWindow,
-    //   exposeApiToWorker,
     //   isInIframe,
     //   isInWorker,
     //   isMain,
@@ -27,8 +25,6 @@
     constructShellApi,
     constructSystemInfoApi,
     constructUpdownloadApi
-    // exposeApiToWindow,
-    // exposeApiToWorker
   } from 'tauri-api-adapter'
   import type { AllPermission } from 'tauri-api-adapter/permissions'
   import SampleWorker from '../lib/sample-worker?worker'
@@ -81,13 +77,10 @@
     const rpc = new RPCChannel(io, {
       expose: serverAPI
     })
-    // exposeApiToWorker(worker, serverAPI)
     if (!(iframe && iframe.contentWindow)) {
       return
     } else {
       // utils.isolateIframeFromTauri(iframe.contentWindow)
-
-      // exposeApiToWindow(iframe.contentWindow, serverAPI)
       const io = new IframeParentIO(iframe.contentWindow)
       const rpc = new RPCChannel(io, { expose: serverAPI })
       // utils.hackIframeToUseParentWindow(iframe.contentWindow)

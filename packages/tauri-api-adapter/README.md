@@ -25,7 +25,7 @@ Within Regular Webview (have access to Tauri APIs)
 I call it server because it serves the API, execute the requests and return the result.
 
 ```ts
-import { constructServerAPIWithPermissions, exposeApiToWindow, exposeApiToWorker } from 'tauri-api-adapter'
+import { IframeParentIO, RPCChannel, WorkerParentIO } from 'kkrpc/browser'
 import type { AllPermission } from 'tauri-api-adapter/permissions'
 
 const permissions: AllPermission[] = [
@@ -46,11 +46,15 @@ const permissions: AllPermission[] = [
 ]
 const serverAPI = constructServerAPIWithPermissions(permissions)
 
-exposeApiToWindow(iframe.contentWindow, serverAPI)
+const io = new IframeParentIO(iframe.contentWindow)
+const rpc = new RPCChannel(io, { expose: serverAPI })
 
 // Or expose to worker
 const worker = new Worker('worker.js')
-exposeApiToWorker(worker, serverAPI)
+const io = new WorkerParentIO(worker)
+const rpc = new RPCChannel(io, {
+  expose: serverAPI
+})
 ```
 
 ### Client
