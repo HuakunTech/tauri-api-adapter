@@ -1,4 +1,3 @@
-import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import {
   Child as ShellxChild,
   Command as ShellxCommand,
@@ -51,27 +50,22 @@ export function constructShellAPI(api: IShellInternal): IShell {
       }
 
       return api
-        .rawSpawn<O>(
-          this.program,
-          args,
-          this.options,
-          comlinkProxy((evt) => {
-            switch (evt.event) {
-              case 'Error':
-                this.emit('error', evt.payload)
-                break
-              case 'Terminated':
-                this.emit('close', evt.payload)
-                break
-              case 'Stdout':
-                this.stdout.emit('data', evt.payload)
-                break
-              case 'Stderr':
-                this.stderr.emit('data', evt.payload)
-                break
-            }
-          })
-        )
+        .rawSpawn<O>(this.program, args, this.options, (evt) => {
+          switch (evt.event) {
+            case 'Error':
+              this.emit('error', evt.payload)
+              break
+            case 'Terminated':
+              this.emit('close', evt.payload)
+              break
+            case 'Stdout':
+              this.stdout.emit('data', evt.payload)
+              break
+            case 'Stderr':
+              this.stderr.emit('data', evt.payload)
+              break
+          }
+        })
         .then((pid) => new Child(pid))
     }
 

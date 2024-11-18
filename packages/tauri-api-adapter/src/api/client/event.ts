@@ -6,13 +6,12 @@ import {
   type Options,
   type UnlistenFn
 } from '@tauri-apps/api/event'
-import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import type { IEvent, IEventInternal } from './types'
 
 export function constructEventAPI(api: IEventInternal): IEvent {
   const _event = {
     rawListen: <T>(event: EventName, target: EventTarget, handler: (event: Event<T>) => void): Promise<number> =>
-      api.rawListen(event, target, comlinkProxy(handler)),
+      api.rawListen(event, target, handler),
     rawUnlisten: (event: string, eventId: number): Promise<void> => api.rawUnlisten(event, eventId),
     emit: (event: string, payload?: unknown): Promise<void> => api.emit(event, payload),
     emitTo: (target: EventTarget | string, event: string, payload?: unknown): Promise<void> =>

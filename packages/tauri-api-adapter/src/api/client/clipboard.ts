@@ -1,4 +1,3 @@
-import type { Remote } from '@huakunshen/comlink'
 import {
   hasFiles,
   hasHTML,

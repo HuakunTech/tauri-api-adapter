@@ -1,4 +1,4 @@
-import { windowEndpoint, wrap, type Remote } from '@huakunshen/comlink'
+import { IframeChildIO, RPCChannel, type DestroyableIoInterface } from 'kkrpc/browser'
 import { constructEventAPI } from './api/client/event'
 import { constructFetchAPI } from './api/client/fetch'
 import { constructPathAPI } from './api/client/path'
@@ -21,21 +21,25 @@ import type {
 import { constructUpdownloadAPI } from './api/client/updownload'
 
 type API = {
-  clipboard: Remote<IClipboard>
-  dialog: Remote<IDialog>
-  fetch: Remote<IFetchInternal>
+  clipboard: IClipboard
+  dialog: IDialog
+  fetch: IFetchInternal
   event: IEventInternal
-  fs: Remote<IFs>
-  log: Remote<ILogger>
-  notification: Remote<INotification>
-  os: Remote<IOs>
-  path: Remote<IPath>
+  fs: IFs
+  log: ILogger
+  notification: INotification
+  os: IOs
+  path: IPath
   shell: IShellInternal
   updownload: IUpdownload
-  sysInfo: Remote<ISystemInfo>
-  network: Remote<INetwork>
+  sysInfo: ISystemInfo
+  network: INetwork
 }
-const _api = wrap(windowEndpoint(globalThis.parent)) as unknown as API
+const io = new IframeChildIO()
+const rpc = new RPCChannel<{}, API, DestroyableIoInterface>(io, {})
+const _api = rpc.getAPI()
+
+// const _api = wrap(windowEndpoint(globalThis.parent)) as unknown as API
 export const fetch = constructFetchAPI(_api.fetch)
 export const path = constructPathAPI(_api.path)
 export const shell = constructShellAPI(_api.shell)
