@@ -15,8 +15,8 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       turbo:
-        specifier: ^2.1.1
-        version: 2.1.1
+        specifier: ^2.3.1
+        version: 2.3.1
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -24,11 +24,11 @@ importers:
   apps/desktop:
     dependencies:
       '@tauri-apps/api':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.1.1
+        version: 2.1.1
       '@tauri-apps/plugin-dialog':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.0.1
+        version: 2.0.1
       '@tauri-apps/plugin-fs':
         specifier: ~2.0.0-rc.0
         version: 2.0.0-rc.0
@@ -36,42 +36,42 @@ importers:
         specifier: ~2.0.0-rc.0
         version: 2.0.0-rc.0
       '@tauri-apps/plugin-log':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.0.0
+        version: 2.0.0
       '@tauri-apps/plugin-notification':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.0.0
+        version: 2.0.0
       '@tauri-apps/plugin-os':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.0.0
+        version: 2.0.0
       '@tauri-apps/plugin-shell':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.0.1
+        version: 2.0.1
       '@tauri-apps/plugin-upload':
-        specifier: ~2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: ~2.1.0
+        version: 2.1.0
       kkrpc:
-        specifier: ^0.0.7
-        version: 0.0.7(typescript@5.4.5)
+        specifier: ^0.0.12
+        version: 0.0.12(typescript@5.4.5)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
       tauri-plugin-clipboard-api:
-        specifier: ^2.1.8
-        version: 2.1.8(typescript@5.4.5)
+        specifier: ^2.1.11
+        version: 2.1.11(typescript@5.4.5)
       tauri-plugin-network-api:
-        specifier: ^2.0.3-beta.1
-        version: 2.0.3-beta.1
+        specifier: ^2.0.4
+        version: 2.0.4(typescript@5.4.5)
       tauri-plugin-shellx-api:
-        specifier: ^2.0.10
-        version: 2.0.10
+        specifier: ^2.0.14
+        version: 2.0.14
       tauri-plugin-system-info-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.8
+        version: 2.0.8(typescript@5.4.5)
     devDependencies:
       '@sveltejs/adapter-static':
-        specifier: ^3.0.1
-        version: 3.0.2(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))
+        specifier: ^3.0.6
+        version: 3.0.6(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))
       '@sveltejs/kit':
         specifier: ^2.0.0
         version: 2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14))
@@ -109,8 +109,8 @@ importers:
   apps/extension:
     dependencies:
       kkrpc:
-        specifier: ^0.0.7
-        version: 0.0.7(typescript@5.5.3)
+        specifier: ^0.0.12
+        version: 0.0.12(typescript@5.5.3)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
@@ -170,8 +170,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       kkrpc:
-        specifier: ^0.0.7
-        version: 0.0.7(typescript@5.6.3)
+        specifier: ^0.0.12
+        version: 0.0.12(typescript@5.6.3)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -197,8 +197,8 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       valibot:
-        specifier: ^0.40.0
-        version: 0.40.0(typescript@5.6.3)
+        specifier: ^1.0.0-beta.8
+        version: 1.0.0-beta.8(typescript@5.6.3)
     devDependencies:
       '@rollup/plugin-alias':
         specifier: ^5.1.1
@@ -665,6 +665,11 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
 
+  '@sveltejs/adapter-static@3.0.6':
+    resolution: {integrity: sha512-MGJcesnJWj7FxDcB/GbrdYD3q24Uk0PIL4QIX149ku+hlJuj//nxUbb0HxUTpjkecWfHjVveSUnUaQWnPRXlpg==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.0.0
+
   '@sveltejs/kit@2.5.17':
     resolution: {integrity: sha512-wiADwq7VreR3ctOyxilAZOfPz3Jiy2IIp2C8gfafhTdQaVuGIHllfqQm8dXZKADymKr3uShxzgLZFT+a+CM4kA==}
     engines: {node: '>=18.13'}
@@ -688,17 +693,6 @@ packages:
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
       vite: ^5.0.0
-
-  '@tauri-apps/api@2.0.0-beta.11':
-    resolution: {integrity: sha512-wJRY+fBUm3KpqZDHMIz5HRv+1vlnvRJ/dFxiyY3NlINTx2qXqDou5qWYcP1CuZXsd39InWVPV3FAZvno/kGCkA==}
-    engines: {node: '>= 18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
-
-  '@tauri-apps/api@2.0.0-rc.0':
-    resolution: {integrity: sha512-v454Qs3REHc3Za59U+/eSmBsdmF+3NE5+76+lFDaitVqN4ZglDHENDaMARYKGJVZuxiSkzyqG0SeG7lLQjVkPA==}
-    engines: {node: '>= 18.18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
-
-  '@tauri-apps/api@2.0.0-rc.4':
-    resolution: {integrity: sha512-UNiIhhKG08j4ooss2oEEVexffmWkgkYlC2M3GcX3VPtNsqFgVNL8Mcw/4Y7rO9M9S+ffAMnLOF5ypzyuyb8tyg==}
 
   '@tauri-apps/api@2.0.1':
     resolution: {integrity: sha512-eoQWT+Tq1qSwQpHV+nw1eNYe5B/nm1PoRjQCRiEOS12I1b+X4PUcREfXVX8dPcBT6GrzWGDtaecY0+1p0Rfqlw==}
@@ -771,9 +765,6 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@tauri-apps/plugin-dialog@2.0.0-rc.0':
-    resolution: {integrity: sha512-DPOXYe8SQ6Radk/67EOdaomlxL7oF99JO/ZUaPp1IBEs3Wro7lhlz63CfdKIBfKIZTLJLzP1R7/EiPL/GTA3Bg==}
-
   '@tauri-apps/plugin-dialog@2.0.1':
     resolution: {integrity: sha512-fnUrNr6EfvTqdls/ufusU7h6UbNFzLKvHk/zTuOiBq01R3dTODqwctZlzakdbfSp/7pNwTKvgKTAgl/NAP/Z0Q==}
 
@@ -792,29 +783,14 @@ packages:
   '@tauri-apps/plugin-log@2.0.0':
     resolution: {integrity: sha512-C+NII9vzswqnOQE8k7oRtnaw0z5TZsMmnirRhXkCKDEhQQH9841Us/PC1WHtGiAaJ8za1A1JB2xXndEq/47X/w==}
 
-  '@tauri-apps/plugin-log@2.0.0-rc.0':
-    resolution: {integrity: sha512-ztKfzUcq03dtr08vBu+xcwIEPusP6mCpuLAt6kpXEwG+HvYsC8e1/KFFokn3xvfwD+oBJ3UTL1h4kdM30GAqGw==}
-
   '@tauri-apps/plugin-notification@2.0.0':
     resolution: {integrity: sha512-6qEDYJS7mgXZWLXA0EFL+DVCJh8sJlzSoyw6B50pxhLPVFjc5Vr5DVzl5W3mUHaYhod5wsC984eQnlCCGqxYDA==}
-
-  '@tauri-apps/plugin-notification@2.0.0-rc.0':
-    resolution: {integrity: sha512-0qsT/kvxQ6Ky4g6eQ4SUiHXzM4szTVc6thjz9vnGPYaApLoZrCJ9GdG+vEqeB+cT2dvE+wmxUFETh3ZXYVw8UA==}
 
   '@tauri-apps/plugin-os@2.0.0':
     resolution: {integrity: sha512-M7hG/nNyQYTJxVG/UhTKhp9mpXriwWzrs9mqDreB8mIgqA3ek5nHLdwRZJWhkKjZrnDT4v9CpA9BhYeplTlAiA==}
 
-  '@tauri-apps/plugin-os@2.0.0-rc.0':
-    resolution: {integrity: sha512-OWAl8mooKnGykSD4iog8WRqcnOSx0gGmTJBlEExHdFeIuOHg0Ezvd+WiVLhT9LBg7go3ibNWRWpe/ZG7YEp4Vw==}
-
-  '@tauri-apps/plugin-shell@2.0.0-rc.0':
-    resolution: {integrity: sha512-bhUcQcrqZoK8H1DFXapr5r1Z75oh6Kd5Tltz97XpZFLREEqp+KhN2Fvyh8r/fKAyenYsTYUIsDsyGdjdueuF9g==}
-
   '@tauri-apps/plugin-shell@2.0.1':
     resolution: {integrity: sha512-akU1b77sw3qHiynrK0s930y8zKmcdrSD60htjH+mFZqv5WaakZA/XxHR3/sF1nNv9Mgmt/Shls37HwnOr00aSw==}
-
-  '@tauri-apps/plugin-upload@2.0.0-rc.0':
-    resolution: {integrity: sha512-wlRzL4syShxMlvuM7YfeG3Mcj4Ii2UkuQ8HaBh3YnBl0bPoKuVOGP/PaJ3FF84z1pgMfA5Pb1eSG34hlMCYLsw==}
 
   '@tauri-apps/plugin-upload@2.1.0':
     resolution: {integrity: sha512-nSIyxp2sAHsj+1RMs3obTP2lC1rzeWcMxHtzLYjnXLnJMXvWlFG0T7jEZ9Sg/OErvQxPVIvDW+12evuFKa5t8Q==}
@@ -1291,10 +1267,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  kkrpc@0.0.7:
-    resolution: {integrity: sha512-fjiXFHouKiZWLw7SGlOFuObPGxadGns15cvakNTFWa1MwgvKwm4LlUpjuDCibpxYnRRCbjeqWuBnJygzRbRnQQ==}
+  kkrpc@0.0.12:
+    resolution: {integrity: sha512-PBk4AhGfkesIdAwmIoj7dHHIp7qN97XT4yr5Rl7h2WL79gxWQVgZRJYLt7Gb17GoLDh991rnL85mhCoPG5VC/Q==}
     peerDependencies:
-      typescript: ^5.0.0
+      typescript: ^5.6.3
 
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -1790,23 +1766,11 @@ packages:
   tauri-plugin-clipboard-api@2.1.11:
     resolution: {integrity: sha512-VNkGaVPPfRoHg7/rJBcWqsvLvn4/kNEOOlzqwyI9Qdf6g54B3mc31GLZdnq/HWtX0vZskw3J8b/EF9YkASDCBQ==}
 
-  tauri-plugin-clipboard-api@2.1.8:
-    resolution: {integrity: sha512-oXqiEc03Xxv6eHrlvG+0JUlKaEQLZO3IaczEAfEJH0jiCXlw+P6VsV0juYiT6S/gPfm/gdTH0bLKwB3qOv2ePA==}
-
-  tauri-plugin-network-api@2.0.3-beta.1:
-    resolution: {integrity: sha512-AKm3r31Hrt/txFSUB2A6covzJtS9D3UFS37vT1R4klY/hVai0YOb0dsMe68nnwFJ7T4RPm6xXAPKJBBp2zWlDQ==}
-
   tauri-plugin-network-api@2.0.4:
     resolution: {integrity: sha512-CJWF2g+uQifcIlE/AXUnezVjjbyY0FDBxoz4P6BmjNRR/qubpNMfdUnKLqdjX98o5MIXGW+UnyZTfbJo998dFw==}
 
-  tauri-plugin-shellx-api@2.0.10:
-    resolution: {integrity: sha512-rRu91cqzU3ylCP9r0uA5diSj/3ZFFwm8Jc1Ai5Fn3bFVbo7XAb80EEgqYwn9JzDttOq9WbxaCFGjhzblXYENiw==}
-
   tauri-plugin-shellx-api@2.0.14:
     resolution: {integrity: sha512-MdSYD2KDw63b7yEIa9Q2GXnbidL5Tk+s92BJX0XvYfHrv2l1fYE2vdRWGnyhvCWmUavyCeiOle5uMxM6QLOb2Q==}
-
-  tauri-plugin-system-info-api@2.0.2:
-    resolution: {integrity: sha512-YZ+LWpseipSQXb3rA/iZSgAqCnzP/vDeub9jCWNnDPBIUtHBtHZIfM4BWEVYlaJhvwmWTB0EoR50mltmcNZZ2g==}
 
   tauri-plugin-system-info-api@2.0.8:
     resolution: {integrity: sha512-EFdLXNGp6Zu9SNsZCkU+55A8027OnrVw/TQrd0oJHgfZzs4qvm1iMmSvyid4MLftt33iZDhjCzxYijaaOxeKSg==}
@@ -1863,38 +1827,38 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  turbo-darwin-64@2.1.1:
-    resolution: {integrity: sha512-aYNuJpZlCoi0Htd79fl/2DywpewGKijdXeOfg9KzNuPVKzSMYlAXuAlNGh0MKjiOcyqxQGL7Mq9LFhwA0VpDpQ==}
+  turbo-darwin-64@2.3.1:
+    resolution: {integrity: sha512-tjHfjW/Gs8Q9IO+9gPdIsSStZ8I09QYDRT/SyhFTPLnc7O2ZlxHPBVFfjUkHUjanHNYO8CpRGt+zdp1PaMCruw==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@2.1.1:
-    resolution: {integrity: sha512-tifJKD8yHY48rHXPMcM8o1jI/Jk2KCaXiNjTKvvy9Zsim61BZksNVLelIbrRoCGwAN6PUBZO2lGU5iL/TQJ5Pw==}
+  turbo-darwin-arm64@2.3.1:
+    resolution: {integrity: sha512-At1WStnxCfrBQ4M2g6ynre8WsusGwA11okhVolBxyFUemYozDTtbZwelr+IqNggjT251vviokxOkcFzzogbiFw==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.1.1:
-    resolution: {integrity: sha512-Js6d/bSQe9DuV9c7ITXYpsU/ADzFHABdz1UIHa7Oqjj9VOEbFeA9WpAn0c+mdJrVD+IXJFbbDZUjN7VYssmtcg==}
+  turbo-linux-64@2.3.1:
+    resolution: {integrity: sha512-COwEev7s9fsxLM2eoRCyRLPj+BXvZjFIS+GxzdAubYhoSoZit8B8QGKczyDl6448xhuFEWKrpHhcR9aBuwB4ag==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@2.1.1:
-    resolution: {integrity: sha512-LidzTCq0yvQ+N8w8Qub9FmhQ/mmEIeoqFi7DSupekEV2EjvE9jw/zYc9Pk67X+g7dHVfgOnvVzmrjChdxpFePw==}
+  turbo-linux-arm64@2.3.1:
+    resolution: {integrity: sha512-AP0uE15Rhxza2Jl+Q3gxdXRA92IIeFAYaufz6CMcZuGy9yZsBlLt9w6T47H6g7XQPzWuw8pzfjM1omcTKkkDpQ==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@2.1.1:
-    resolution: {integrity: sha512-GKc9ZywKwy4xLDhwXd6H07yzl0TB52HjXMrFLyHGhCVnf/w0oq4sLJv2sjbvuarPjsyx4xnCBJ3m3oyL2XmFtA==}
+  turbo-windows-64@2.3.1:
+    resolution: {integrity: sha512-HDSneq0dNZYZch74c2eygq+OiJE/JYDs7OsGM0yRYVj336383xkUnxz6W2I7qiyMCQXzp4UVUDZXvZhUYcX3BA==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@2.1.1:
-    resolution: {integrity: sha512-oFKkMj11KKUv3xSK9/fhAEQTxLUp1Ol1EOktwc32+SFtEU0uls7kosAz0b+qe8k3pJGEMFdDPdqoEjyJidbxtQ==}
+  turbo-windows-arm64@2.3.1:
+    resolution: {integrity: sha512-7/2/sJZiquwoT/jWBCfV0qKq4NarsJPmDRjMcR9dDMIwCYsGM8ljomkDRTCtkNeFcUvYw54MiRWHehWgbcRPsw==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@2.1.1:
-    resolution: {integrity: sha512-u9gUDkmR9dFS8b5kAYqIETK4OnzsS4l2ragJ0+soSMHh6VEeNHjTfSjk1tKxCqLyziCrPogadxP680J+v6yGHw==}
+  turbo@2.3.1:
+    resolution: {integrity: sha512-vHZe/e6k1HZVKiMQPQ1BWFn53vjVQDFKdkjUq/pBKlRWi1gw9LQO6ntH4qZCcHY1rH6TXgsRmexXdgWl96YvVQ==}
     hasBin: true
 
   typedoc@0.26.11:
@@ -1952,11 +1916,16 @@ packages:
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
-  valibot@0.35.0:
-    resolution: {integrity: sha512-+i2aCRkReTrd5KBN/dW2BrPOvFnU5LXTV2xjZnjnqUIO8YUx6P2+MgRrkwF2FhkexgyKq/NIZdPdknhHf5A/Ww==}
-
   valibot@0.40.0:
     resolution: {integrity: sha512-XHKnaVtwHqxPwnGOsLrwka9CEaL7yNeLNp707OKv/bmT29GnPVdl6PxBOZ6BW7hF66/6QT6iVbOlnW7qVPmoKw==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  valibot@1.0.0-beta.8:
+    resolution: {integrity: sha512-OPAwJZtowb0j91b+bd77+ny7D1VVzsCzD7Jl9waLUlMprTsfI9Y3HHbW3hAQD7wKDKHsmGEesuiYWaYvcZL2wg==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -2080,9 +2049,6 @@ packages:
   yn@3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
-
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -2484,13 +2450,13 @@ snapshots:
       '@sveltejs/kit': 2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14))
       import-meta-resolve: 4.1.0
 
-  '@sveltejs/adapter-static@3.0.2(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))':
-    dependencies:
-      '@sveltejs/kit': 2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14))
-
   '@sveltejs/adapter-static@3.0.2(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14)))':
     dependencies:
       '@sveltejs/kit': 2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.4.2(@types/node@20.12.14))
+
+  '@sveltejs/adapter-static@3.0.6(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))':
+    dependencies:
+      '@sveltejs/kit': 2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14))
 
   '@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14)))(svelte@4.2.18)(vite@5.3.1(@types/node@20.12.14))':
     dependencies:
@@ -2574,12 +2540,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tauri-apps/api@2.0.0-beta.11': {}
-
-  '@tauri-apps/api@2.0.0-rc.0': {}
-
-  '@tauri-apps/api@2.0.0-rc.4': {}
-
   '@tauri-apps/api@2.0.1': {}
 
   '@tauri-apps/api@2.1.1': {}
@@ -2627,17 +2587,13 @@ snapshots:
       '@tauri-apps/cli-win32-ia32-msvc': 2.0.0-beta.20
       '@tauri-apps/cli-win32-x64-msvc': 2.0.0-beta.20
 
-  '@tauri-apps/plugin-dialog@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-
   '@tauri-apps/plugin-dialog@2.0.1':
     dependencies:
       '@tauri-apps/api': 2.1.1
 
   '@tauri-apps/plugin-fs@2.0.0-rc.0':
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
+      '@tauri-apps/api': 2.1.1
 
   '@tauri-apps/plugin-fs@2.0.2':
     dependencies:
@@ -2645,7 +2601,7 @@ snapshots:
 
   '@tauri-apps/plugin-http@2.0.0-rc.0':
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
+      '@tauri-apps/api': 2.1.1
 
   '@tauri-apps/plugin-http@2.0.1':
     dependencies:
@@ -2655,37 +2611,17 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.1.1
 
-  '@tauri-apps/plugin-log@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-
   '@tauri-apps/plugin-notification@2.0.0':
     dependencies:
       '@tauri-apps/api': 2.1.1
-
-  '@tauri-apps/plugin-notification@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
 
   '@tauri-apps/plugin-os@2.0.0':
     dependencies:
       '@tauri-apps/api': 2.1.1
 
-  '@tauri-apps/plugin-os@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-
-  '@tauri-apps/plugin-shell@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-
   '@tauri-apps/plugin-shell@2.0.1':
     dependencies:
       '@tauri-apps/api': 2.1.1
-
-  '@tauri-apps/plugin-upload@2.0.0-rc.0':
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
 
   '@tauri-apps/plugin-upload@2.1.0':
     dependencies:
@@ -3148,7 +3084,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  kkrpc@0.0.7(typescript@5.4.5):
+  kkrpc@0.0.12(typescript@5.4.5):
     dependencies:
       typescript: 5.4.5
       ws: 8.18.0
@@ -3156,7 +3092,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.0.7(typescript@5.5.3):
+  kkrpc@0.0.12(typescript@5.5.3):
     dependencies:
       typescript: 5.5.3
       ws: 8.18.0
@@ -3164,7 +3100,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.0.7(typescript@5.6.3):
+  kkrpc@0.0.12(typescript@5.6.3):
     dependencies:
       typescript: 5.6.3
       ws: 8.18.0
@@ -3715,6 +3651,13 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
+  tauri-plugin-clipboard-api@2.1.11(typescript@5.4.5):
+    dependencies:
+      '@tauri-apps/api': 2.0.1
+      valibot: 0.40.0(typescript@5.4.5)
+    transitivePeerDependencies:
+      - typescript
+
   tauri-plugin-clipboard-api@2.1.11(typescript@5.6.3):
     dependencies:
       '@tauri-apps/api': 2.0.1
@@ -3722,17 +3665,12 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  tauri-plugin-clipboard-api@2.1.8(typescript@5.4.5):
+  tauri-plugin-network-api@2.0.4(typescript@5.4.5):
     dependencies:
-      '@tauri-apps/api': 2.0.0-beta.11
+      '@tauri-apps/api': 2.1.1
       valibot: 0.40.0(typescript@5.4.5)
     transitivePeerDependencies:
       - typescript
-
-  tauri-plugin-network-api@2.0.3-beta.1:
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-      valibot: 0.35.0
 
   tauri-plugin-network-api@2.0.4(typescript@5.6.3):
     dependencies:
@@ -3741,19 +3679,16 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  tauri-plugin-shellx-api@2.0.10:
-    dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-
   tauri-plugin-shellx-api@2.0.14:
     dependencies:
       '@tauri-apps/api': 2.1.1
 
-  tauri-plugin-system-info-api@2.0.2:
+  tauri-plugin-system-info-api@2.0.8(typescript@5.4.5):
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.4
-      valibot: 0.35.0
-      zod: 3.23.8
+      '@tauri-apps/api': 2.1.1
+      valibot: 0.40.0(typescript@5.4.5)
+    transitivePeerDependencies:
+      - typescript
 
   tauri-plugin-system-info-api@2.0.8(typescript@5.6.3):
     dependencies:
@@ -3839,32 +3774,32 @@ snapshots:
   tslib@2.7.0:
     optional: true
 
-  turbo-darwin-64@2.1.1:
+  turbo-darwin-64@2.3.1:
     optional: true
 
-  turbo-darwin-arm64@2.1.1:
+  turbo-darwin-arm64@2.3.1:
     optional: true
 
-  turbo-linux-64@2.1.1:
+  turbo-linux-64@2.3.1:
     optional: true
 
-  turbo-linux-arm64@2.1.1:
+  turbo-linux-arm64@2.3.1:
     optional: true
 
-  turbo-windows-64@2.1.1:
+  turbo-windows-64@2.3.1:
     optional: true
 
-  turbo-windows-arm64@2.1.1:
+  turbo-windows-arm64@2.3.1:
     optional: true
 
-  turbo@2.1.1:
+  turbo@2.3.1:
     optionalDependencies:
-      turbo-darwin-64: 2.1.1
-      turbo-darwin-arm64: 2.1.1
-      turbo-linux-64: 2.1.1
-      turbo-linux-arm64: 2.1.1
-      turbo-windows-64: 2.1.1
-      turbo-windows-arm64: 2.1.1
+      turbo-darwin-64: 2.3.1
+      turbo-darwin-arm64: 2.3.1
+      turbo-linux-64: 2.3.1
+      turbo-linux-arm64: 2.3.1
+      turbo-windows-64: 2.3.1
+      turbo-windows-arm64: 2.3.1
 
   typedoc@0.26.11(typescript@5.6.3):
     dependencies:
@@ -3919,13 +3854,15 @@ snapshots:
   v8-compile-cache-lib@3.0.1:
     optional: true
 
-  valibot@0.35.0: {}
-
   valibot@0.40.0(typescript@5.4.5):
     optionalDependencies:
       typescript: 5.4.5
 
   valibot@0.40.0(typescript@5.6.3):
+    optionalDependencies:
+      typescript: 5.6.3
+
+  valibot@1.0.0-beta.8(typescript@5.6.3):
     optionalDependencies:
       typescript: 5.6.3
 
@@ -3993,7 +3930,5 @@ snapshots:
 
   yn@3.1.1:
     optional: true
-
-  zod@3.23.8: {}
 
   zwitch@2.0.4: {}
