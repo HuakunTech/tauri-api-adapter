@@ -1,6 +1,6 @@
 {
   "name": "tauri-api-adapter",
-  "version": "0.3.16",
+  "version": "0.3.17",
   "type": "module",
   "exports": {
     ".": {
@@ -37,31 +37,30 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
-    "@rollup/plugin-typescript": "^12.1.1",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/bun": "latest",
-    "typedoc": "^0.26.11",
-    "rollup": "^4.27.2"
+    "typedoc": "^0.27.6",
+    "rollup": "^4.30.1"
   },
   "dependencies": {
-    "@tauri-apps/api": "^2.1.1",
-    "@tauri-apps/plugin-dialog": "^2.0.1",
-    "@tauri-apps/plugin-fs": "^2.0.2",
-    "@tauri-apps/plugin-http": "^2.0.1",
-    "@tauri-apps/plugin-log": "^2.0.0",
-    "@tauri-apps/plugin-notification": "^2.0.0",
-    "@tauri-apps/plugin-os": "^2.0.0",
-    "@tauri-apps/plugin-shell": "^2.0.1",
-    "@tauri-apps/plugin-upload": "^2.1.0",
-    "kkrpc": "^0.0.12",
+    "@tauri-apps/api": "^2.2.0",
+    "@tauri-apps/plugin-dialog": "^2.2.0",
+    "@tauri-apps/plugin-fs": "^2.2.0",
+    "@tauri-apps/plugin-http": "^2.2.0",
+    "@tauri-apps/plugin-log": "^2.2.0",
+    "@tauri-apps/plugin-notification": "^2.2.0",
+    "@tauri-apps/plugin-os": "^2.2.0",
+    "@tauri-apps/plugin-shell": "^2.2.0",
+    "@tauri-apps/plugin-upload": "^2.2.1",
+    "kkrpc": "^0.0.14",
     "rimraf": "^6.0.1",
     "shx": "^0.3.4",
     "tauri-plugin-clipboard-api": "^2.1.11",
-    "tauri-plugin-network-api": "^2.0.4",
+    "tauri-plugin-network-api": "^2.0.5",
     "tauri-plugin-shellx-api": "^2.0.14",
     "tauri-plugin-system-info-api": "^2.0.8",
     "tsc-alias": "^1.8.10",
-    "typescript": "^5.6.3",
-    "valibot": "^1.0.0-beta.9"
+    "valibot": "^1.0.0-beta.11"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

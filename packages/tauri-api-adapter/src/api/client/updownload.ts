@@ -3,6 +3,7 @@ import type { IUpdownload } from './types'
 
 interface ProgressPayload {
   progress: number
+  progressTotal: number
   total: number
   transferSpeed: number
 }
