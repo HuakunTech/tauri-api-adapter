@@ -15,8 +15,8 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       turbo:
-        specifier: ^2.3.3
-        version: 2.3.3
+        specifier: ^2.3.4
+        version: 2.3.4
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -51,8 +51,8 @@ importers:
         specifier: ~2.2.1
         version: 2.2.1
       kkrpc:
-        specifier: ^0.0.14
-        version: 0.0.14(typescript@5.4.5)
+        specifier: ^0.1.0
+        version: 0.1.0(typescript@5.4.5)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
@@ -109,8 +109,8 @@ importers:
   apps/extension:
     dependencies:
       kkrpc:
-        specifier: ^0.0.14
-        version: 0.0.14(typescript@5.5.3)
+        specifier: ^0.1.0
+        version: 0.1.0(typescript@5.5.3)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
@@ -170,8 +170,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       kkrpc:
-        specifier: ^0.0.14
-        version: 0.0.14(typescript@5.6.3)
+        specifier: ^0.1.0
+        version: 0.1.0(typescript@5.6.3)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -208,7 +208,7 @@ importers:
         version: 12.1.2(rollup@4.30.1)(tslib@2.7.0)(typescript@5.6.3)
       '@types/bun':
         specifier: latest
-        version: 1.1.15
+        version: 1.2.1
       rollup:
         specifier: ^4.30.1
         version: 4.30.1
@@ -893,8 +893,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@types/bun@1.1.15':
-    resolution: {integrity: sha512-Fi7ND1jCq8O5iU3s9z3TKHggD0hidgpe7wSxyisviXpbMmY4B1KiokF3f/mmjOoDrEcf873tSpixgen7Wm9X0g==}
+  '@types/bun@1.2.1':
+    resolution: {integrity: sha512-iiCeMAKMkft8EPQJxSbpVRD0DKqrh91w40zunNajce3nMNNFd/LnAquVisSZC+UpTMjDwtcdyzbWct08IvEqRA==}
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -1013,8 +1013,8 @@ packages:
     resolution: {integrity: sha512-Db1SbgBS/fg/392AblrMJk97KggmvYhr4pB5ZIMTWtaivCPMWLkmb7m21cJvpvgK+J3nsU2CmmixNBZx4vFj/w==}
     engines: {node: '>=8.0.0'}
 
-  bun-types@1.1.42:
-    resolution: {integrity: sha512-beMbnFqWbbBQHll/bn3phSwmoOQmnX2nt8NI9iOQKFbgR5Z6rlH3YuaMdlid8vp5XGct3/W4QVQBmhoOEoe4nw==}
+  bun-types@1.2.1:
+    resolution: {integrity: sha512-p7bmXUWmrPWxhcbFVk7oUXM5jAGt94URaoa3qf4mz43MEhNAo/ot1urzBqctgvuq7y9YxkuN51u+/qm4BiIsHw==}
 
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -1320,8 +1320,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  kkrpc@0.0.14:
-    resolution: {integrity: sha512-SbvObowERwV6UNYMsQOq9aO1f9+XRoZqVoaNChSTeJ7DbsCBeebnAYcPXpPL3wdxS0HNF5hyIxbhg2LkaFjbzQ==}
+  kkrpc@0.1.0:
+    resolution: {integrity: sha512-A20uDSVW3mr3yDklAH/5MyOObx6STr/EVkS1ZslXzsfbxoReWprr7cnGhMJMp05gQQ4bbMcL4GW/4AEuJxMfPw==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -1840,38 +1840,38 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  turbo-darwin-64@2.3.3:
-    resolution: {integrity: sha512-bxX82xe6du/3rPmm4aCC5RdEilIN99VUld4HkFQuw+mvFg6darNBuQxyWSHZTtc25XgYjQrjsV05888w1grpaA==}
+  turbo-darwin-64@2.3.4:
+    resolution: {integrity: sha512-uOi/cUIGQI7uakZygH+cZQ5D4w+aMLlVCN2KTGot+cmefatps2ZmRRufuHrEM0Rl63opdKD8/JIu+54s25qkfg==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@2.3.3:
-    resolution: {integrity: sha512-DYbQwa3NsAuWkCUYVzfOUBbSUBVQzH5HWUFy2Kgi3fGjIWVZOFk86ss+xsWu//rlEAfYwEmopigsPYSmW4X15A==}
+  turbo-darwin-arm64@2.3.4:
+    resolution: {integrity: sha512-IIM1Lq5R+EGMtM1YFGl4x8Xkr0MWb4HvyU8N4LNoQ1Be5aycrOE+VVfH+cDg/Q4csn+8bxCOxhRp5KmUflrVTQ==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.3.3:
-    resolution: {integrity: sha512-eHj9OIB0dFaP6BxB88jSuaCLsOQSYWBgmhy2ErCu6D2GG6xW3b6e2UWHl/1Ho9FsTg4uVgo4DB9wGsKa5erjUA==}
+  turbo-linux-64@2.3.4:
+    resolution: {integrity: sha512-1aD2EfR7NfjFXNH3mYU5gybLJEFi2IGOoKwoPLchAFRQ6OEJQj201/oNo9CDL75IIrQo64/NpEgVyZtoPlfhfA==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@2.3.3:
-    resolution: {integrity: sha512-NmDE/NjZoDj1UWBhMtOPmqFLEBKhzGS61KObfrDEbXvU3lekwHeoPvAMfcovzswzch+kN2DrtbNIlz+/rp8OCg==}
+  turbo-linux-arm64@2.3.4:
+    resolution: {integrity: sha512-MxTpdKwxCaA5IlybPxgGLu54fT2svdqTIxRd0TQmpRJIjM0s4kbM+7YiLk0mOh6dGqlWPUsxz/A0Mkn8Xr5o7Q==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@2.3.3:
-    resolution: {integrity: sha512-O2+BS4QqjK3dOERscXqv7N2GXNcqHr9hXumkMxDj/oGx9oCatIwnnwx34UmzodloSnJpgSqjl8iRWiY65SmYoQ==}
+  turbo-windows-64@2.3.4:
+    resolution: {integrity: sha512-yyCrWqcRGu1AOOlrYzRnizEtdkqi+qKP0MW9dbk9OsMDXaOI5jlWtTY/AtWMkLw/czVJ7yS9Ex1vi9DB6YsFvw==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@2.3.3:
-    resolution: {integrity: sha512-dW4ZK1r6XLPNYLIKjC4o87HxYidtRRcBeo/hZ9Wng2XM/MqqYkAyzJXJGgRMsc0MMEN9z4+ZIfnSNBrA0b08ag==}
+  turbo-windows-arm64@2.3.4:
+    resolution: {integrity: sha512-PggC3qH+njPfn1PDVwKrQvvQby8X09ufbqZ2Ha4uSu+5TvPorHHkAbZVHKYj2Y+tvVzxRzi4Sv6NdHXBS9Be5w==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@2.3.3:
-    resolution: {integrity: sha512-DUHWQAcC8BTiUZDRzAYGvpSpGLiaOQPfYXlCieQbwUvmml/LRGIe3raKdrOPOoiX0DYlzxs2nH6BoWJoZrj8hA==}
+  turbo@2.3.4:
+    resolution: {integrity: sha512-1kiLO5C0Okh5ay1DbHsxkPsw9Sjsbjzm6cF85CpWjR0BIyBFNDbKqtUyqGADRS1dbbZoQanJZVj4MS5kk8J42Q==}
     hasBin: true
 
   typedoc@0.27.6:
@@ -2668,9 +2668,9 @@ snapshots:
   '@tsconfig/node16@1.0.4':
     optional: true
 
-  '@types/bun@1.1.15':
+  '@types/bun@1.2.1':
     dependencies:
-      bun-types: 1.1.42
+      bun-types: 1.2.1
 
   '@types/cookie@0.6.0': {}
 
@@ -2776,7 +2776,7 @@ snapshots:
 
   buffer-crc32@1.0.0: {}
 
-  bun-types@1.1.42:
+  bun-types@1.2.1:
     dependencies:
       '@types/node': 20.12.14
       '@types/ws': 8.5.10
@@ -3073,7 +3073,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  kkrpc@0.0.14(typescript@5.4.5):
+  kkrpc@0.1.0(typescript@5.4.5):
     dependencies:
       typescript: 5.4.5
       ws: 8.18.0
@@ -3081,7 +3081,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.0.14(typescript@5.5.3):
+  kkrpc@0.1.0(typescript@5.5.3):
     dependencies:
       typescript: 5.5.3
       ws: 8.18.0
@@ -3089,7 +3089,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.0.14(typescript@5.6.3):
+  kkrpc@0.1.0(typescript@5.6.3):
     dependencies:
       typescript: 5.6.3
       ws: 8.18.0
@@ -3725,32 +3725,32 @@ snapshots:
   tslib@2.7.0:
     optional: true
 
-  turbo-darwin-64@2.3.3:
+  turbo-darwin-64@2.3.4:
     optional: true
 
-  turbo-darwin-arm64@2.3.3:
+  turbo-darwin-arm64@2.3.4:
     optional: true
 
-  turbo-linux-64@2.3.3:
+  turbo-linux-64@2.3.4:
     optional: true
 
-  turbo-linux-arm64@2.3.3:
+  turbo-linux-arm64@2.3.4:
     optional: true
 
-  turbo-windows-64@2.3.3:
+  turbo-windows-64@2.3.4:
     optional: true
 
-  turbo-windows-arm64@2.3.3:
+  turbo-windows-arm64@2.3.4:
     optional: true
 
-  turbo@2.3.3:
+  turbo@2.3.4:
     optionalDependencies:
-      turbo-darwin-64: 2.3.3
-      turbo-darwin-arm64: 2.3.3
-      turbo-linux-64: 2.3.3
-      turbo-linux-arm64: 2.3.3
-      turbo-windows-64: 2.3.3
-      turbo-windows-arm64: 2.3.3
+      turbo-darwin-64: 2.3.4
+      turbo-darwin-arm64: 2.3.4
+      turbo-linux-64: 2.3.4
+      turbo-linux-arm64: 2.3.4
+      turbo-windows-64: 2.3.4
+      turbo-windows-arm64: 2.3.4
 
   typedoc@0.27.6(typescript@5.6.3):
     dependencies:
