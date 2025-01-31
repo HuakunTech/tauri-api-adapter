@@ -51,8 +51,8 @@ importers:
         specifier: ~2.2.1
         version: 2.2.1
       kkrpc:
-        specifier: ^0.1.0
-        version: 0.1.0(typescript@5.4.5)
+        specifier: ^0.1.1
+        version: 0.1.1(typescript@5.4.5)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
@@ -109,8 +109,8 @@ importers:
   apps/extension:
     dependencies:
       kkrpc:
-        specifier: ^0.1.0
-        version: 0.1.0(typescript@5.5.3)
+        specifier: ^0.1.1
+        version: 0.1.1(typescript@5.5.3)
       tauri-api-adapter:
         specifier: workspace:*
         version: link:../../packages/tauri-api-adapter
@@ -170,8 +170,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       kkrpc:
-        specifier: ^0.1.0
-        version: 0.1.0(typescript@5.6.3)
+        specifier: ^0.1.1
+        version: 0.1.1(typescript@5.6.3)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1320,8 +1320,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  kkrpc@0.1.0:
-    resolution: {integrity: sha512-A20uDSVW3mr3yDklAH/5MyOObx6STr/EVkS1ZslXzsfbxoReWprr7cnGhMJMp05gQQ4bbMcL4GW/4AEuJxMfPw==}
+  kkrpc@0.1.1:
+    resolution: {integrity: sha512-zS75NGmDbMEQNJ7Y1XVNVrLmfuCY94jMCrIcNFHoT+5qLaTzpK1lokXUD9VYrRVMQMwAx8U9BgKjdiS0eDKZHA==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -3073,7 +3073,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  kkrpc@0.1.0(typescript@5.4.5):
+  kkrpc@0.1.1(typescript@5.4.5):
     dependencies:
       typescript: 5.4.5
       ws: 8.18.0
@@ -3081,7 +3081,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.1.0(typescript@5.5.3):
+  kkrpc@0.1.1(typescript@5.5.3):
     dependencies:
       typescript: 5.5.3
       ws: 8.18.0
@@ -3089,7 +3089,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  kkrpc@0.1.0(typescript@5.6.3):
+  kkrpc@0.1.1(typescript@5.6.3):
     dependencies:
       typescript: 5.6.3
       ws: 8.18.0
