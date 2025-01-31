@@ -2,6 +2,12 @@
   "name": "tauri-api-adapter",
   "version": "0.3.18",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HuakunShen/tauri-api-adapter"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
