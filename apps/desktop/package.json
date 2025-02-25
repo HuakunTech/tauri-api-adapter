@@ -27,7 +27,7 @@
     "tauri-api-adapter": "workspace:*",
     "tauri-plugin-clipboard-api": "^2.1.11",
     "tauri-plugin-network-api": "^2.0.5",
-    "tauri-plugin-shellx-api": "^2.0.14",
+    "tauri-plugin-shellx-api": "^2.0.15",
     "tauri-plugin-system-info-api": "^2.0.8"
   },
   "devDependencies": {
