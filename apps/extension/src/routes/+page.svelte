@@ -58,9 +58,19 @@
       cbText = text
     })
   }
+
+  let pid = 0
 </script>
 
 <h1>Home Page</h1>
 <button on:click={onClipboardRead}>Read Clipboard Text</button>
+<div>
+  <input type="number" bind:value={pid} />
+  <button
+    on:click={() => {
+      shell.killPid(pid)
+    }}>Kill Pid</button
+  >
+</div>
 <a href="/about">Go to About Page</a>
 <pre>{cbText}</pre>

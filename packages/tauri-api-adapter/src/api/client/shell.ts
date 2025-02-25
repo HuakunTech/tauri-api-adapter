@@ -8,6 +8,7 @@ import {
   executePythonScript as shellxExecutePythonScript,
   executeZshScript as shellxExecuteZshScript,
   hasCommand as shellxHasCommand,
+  killPid as shellxKillPid,
   likelyOnWindows as shellxLikelyOnWindows,
   makeAppleScript as shellxMakeAppleScript,
   makeBashScript as shellxMakeBashScript,
@@ -158,6 +159,7 @@ export function constructShellAPI(api: IShellInternal): IShell {
 
   return {
     open: api.open,
+    killPid: api.killPid,
     makeBashScript,
     makePowershellScript,
     makeAppleScript,
@@ -179,6 +181,7 @@ export function constructShellAPI(api: IShellInternal): IShell {
 
 export const nativeShell: IShell = {
   open: shellxOpen,
+  killPid: shellxKillPid,
   makeBashScript: shellxMakeBashScript,
   makePowershellScript: shellxMakePowershellScript,
   makeAppleScript: shellxMakeAppleScript,

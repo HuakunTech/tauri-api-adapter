@@ -14,6 +14,7 @@ import type {
   INotification,
   IOs,
   IPath,
+  IShell,
   IShellInternal,
   ISystemInfo,
   IUpdownload

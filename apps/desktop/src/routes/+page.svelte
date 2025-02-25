@@ -27,6 +27,7 @@
     constructUpdownloadApi
   } from 'tauri-api-adapter'
   import type { AllPermission } from 'tauri-api-adapter/permissions'
+  import * as shell from 'tauri-plugin-shellx-api'
   import SampleWorker from '../lib/sample-worker?worker'
 
   let iframe: HTMLIFrameElement
@@ -62,6 +63,7 @@
       'dialog:all',
       'fs:read',
       'fs:write',
+      'shell:kill-any',
       'notification:all',
       'os:all',
       'shell:execute',
@@ -90,6 +92,11 @@
 
 <div class="container p-5">
   <h1 class="text-3xl font-bold underline">Parent Page</h1>
+  <button
+    on:click={() => {
+      shell.killPid(50016)
+    }}>kill</button
+  >
   <!-- <h2>isMain: {isMain}</h2>
   <h2>isInIframe: {isInIframe}</h2>
   <h2>isInWorker: {isInWorker}</h2> -->

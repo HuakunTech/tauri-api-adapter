@@ -134,6 +134,7 @@ import type {
   hasCommand,
   InternalSpawnOptions,
   IOPayload,
+  killPid,
   likelyOnWindows,
   makeAppleScript,
   makeBashScript,
@@ -315,9 +316,13 @@ export interface IOs {
   locale: typeof locale
 }
 
+/**
+ * Internal shell API hidden from client
+ */
 export interface IShellInternal {
   execute(program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>>
   kill(pid: number): Promise<void>
+  killPid(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
   rawSpawn<O extends IOPayload>(
     program: string,
@@ -344,6 +349,7 @@ export interface IShell {
   executeNodeScript: typeof executeNodeScript
   hasCommand: typeof hasCommand
   likelyOnWindows: typeof likelyOnWindows
+  killPid: typeof killPid
   Command: typeof Command
   Child: typeof Child
 }

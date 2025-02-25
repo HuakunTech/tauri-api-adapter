@@ -49,6 +49,7 @@
     "core:menu:default",
     "shellx:allow-execute",
     "shellx:allow-kill",
+    "shellx:allow-kill-pid",
     "os:allow-version",
     "clipboard:write-all",
     "dialog:allow-ask",

@@ -77,7 +77,6 @@ export const NotificationPermissionMap: Record<keyof INotification, Notification
   onAction: ['notification:all']
 }
 
-
 export const FsPermissionMap: Record<keyof IFs, FsPermission[]> = {
   readDir: ['fs:read'],
   readFile: ['fs:read'],
@@ -142,6 +141,7 @@ export const SystemInfoPermissionMap: Record<keyof ISystemInfo, SystemInfoPermis
 export const ShellPermissionMap: Record<keyof IShellServer, ShellPermission[]> = {
   execute: ['shell:execute'],
   kill: ['shell:execute'],
+  killPid: ['shell:kill-any'],
   stdinWrite: ['shell:execute'],
   open: ['shell:open'],
   rawSpawn: ['shell:execute'],

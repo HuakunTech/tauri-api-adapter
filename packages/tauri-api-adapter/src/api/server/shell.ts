@@ -41,6 +41,10 @@ export function constructShellApi(permissions: ShellPermission[]): IShellServer 
         pid: pid
       })
     ),
+    killPid: checkPermission<ShellPermission>(
+      ShellPermissionMap.killPid,
+      permissions
+    )((pid: number) => invoke<void>('plugin:shellx|kill_pid', { pid })),
     stdinWrite: checkPermission<ShellPermission>(
       ShellPermissionMap.stdinWrite,
       permissions

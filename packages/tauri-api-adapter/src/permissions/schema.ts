@@ -24,7 +24,7 @@ export type FsPermission = InferOutput<typeof FsPermissionSchema>
 export const OsPermissionSchema = literal('os:all')
 export type OsPermission = InferOutput<typeof OsPermissionSchema>
 
-export const ShellPermissionSchema = union([literal('shell:open'), literal('shell:execute')])
+export const ShellPermissionSchema = union([literal('shell:open'), literal('shell:execute'), literal('shell:kill-any')])
 export type ShellPermission = InferOutput<typeof ShellPermissionSchema>
 
 export const FetchPermissionSchema = literal('fetch:all')
