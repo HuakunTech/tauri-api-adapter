@@ -18,6 +18,7 @@ export type IShellServer = IShellInternal &
     | 'executeNodeScript'
     | 'hasCommand'
     | 'likelyOnWindows'
+    | 'killPid'
   >
 
 export interface IEventServer {

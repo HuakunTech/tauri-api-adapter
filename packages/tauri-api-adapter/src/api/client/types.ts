@@ -322,7 +322,6 @@ export interface IOs {
 export interface IShellInternal {
   execute(program: string, args: string[], options: InternalSpawnOptions): Promise<ChildProcess<IOPayload>>
   kill(pid: number): Promise<void>
-  killPid(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
   rawSpawn<O extends IOPayload>(
     program: string,

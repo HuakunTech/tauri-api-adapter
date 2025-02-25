@@ -21,9 +21,10 @@ import {
   type IOPayload,
   type SpawnOptions
 } from 'tauri-plugin-shellx-api'
+import type { IShellServer } from '../server/types'
 import type { IShell, IShellInternal } from './types'
 
-export function constructShellAPI(api: IShellInternal): IShell {
+export function constructShellAPI(api: IShellServer): IShell {
   class Child extends ShellxChild {
     write(data: IOPayload): Promise<void> {
       return api.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)

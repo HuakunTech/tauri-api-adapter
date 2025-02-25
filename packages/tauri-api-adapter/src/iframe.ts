@@ -19,6 +19,7 @@ import type {
   IUpdownload
 } from './api/client/types'
 import { constructUpdownloadAPI } from './api/client/updownload'
+import type { IShellServer } from './api/server/types'
 
 type API = {
   clipboard: IClipboard
@@ -30,7 +31,7 @@ type API = {
   notification: INotification
   os: IOs
   path: IPath
-  shell: IShellInternal
+  shell: IShellServer
   updownload: IUpdownload
   sysInfo: ISystemInfo
   network: INetwork
